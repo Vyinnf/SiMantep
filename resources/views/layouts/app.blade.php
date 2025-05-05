@@ -48,7 +48,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#about">
+      <a class="btn-getstarted" href="{{ route('mahasiswa.login') }}">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
           <path d="M8 0a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 1a2 2 0 1 1-2 2 2 2 0 0 1 2-2zm4 7c1.657 0 3 1.343 3 3 0 1.657-1.343 3-3 3H4c-1.657 0-3-1.343-3-3 0-1.657 1.343-3 3-3h8zm0 1H4c-1.103 0-2 .897-2 2 0 1.103.897 2 2 2h8c1.103 0 2-.897 2-2 0-1.103-.897-2-2-2z"/>
       </svg>
