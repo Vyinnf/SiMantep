@@ -1,50 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Mahasiswa</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Mahasiswa</title>
+  <link rel="stylesheet" href="{{ asset('assets/css/login-style.css') }}" />
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gradient-to-tr from-blue-900 to-indigo-900 min-h-screen flex items-center justify-center">
-
-    <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-xl w-full max-w-md border border-white/20">
-        <h2 class="text-3xl font-bold text-white text-center mb-6">Login Mahasiswa</h2>
-
-        @if (session('error'))
-            <div class="bg-red-100 text-red-700 p-2 rounded mb-4 text-sm">
-                {{ session('error') }}
+<body>
+  <div class="container" id="container">
+    <!-- Sign Up Form -->
+    <div class="form-container sign-up-container">
+      <form method="POST" action="{{ route('mahasiswa.register') }}">
+        @csrf
+        <h1>Create Account</h1>
+        <input type="text" placeholder="Name" name="name" required />
+        <input type="email" placeholder="Email" name="email" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <button type="submit">Sign Up</button>
+        {{-- back button --}}
+        <div class="back-button">
+            <div class="circle-wrapper" onclick="window.location='{{ url('/') }}'">
+              <button class="circle-button" type="button">
+                <span class="icon">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                    <path fill="black" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                  </svg>
+                </span>
+              </button>
             </div>
-        @endif
-
-        <form method="POST" action="{{ route('mahasiswa.login') }}">
-            @csrf
-
-            <div class="mb-4">
-                <label class="block text-white text-sm mb-1" for="email">Email</label>
-                <input type="email" id="email" name="email" required
-                    class="w-full px-4 py-2 rounded-lg bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 placeholder-white/60"
-                    placeholder="email@student.ac.id">
-            </div>
-
-            <div class="mb-6">
-                <label class="block text-white text-sm mb-1" for="password">Password</label>
-                <input type="password" id="password" name="password" required
-                    class="w-full px-4 py-2 rounded-lg bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 placeholder-white/60"
-                    placeholder="********">
-            </div>
-
-            <button type="submit"
-                class="w-full py-2 bg-white/20 text-white font-semibold rounded-lg hover:bg-white/30 transition">
-                Masuk
-            </button>
-        </form>
-
-        <p class="text-white text-center text-sm mt-6">
-            Belum punya akun?
-            <a href="{{ route('mahasiswa.register') }}" class="underline hover:text-blue-300">Daftar di sini</a>
-        </p>
+          </div>                                          
+  {{-- end back buttton --}}
+      </form>
     </div>
 
+    <!-- Sign In Form -->
+    <div class="form-container sign-in-container">
+      <form method="POST" action="{{ route('mahasiswa.login') }}">
+        @csrf
+        <h1>Sign in</h1>
+        <input type="email" placeholder="Email" name="email" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <a href="#">Forgot your password?</a>
+        <button type="submit">Sign In</button>
+
+{{-- back button --}}
+<div class="back-button">
+    <div class="circle-wrapper" onclick="window.location='{{ url('/') }}'">
+      <button class="circle-button" type="button">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path fill="black" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>           
+{{-- end back buttton --}}
+   
+    </form>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start your journey with us</p>
+          <button class="ghost" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ asset('assets/js/login-script.js') }}"></script>
 </body>
 </html>
