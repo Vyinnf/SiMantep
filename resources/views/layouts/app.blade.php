@@ -8,9 +8,9 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <!-- Favicons -->
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <!-- SiMantep -->
+    <link href="{{ asset('assets/img/SiMantep.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/SiMantep.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
