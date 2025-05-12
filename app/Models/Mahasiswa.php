@@ -18,7 +18,7 @@ class Mahasiswa extends Authenticatable
         'password',
     ];
 
-    // protected $hidden = [
-    //     'password',
-    // ];
+    protected $hidden = [
+        'password',
+    ];
 }
