@@ -16,9 +16,10 @@
             <form method="POST" action="{{ route('mahasiswa.register') }}">
                 @csrf
                 <h1>Create Account</h1>
-                <input type="text" placeholder="Name" name="name" required />
+                <input type="text" placeholder="Name" name="nama" required />
                 <input type="email" placeholder="Email" name="email" required />
                 <input type="password" placeholder="Password" name="password" required />
+                <input type="password" placeholder="Confirm Password" name="password_confirmation" required />
                 <button type="submit">Sign Up</button>
                 {{-- back button --}}
                 <div class="back-button">

@@ -40,7 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'mahasiswa' => [
+            'driver' => 'session',
+            'provider' => 'mahasiswas',
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -64,11 +69,10 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'mahasiswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mahasiswa::class,
+        ],
     ],
 
     /*
@@ -97,6 +101,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'mahasiswas' => [
+        'provider' => 'mahasiswas',
+        'table' => 'password_reset_tokens',
+        'expire' => 60,
+        'throttle' => 60,
+    ],
     ],
 
     /*

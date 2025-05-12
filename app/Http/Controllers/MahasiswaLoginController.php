@@ -18,16 +18,31 @@ class MahasiswaLoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attemp (['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('home')->with('success', 'Login successful');
+        // Coba login menggunakan guard 'mahasiswa'
+        if (
+            Auth::guard('mahasiswa')->attempt([
+                'email' => $request->email,
+                'password' => $request->password,
+            ])
+        ) {
+            $request->session()->regenerate(); // Hindari session fixation
+            return redirect()->route('mahasiswa.dashboard')->with('success', 'Login berhasil');
         }
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput($request->only('email'));
+
+        // Jika gagal login
+        return back()
+            ->withErrors([
+                'email' => 'Email atau password salah.',
+            ])
+            ->onlyInput('email');
     }
-    public function logout()
+
+    public function logout(Request $request)
     {
-        Auth::logout();
-        return redirect('/login/mahasiswa');
+        Auth::guard('mahasiswa')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login/mahasiswa')->with('status', "Anda telah logout");
     }
 }

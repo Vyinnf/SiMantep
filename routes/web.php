@@ -12,13 +12,18 @@ Route::get('/', function () {
 });
 
 // auth
-Route::get('/login/mahasiswa', function () {
-    return view('auth.login-mahasiswa');
-})->name ('mahasiswa.login');
+Route::get('/login/mahasiswa', [MahasiswaLoginController::class, 'showloginForm'])->name('mahasiswa.login');
 
 Route::get('/register/mahasiswa', function () {
     return view('auth.register-mahasiswa');
 })->name ('mahasiswa.register');
+
+// route dashboard mahasiswa
+Route::middleware(['auth:mahasiswa'])->group(function () {
+    Route::get('/mahasiswa/dashboard', function () {
+        return view('mahasiswa.dashboard');
+    })->name('mahasiswa.dashboard');
+});
 
 // login
 Route::get('/login/mahasiswa', [MahasiswaLoginController::class, 'showLoginForm'])->name('mahasiswa.login.form');
