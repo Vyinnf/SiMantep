@@ -34,19 +34,32 @@ Route::post('/logout/mahasiswa', [MahasiswaLoginController::class, 'logout'])->n
 Route::get('/register/mahasiswa', [MahasiswaRegisterController::class, 'showRegistrationForm'])->name('mahasiswa.register');
 Route::post('/register/mahasiswa', [MahasiswaRegisterController::class, 'register'])->name('mahasiswa.register.submit');
 
-// forgot password
+// Form lupa password
 Route::get('/lupa-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('/lupa-password', [ForgotPasswordController::class, 'sendResetLilnkEmail'])->name('password.email');
+Route::post('/lupa-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/forgot-password/{token}', function (Request $request, string $token) {
+    return view('auth.forgot-password', [
+        'token' => $token,
+        'email' => $request->email
+    ]);
+})->name('password.reset');
 
-// Mengirim email reset password
-Route::post('/lupa-password', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
 
-    $status = Password::sendResetLink(
-        $request->only('email')
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->password = Hash::make($password);
+            $user->save();
+        }
     );
 
-    return $status === Password::RESET_LINK_SENT
-        ? back()->with(['status' => __($status)])
-        : back()->withErrors(['email' => __($status)]);
-})->name('password.email');
+    return $status === Password::PASSWORD_RESET
+        ? redirect()->route('mahasiswa.login.form')->with('success', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
+})->name('password.update');
