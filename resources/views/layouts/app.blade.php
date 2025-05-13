@@ -573,11 +573,11 @@
         <!-- Contact Section -->
         <section id="contact" class="contact section light-background">
 
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Contact</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-            </div><!-- End Section Title -->
+           <!-- Section Title -->
+<div class="container section-title" data-aos="fade-up">
+    <h2>Kontak</h2>
+    <p>Hubungi kami untuk pertanyaan, kerja sama, atau informasi lebih lanjut seputar layanan kami.</p>
+</div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
