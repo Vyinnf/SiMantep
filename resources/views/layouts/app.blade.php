@@ -498,7 +498,8 @@
 
                     <div class="col-lg-5" data-aos="fade-up">
                         <h2 class="faq-title">Punya Pertanyaan? Lihat FAQ Kami</h2>
-                        <p class="faq-description">Pertanyaan umum seputar penggunaan Sistem Informasi Manajemen PKL Terpadu (SiMantep).</p>
+                        <p class="faq-description">Pertanyaan umum seputar penggunaan Sistem Informasi Manajemen PKL
+                            Terpadu (SiMantep).</p>
                         <div class="faq-arrow d-none d-lg-block" data-aos="fade-up" data-aos-delay="200">
                             <svg class="faq-arrow" width="200" height="211" viewBox="0 0 200 211"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -515,7 +516,9 @@
                             <div class="faq-item faq-active">
                                 <h3>Apa itu SiMantep?</h3>
                                 <div class="faq-content">
-                                    <p>SiMantep adalah sistem informasi manajemen tempat PKL untuk mahasiswa, dosen, dan admin. Sistem ini memudahkan proses pemilihan instansi dan pengajuan instansi non-mitra.</p>
+                                    <p>SiMantep adalah sistem informasi manajemen tempat PKL untuk mahasiswa, dosen, dan
+                                        admin. Sistem ini memudahkan proses pemilihan instansi dan pengajuan instansi
+                                        non-mitra.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div><!-- End Faq item-->
@@ -523,7 +526,8 @@
                             <div class="faq-item">
                                 <h3>Siapa saja yang bisa menggunakan SiMantep?</h3>
                                 <div class="faq-content">
-                                    <p>Mahasiswa, dosen pembimbing, dan admin kampus. Masing-masing memiliki hak akses dan fitur yang berbeda.</p>
+                                    <p>Mahasiswa, dosen pembimbing, dan admin kampus. Masing-masing memiliki hak akses
+                                        dan fitur yang berbeda.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div><!-- End Faq item-->
@@ -531,7 +535,9 @@
                             <div class="faq-item">
                                 <h3>Bagaimana cara mengajukan instansi non-mitra?</h3>
                                 <div class="faq-content">
-                                    <p>Mahasiswa dapat mengisi form pengajuan instansi non-mitra pada dashboard. Setelah itu, sistem akan memproses dan menampilkan surat pengajuan otomatis dalam format PDF.
+                                    <p>Mahasiswa dapat mengisi form pengajuan instansi non-mitra pada dashboard. Setelah
+                                        itu, sistem akan memproses dan menampilkan surat pengajuan otomatis dalam format
+                                        PDF.
                                     </p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
@@ -540,7 +546,8 @@
                             <div class="faq-item">
                                 <h3>Bagaimana cara mencetak surat pengajuan otomatis?</h3>
                                 <div class="faq-content">
-                                    <p>Setelah pengajuan disetujui oleh dosen, mahasiswa dapat mencetak surat pengajuan dengan klik tombol "Cetak Surat" di dashboard.</p>
+                                    <p>Setelah pengajuan disetujui oleh dosen, mahasiswa dapat mencetak surat pengajuan
+                                        dengan klik tombol "Cetak Surat" di dashboard.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div><!-- End Faq item-->
@@ -548,7 +555,8 @@
                             <div class="faq-item">
                                 <h3>Apakah saya bisa mengganti instansi PKL setelah disetujui?</h3>
                                 <div class="faq-content">
-                                    <p>Bisa, namun harus ada alasan kuat dan mendapat persetujuan ulang dari dosen pembimbing dan admin.
+                                    <p>Bisa, namun harus ada alasan kuat dan mendapat persetujuan ulang dari dosen
+                                        pembimbing dan admin.
                                     </p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
@@ -557,7 +565,8 @@
                             <div class="faq-item">
                                 <h3>Saya lupa password, apa yang harus saya lakukan?</h3>
                                 <div class="faq-content">
-                                    <p>Gunakan fitur "Lupa Password" di halaman login dan ikuti instruksi untuk reset password melalui email.x</p>
+                                    <p>Gunakan fitur "Lupa Password" di halaman login dan ikuti instruksi untuk reset
+                                        password melalui email.x</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div><!-- End Faq item-->
@@ -573,11 +582,11 @@
         <!-- Contact Section -->
         <section id="contact" class="contact section light-background">
 
-           <!-- Section Title -->
-<div class="container section-title" data-aos="fade-up">
-    <h2>Kontak</h2>
-    <p>Hubungi kami untuk pertanyaan, kerja sama, atau informasi lebih lanjut seputar layanan kami.</p>
-</div><!-- End Section Title -->
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Kontak</h2>
+                <p>Hubungi kami untuk pertanyaan, kerja sama, atau informasi lebih lanjut seputar layanan kami.</p>
+            </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 

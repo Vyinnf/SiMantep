@@ -32,16 +32,37 @@
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
+                <!-- Navbar Right Profile Dropdown -->
                 <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown">
-                    </li>
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            {{-- mengambil foto dari database --}}
-                            <img src="images/faces/face28.jpg" alt="profile" />
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{-- Foto profil dari database --}}
+
+                            <img src="{{ auth()->user()->mahasiswa && auth()->user()->mahasiswa->foto
+                                ? asset('uploads/foto/' . auth()->user()->mahasiswa->foto)
+                                : asset('images/faces/default-profile.png') }}"
+                                alt="profile" />
+
                         </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="{{ route('mahasiswa.profil.edit') }}">
+                                <i class="mdi mdi-account-circle mr-2"></i> Edit Profil
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('mahasiswa.logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="mdi mdi-logout mr-2"></i> Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('mahasiswa.logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
                     </li>
                 </ul>
+
+
                 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
                     data-toggle="offcanvas">
                     <span class="icon-menu"></span>
@@ -75,8 +96,9 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Welcome Aamir</h3>
-                                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
-                                            class="text-primary">3 unread alerts!</span></h6>
+                                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have
+                                        <span class="text-primary">3 unread alerts!</span>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +139,8 @@
                                         <p class="card-title">Sales Report</p>
                                         <a href="#" class="text-info">View all</a>
                                     </div>
-                                    <p class="font-weight-500">The total number of sessions within the date range. It is
+                                    <p class="font-weight-500">The total number of sessions within the date range. It
+                                        is
                                         the period time a user is actively engaged with your website, page or app, etc
                                     </p>
                                     <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
@@ -131,7 +154,8 @@
                             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©
                                 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin
                                     template</a> from BootstrapDash. All rights reserved.</span>
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted &
+                                made
                                 with <i class="ti-heart text-danger ml-1"></i></span>
                         </div>
                         <div class="d-sm-flex justify-content-center justify-content-sm-between">
