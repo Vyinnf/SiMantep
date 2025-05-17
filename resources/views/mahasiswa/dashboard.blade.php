@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>Dashboard Mahasiswa</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/ti-icons/css/themify-icons.css') }} ">
@@ -38,16 +38,17 @@
                         <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{-- Foto profil dari database --}}
-
                             <img src="{{ auth()->user()->mahasiswa && auth()->user()->mahasiswa->foto
                                 ? asset('uploads/foto/' . auth()->user()->mahasiswa->foto)
                                 : asset('images/faces/default-profile.png') }}"
                                 alt="profile" />
-
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="{{ route('mahasiswa.profile.show') }}">
+                                <i class="mdi mdi-account mr-2"></i> Lihat Profil
+                            </a>
                             <a class="dropdown-item" href="{{ route('mahasiswa.profil.edit') }}">
-                                <i class="mdi mdi-account-circle mr-2"></i> Edit Profil
+                                <i class="mdi mdi-account-edit mr-2"></i> Edit Profil
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('mahasiswa.logout') }}"

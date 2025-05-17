@@ -80,4 +80,9 @@ class MahasiswaController extends Controller
     return view('mahasiswa.edit', compact('mahasiswa'));
 }
 
+public function show(){
+    $mahasiswa = auth()->user()->mahasiswa;
+    return view('mahasiswa.profile', compact('mahasiswa'));
+}
+
 }
