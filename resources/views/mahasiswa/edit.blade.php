@@ -1,65 +1,148 @@
 {{-- data mahasiswa --}}
-<form method="POST" action="{{ route('mahasiswa.profil.update') }}" enctype="multipart/form-data">
+<link rel="stylesheet" href="{{ asset('assets/css/edit.css') }}">
+
+{{-- Alert success & error --}}
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<form class="forms-sample" method="POST" action="{{ route('mahasiswa.profil.update') }}" enctype="multipart/form-data">
     @csrf
-<div class="row mt-4">
-    <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Form Data Diri Mahasiswa</h4>
-                <form class="forms-sample" method="POST" action="{{ route('mahasiswa.profil.update') }}"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <!-- Foto -->
+    <div class="row mt-4">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><span>Data Diri Mahasiswa</span></h4>
+
+                    {{-- Foto --}}
                     <div class="form-group">
                         <label for="foto">Foto Profil</label>
-                        <input type="file" class="form-control-file" id="foto" name="foto">
+                        <div class="mb-2">
+                            <img id="preview"
+                                src="{{ $mahasiswa->foto ? asset('uploads/foto/' . $mahasiswa->foto) : 'https://via.placeholder.com/100' }}"
+                                width="100" height="100" alt="">
+                        </div>
+                        <input type="file" class="form-control-file @error('foto') is-invalid @enderror"
+                            id="foto" name="foto" onchange="previewFoto()">
+                        @error('foto')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <!-- Nama -->
+
+
+                    {{-- Nama --}}
                     <div class="form-group">
                         <label for="nama">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="nama" name="nama"
-                            placeholder="Masukkan nama lengkap">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
+                            name="nama" placeholder="Masukkan nama lengkap"
+                            value="{{ old('nama', $mahasiswa->nama ?? '') }}">
+                        @error('nama')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <!-- NIM -->
+                    {{-- Email --}}
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                            name="email" placeholder="Masukkan email"
+                            value="{{ old('email', $mahasiswa->user->email ?? ($mahasiswa->email ?? '')) }}">
+                        @error('email')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    {{-- NIM --}}
                     <div class="form-group">
                         <label for="nim">NIM</label>
-                        <input type="text" class="form-control" id="nim" name="nim"
-                            placeholder="Masukkan NIM">
+                        <input type="text" class="form-control @error('nim') is-invalid @enderror" id="nim"
+                            name="nim" placeholder="Masukkan NIM" value="{{ old('nim', $mahasiswa->nim ?? '') }}">
+                        @error('nim')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <!-- Semester -->
+
+                    {{-- Semester --}}
                     <div class="form-group">
                         <label for="semester">Semester</label>
-                        <select class="form-control" id="semester" name="semester">
+                        <select class="form-control @error('semester') is-invalid @enderror" id="semester"
+                            name="semester">
                             @for ($i = 1; $i <= 14; $i++)
-                                <option value="{{ $i }}">Semester
-                                    {{ $i }}</option>
+                                <option value="{{ $i }}"
+                                    {{ old('semester', $mahasiswa->semester ?? '') == $i ? 'selected' : '' }}>
+                                    Semester {{ $i }}
+                                </option>
                             @endfor
                         </select>
+                        @error('semester')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <!-- Prodi -->
+
+                    {{-- Prodi --}}
                     <div class="form-group">
                         <label for="prodi">Program Studi</label>
-                        <input type="text" class="form-control" id="prodi" name="prodi"
-                            placeholder="Masukkan nama prodi">
+                        <input type="text" class="form-control @error('prodi') is-invalid @enderror" id="prodi"
+                            name="prodi" placeholder="Masukkan nama prodi"
+                            value="{{ old('prodi', $mahasiswa->prodi ?? '') }}">
+                        @error('prodi')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <!-- Tempat Tanggal Lahir -->
+
+                    {{-- Tempat Lahir --}}
                     <div class="form-group">
-                        <label for="ttl">Tempat, Tanggal Lahir</label>
-                        <input type="text" class="form-control" id="ttl" name="ttl"
-                            placeholder="Contoh: Sumenep, 01 Januari 2004">
+                        <label for="tempat_lahir">Tempat Lahir</label>
+                        <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror"
+                            id="tempat_lahir" name="tempat_lahir" placeholder="Masukkan tempat lahir"
+                            value="{{ old('tempat_lahir', $tempat ?? '') }}">
+                        @error('tempat_lahir')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <!-- Alamat -->
+
+                    {{-- Tanggal Lahir --}}
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror"
+                            id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir', $tanggal ?? '') }}">
+                        @error('tanggal_lahir')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- Alamat --}}
                     <div class="form-group">
                         <label for="alamat">Alamat Lengkap</label>
-                        <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
+                        <textarea class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" rows="3"
+                            placeholder="Masukkan alamat lengkap">{{ old('alamat', $mahasiswa->alamat ?? '') }}</textarea>
+                        @error('alamat')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <!-- Tombol Simpan -->
-                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                    <button class="btn btn-light" type="reset">Reset</button>
-                </form>
+
+                    {{-- Tombol --}}
+                    <div class="form-actions mt-3">
+                        <a href="{{ route('mahasiswa.dashboard') }}" class="btn btn-secondary">Back</a>
+                        <button type="reset" class="btn btn-light">Reset</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 {{-- end data mahasiswa --}}
 
+<script src="{{ asset('assets/js/edit.js') }}"></script>

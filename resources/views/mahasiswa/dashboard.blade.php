@@ -38,22 +38,11 @@
                         <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{-- Foto profil dari database --}}
-
                             <img src="{{ auth()->user()->mahasiswa && auth()->user()->mahasiswa->foto
                                 ? asset('uploads/foto/' . auth()->user()->mahasiswa->foto)
                                 : asset('images/faces/default-profile.png') }}"
                                 alt="profile" />
-
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="{{ route('mahasiswa.profil.edit') }}">
-                                <i class="mdi mdi-account-circle mr-2"></i> Edit Profil
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('mahasiswa.logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="mdi mdi-logout mr-2"></i> Logout
-                            </a>
                             <form id="logout-form" action="{{ route('mahasiswa.logout') }}" method="POST"
                                 style="display: none;">
                                 @csrf
@@ -71,23 +60,44 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ asset('mahasiswa/dashboard') }}">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
-                            aria-controls="auth">
-                            <i class="icon-head menu-icon"></i>
-                            <span class="menu-title">User Pages</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <nav class="sidebar sidebar-offcanvas d-flex flex-column justify-content-between" id="sidebar">
+    <div>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('mahasiswa.dashboard') }}">
+                    <i class="icon-grid menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
+                    aria-controls="auth">
+                    <i class="icon-head menu-icon"></i>
+                    <span class="menu-title">User Pages</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="auth">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('mahasiswa.profil.edit') }}">
+                                Edit Profile
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="sidebar-logout mb-3 px-3">
+        <a class="btn btn-danger w-100" href="{{ route('mahasiswa.logout') }}"
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <i class="mdi mdi-logout mr-2"></i> Logout
+        </a>
+        <form id="logout-form" action="{{ route('mahasiswa.logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </div>
+</nav>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
@@ -95,7 +105,12 @@
                         <div class="col-md-12 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Welcome Aamir</h3>
+                                    @php
+                                        $mahasiswa = \App\Models\Mahasiswa::where('email', auth()->user()->email)->first();
+                                    @endphp
+                                    <h3 class="font-weight-bold">
+                                        Welcome {{ $mahasiswa->nama ?? 'User' }}
+                                    </h3>
                                     <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have
                                         <span class="text-primary">3 unread alerts!</span>
                                     </h6>
@@ -149,6 +164,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <footer class="footer">
                         <div class="d-sm-flex justify-content-center justify-content-sm-between">
                             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©
