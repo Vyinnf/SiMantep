@@ -46,18 +46,35 @@ class MahasiswaController extends Controller
 
         return back()->with('success', 'Data diri berhasil diperbarui.');
     }
+
     public function editProfil()
 {
     $user = auth()->user();
 
-    // Ambil data mahasiswa, kalau belum ada buat baru
-    $mahasiswa = $user->mahasiswa;
+    // Coba cari entri Mahasiswa berdasarkan user_id
+    $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
 
+    // Kalau tidak ditemukan, tapi sudah ada dengan email sama, perbaiki user_id-nya
     if (!$mahasiswa) {
-        $mahasiswa = new Mahasiswa();
-        $mahasiswa->user_id = $user->id;
-        // isi default data kalau perlu
-        $mahasiswa->save();
+        $mahasiswa = Mahasiswa::where('email', $user->email)->first();
+
+        if ($mahasiswa) {
+            // Perbaiki user_id agar relasi jalan
+            $mahasiswa->user_id = $user->id;
+            $mahasiswa->save();
+        } else {
+            // Benar-benar tidak ada, buat baru
+            $mahasiswa = Mahasiswa::create([
+                'user_id' => $user->id,
+                'nama' => 'Nama Belum Diisi',
+                'nim' => '-',
+                'semester' => 1,
+                'prodi' => '-',
+                'ttl' => '-',
+                'alamat' => '-',
+                'email' => $user->email ?? 'email@kosong.com'
+            ]);
+        }
     }
 
     return view('mahasiswa.edit', compact('mahasiswa'));

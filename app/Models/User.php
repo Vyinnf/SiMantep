@@ -49,4 +49,10 @@ class User extends Authenticatable implements CanResetPasswordContract
             'password' => 'hashed',
         ];
     }
+
+    //App\Models\User.php
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class);
+    }
 }

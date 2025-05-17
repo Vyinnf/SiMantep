@@ -66,9 +66,7 @@ Route::post('/forgot-password', function (Request $request) {
 })->name('password.update');
 
 // Data mahasiswa
-Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
+Route::middleware(['auth:mahasiswa'])->group(function () {
+    Route::get('/mahasiswa/profil', [MahasiswaController::class, 'editProfil'])->name('mahasiswa.profil.edit');
     Route::post('/mahasiswa/profil/update', [MahasiswaController::class, 'updateProfil'])->name('mahasiswa.profil.update');
 });
-
-Route::get('/mahasiswa/profil', [MahasiswaController::class, 'editProfil'])->name('mahasiswa.profil.edit');
-Route::post('/mahasiswa/profil/update', [MahasiswaController::class, 'updateProfil'])->name('mahasiswa.profil.update');

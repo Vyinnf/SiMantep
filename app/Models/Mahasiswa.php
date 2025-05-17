@@ -21,4 +21,10 @@ class Mahasiswa extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    //App\Models\Mahasiswa.php
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
