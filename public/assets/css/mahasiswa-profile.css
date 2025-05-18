@@ -1,0 +1,186 @@
+/* =========================
+   Layout & Card Styling
+   ========================= */
+.row.mt-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem !important;
+    background: linear-gradient(90deg, #f8fafc 60%, #e3f0ff 100%);
+    min-height: 100vh;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card {
+    max-width: 700px;
+    width: 100%;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    background: #fff;
+    border: none;
+    transition: box-shadow 0.3s;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card:hover {
+    box-shadow: 0 12px 40px rgba(0, 123, 255, 0.12);
+}
+
+.card-body {
+    padding: 2.5rem 2rem;
+}
+
+/* =========================
+   Typography & Titles
+   ========================= */
+.card-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #2563eb;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+}
+
+/* =========================
+   Form Elements (Horizontal)
+   ========================= */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    flex: 0 0 180px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0;
+    text-align: left;
+    margin-right: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.form-control,
+textarea.form-control,
+.form-control-file {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid #ced4da;
+    padding: 0.85rem 1rem;
+    background: #f8fafc;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 0;
+}
+
+.form-control-file {
+    padding: 0.5rem 0;
+    border: none;
+    background: transparent;
+}
+
+.form-control:focus,
+textarea.form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+    background: #fff;
+}
+
+/* =========================
+   Center Button
+   ========================= */
+.button-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+.btn-primary {
+    background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%);
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    padding: 0.6rem 1.5rem;
+    margin-right: 0.5rem;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #1d4ed8 60%, #3b82f6 100%);
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.15);
+}
+
+.btn-light,
+.btn-secondary {
+    border-radius: 0.75rem;
+    padding: 0.6rem 1.5rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
+    background: #f1f5f9;
+    color: #2563eb;
+    border: 1px solid #e0e7ef;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-light:hover,
+.btn-secondary:hover {
+    background: #e0e7ef;
+    color: #1d4ed8;
+}
+
+.btn-back {
+    background: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1.5rem;
+    font-weight: 700;
+    transition: background 0.2s;
+}
+
+.btn-back:hover {
+    background: #495057;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 768px) {
+    .card {
+        max-width: 95%;
+        padding: 0.5rem;
+    }
+    .card-body {
+        padding: 1.25rem 0.5rem;
+    }
+    .card-title {
+        font-size: 1.3rem;
+    }
+    .form-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .form-group label {
+        text-align: left;
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+    .input-wrapper {
+        width: 100%;
+    }
+}

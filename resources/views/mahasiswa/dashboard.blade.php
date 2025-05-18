@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>Dashboard Mahasiswa</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/ti-icons/css/themify-icons.css') }} ">
@@ -43,6 +43,21 @@
                                 : asset('images/faces/default-profile.png') }}"
                                 alt="profile" />
                         </a>
+<<<<<<< HEAD
+=======
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="{{ route('mahasiswa.profile.show') }}">
+                                <i class="mdi mdi-account mr-2"></i> Lihat Profil
+                            </a>
+                            <a class="dropdown-item" href="{{ route('mahasiswa.profil.edit') }}">
+                                <i class="mdi mdi-account-edit mr-2"></i> Edit Profil
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('mahasiswa.logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="mdi mdi-logout mr-2"></i> Logout
+                            </a>
+>>>>>>> df707fc1da2876c670583d3cb7b9652617e088d4
                             <form id="logout-form" action="{{ route('mahasiswa.logout') }}" method="POST"
                                 style="display: none;">
                                 @csrf
