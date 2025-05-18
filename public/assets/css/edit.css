@@ -1,5 +1,12 @@
 /* Modern, clean, and elegant form style for Skydash theme */
 
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 body {
     /* Gradient + soft pattern overlay */
     background: 
@@ -8,7 +15,6 @@ body {
     min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: #181818;
-    /* Subtle dots pattern overlay */
     position: relative;
 }
 body::before {
@@ -27,23 +33,25 @@ body::before {
 
 /* Card Styling */
 .card {
-    border-radius: 28px;
-    box-shadow: 0 10px 40px 0 rgba(44, 62, 80, 0.13);
-    border: none;
-    background: linear-gradient(120deg, #f8fafc 80%, #e9edfb 100%);
+    border-radius: 24px;
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.18), 0 1.5px 8px 0 rgba(127,83,172,0.06);
+    border: 1.5px solid #e9edfb;
+    backdrop-filter: blur(6px);
     padding: 0;
     margin-top: 48px;
     max-width: 540px;
     margin-left: auto;
     margin-right: auto;
-    transition: box-shadow 0.3s, transform 0.2s;
+    transition: box-shadow 0.3s, transform 0.2s, background 0.3s;
     position: relative;
     overflow: hidden;
 }
 
 .card:hover {
-    box-shadow: 0 16px 48px 0 rgba(44, 62, 80, 0.18);
-    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 16px 48px 0 rgba(44, 62, 80, 0.22), 0 4px 24px 0 rgba(127,83,172,0.10);
+    background: rgba(255,255,255,0.95);
+    transform: translateY(-3px) scale(1.012);
 }
 
 /* Card Header Hiasan */
@@ -108,6 +116,16 @@ body::before {
 .card-body {
     padding: 32px 28px 24px 28px;
     background: transparent;
+    scrollbar-width: thin;
+    scrollbar-color: #6777ef #f8fafc;
+}
+.card-body::-webkit-scrollbar {
+    width: 8px;
+    background: #f8fafc;
+}
+.card-body::-webkit-scrollbar-thumb {
+    background: #6777ef;
+    border-radius: 8px;
 }
 
 /* Form Group */
@@ -122,7 +140,7 @@ body::before {
 
 .form-group label {
     font-weight: 700;
-    color: #181818; /* hitam */
+    color: #181818;
     margin-bottom: 8px;
     letter-spacing: 0.3px;
     font-size: 1.08rem;
@@ -131,9 +149,14 @@ body::before {
     padding: 0 6px;
     border-radius: 4px;
     z-index: 2;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* font baru */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    cursor: pointer;
+}
+.form-group label:hover {
+    color: #6777ef;
 }
 
+/* Form Controls */
 .form-control,
 textarea.form-control,
 select.form-control {
@@ -147,7 +170,6 @@ select.form-control {
     box-shadow: 0 2px 8px rgba(103, 119, 239, 0.04);
     width: 100%;
     min-height: 48px;
-    box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -195,7 +217,6 @@ textarea.form-control::placeholder {
     margin-right: auto;
     transition: box-shadow 0.2s, border 0.2s;
 }
-
 #preview:hover {
     box-shadow: 0 4px 18px rgba(90, 103, 216, 0.18);
     border-color: #6777ef;
@@ -220,6 +241,7 @@ textarea.form-control::placeholder {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 /* Hover efek khusus */
@@ -230,7 +252,6 @@ textarea.form-control::placeholder {
     box-shadow: 0 4px 16px rgba(67, 233, 123, 0.18);
     transform: translateY(-2px) scale(1.04);
 }
-
 .btn-light:hover {
     background: linear-gradient(90deg, #ffdde1 0%, #ee9ca7 100%);
     color: #fff;
@@ -238,7 +259,6 @@ textarea.form-control::placeholder {
     box-shadow: 0 4px 16px rgba(238, 156, 167, 0.18);
     transform: translateY(-2px) scale(1.04);
 }
-
 .btn-secondary:hover,
 .btn-secondary:focus {
     background: linear-gradient(90deg, #fff700 0%, #ffe259 100%);
@@ -301,7 +321,6 @@ textarea.form-control::placeholder {
     background: linear-gradient(90deg, #e0ffe7 0%, #e9edfb 100%);
     color: #2d7a46;
 }
-
 .alert-danger {
     background: linear-gradient(90deg, #ffe0e0 0%, #e9edfb 100%);
     color: #a94442;
@@ -312,17 +331,16 @@ textarea.form-control::placeholder {
     scrollbar-width: thin;
     scrollbar-color: #6777ef #f8fafc;
 }
-
 .card-body::-webkit-scrollbar {
     width: 8px;
     background: #f8fafc;
 }
-
 .card-body::-webkit-scrollbar-thumb {
     background: #6777ef;
     border-radius: 8px;
 }
 
+/* Hover efek pada form control */
 .form-group:hover .form-control,
 .form-group:hover textarea.form-control,
 .form-group:hover select.form-control {
@@ -332,6 +350,7 @@ textarea.form-control::placeholder {
     transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
 }
 
+/* Cursor Glow Effect */
 .cursor-glow {
     position: fixed;
     top: 0; left: 0;

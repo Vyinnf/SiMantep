@@ -13,7 +13,7 @@ class MahasiswaController extends Controller
     {
         $user = Auth::user();
 
-        // Coba cari mahasiswa berdasarkan user_id
+        // Cari atau buat data mahasiswa berdasarkan user_id
         $mahasiswa = Mahasiswa::firstOrCreate(
             ['user_id' => $user->id],
             [
@@ -67,72 +67,30 @@ class MahasiswaController extends Controller
         $user->email = $validated['email'];
         $user->save();
 
+        // Simpan email juga di tabel mahasiswa (jika memang ada kolom email di tabel mahasiswa)
         $validated['email'] = $user->email;
 
         // Upload foto jika ada
         if ($request->hasFile('foto')) {
-        $foto = $request->file('foto');
-        $namaFoto = time() . '_' . $foto->getClientOriginalName();
-        $foto->move(public_path('uploads/foto'), $namaFoto);
-        $validated['foto'] = $namaFoto;
-        // Hapus foto lama jika ada
-        if ($mahasiswa->foto && file_exists(public_path('uploads/foto/' . $mahasiswa->foto))) {
-            @unlink(public_path('uploads/foto/' . $mahasiswa->foto));
+            $foto = $request->file('foto');
+            $namaFoto = time() . '_' . $foto->getClientOriginalName();
+            $foto->move(public_path('uploads/foto'), $namaFoto);
+            // Hapus foto lama jika ada
+            if ($mahasiswa->foto && file_exists(public_path('uploads/foto/' . $mahasiswa->foto))) {
+                @unlink(public_path('uploads/foto/' . $mahasiswa->foto));
+            }
+            $validated['foto'] = $namaFoto;
         }
-<<<<<<< HEAD
-=======
 
-        $mahasiswa->user_id = $user->id;
-        $mahasiswa->save();
-
-        return back()->with('success', 'Data diri berhasil diperbarui.');
-    }
-
-    public function editProfil()
-{
-    $user = auth()->user();
-
-    // Coba cari entri Mahasiswa berdasarkan user_id
-    $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
-
-    // Kalau tidak ditemukan, tapi sudah ada dengan email sama, perbaiki user_id-nya
-    if (!$mahasiswa) {
-        $mahasiswa = Mahasiswa::where('email', $user->email)->first();
-
-        if ($mahasiswa) {
-            // Perbaiki user_id agar relasi jalan
-            $mahasiswa->user_id = $user->id;
-            $mahasiswa->save();
-        } else {
-            // Benar-benar tidak ada, buat baru
-            $mahasiswa = Mahasiswa::create([
-                'user_id' => $user->id,
-                'nama' => 'Nama Belum Diisi',
-                'nim' => '-',
-                'semester' => 1,
-                'prodi' => '-',
-                'ttl' => '-',
-                'alamat' => '-',
-                'email' => $user->email ?? 'email@kosong.com'
-            ]);
-        }
->>>>>>> df707fc1da2876c670583d3cb7b9652617e088d4
-    }
-
-        // Update email di tabel users
-        $user->email = $request->email;
-        $user->save();
-
-<<<<<<< HEAD
+        // Update data mahasiswa
         $mahasiswa->update($validated);
 
-    return redirect()->back()->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui.');
     }
-=======
-public function show(){
-    $mahasiswa = auth()->user()->mahasiswa;
-    return view('mahasiswa.profile', compact('mahasiswa'));
-}
 
->>>>>>> df707fc1da2876c670583d3cb7b9652617e088d4
+    public function show()
+    {
+        $mahasiswa = auth()->user()->mahasiswa;
+        return view('mahasiswa.profile', compact('mahasiswa'));
+    }
 }
