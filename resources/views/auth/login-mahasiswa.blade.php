@@ -85,6 +85,14 @@
         </div>
     </div>
 
+    @if (session('success') || session('error'))
+    <div id="custom-alert" class="custom-alert {{ session('success') ? 'success' : 'error' }}">
+        <span class="alert-message">
+            {{ session('success') ?? session('error') }}
+        </span>
+        <button class="close-alert" onclick="document.getElementById('custom-alert').style.display='none'">&times;</button>
+    </div>
+    @endif
     <script src="{{ asset('assets/js/login-script.js') }}"></script>
 </body>
 
