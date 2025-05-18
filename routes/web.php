@@ -6,7 +6,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash; // Tambahkan jika belum ada
+use Illuminate\Support\Facades\Hash;
 
 // halaman home
 Route::get('/', function () {
@@ -54,10 +54,9 @@ Route::post('/forgot-password', function (Request $request) {
         : back()->withErrors(['email' => [__($status)]]);
 })->name('password.update');
 
-
 // ============ ROUTE KHUSUS MAHASISWA ============
 
-Route::middleware(['auth:mahasiswa'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     // Dashboard Mahasiswa
     Route::get('/mahasiswa/dashboard', function () {
         return view('mahasiswa.dashboard');
@@ -66,14 +65,13 @@ Route::middleware(['auth:mahasiswa'])->group(function () {
     // Profil Mahasiswa
     Route::get('/mahasiswa/profil', [MahasiswaController::class, 'editProfil'])->name('mahasiswa.profil.edit');
     Route::post('/mahasiswa/profil/update', [MahasiswaController::class, 'update'])->name('mahasiswa.profil.update');
+
+    // Melihat profile mahasiswa
+    Route::get('/mahasiswa/profile', [MahasiswaController::class, 'show'])->name('mahasiswa.profile.show');
 });
 
-// Data mahasiswa
-Route::middleware(['auth:mahasiswa'])->group(function () {
-    Route::get('/mahasiswa/profil', [MahasiswaController::class, 'editProfil'])->name('mahasiswa.profil.edit');
-    Route::post('/mahasiswa/profil/update', [MahasiswaController::class, 'updateProfil'])->name('mahasiswa.profil.update');
-});
-
-// Melihat profile mahasiswa
-Route::get('mahasiswa/profile', [App\Http\Controllers\MahasiswaController::class, 'show'])->name('mahasiswa.profile.show');
+// Redirect route
+Route::get('/login', function () {
+    return redirect('/mahasiswa/dashboard');
+})->name('login');
 

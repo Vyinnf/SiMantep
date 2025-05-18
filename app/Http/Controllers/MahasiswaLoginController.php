@@ -13,28 +13,18 @@ class MahasiswaLoginController extends Controller
     }
     public function login(Request $request)
     {
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        // Coba login menggunakan guard 'mahasiswa'
-        if (
-            Auth::guard('mahasiswa')->attempt([
-                'email' => $request->email,
-                'password' => $request->password,
-            ])
-        ) {
-            $request->session()->regenerate(); // Hindari session fixation
-            return redirect()->route('mahasiswa.dashboard')->with('success', 'Login berhasil');
+        if (auth()->attempt($credentials)) {
+            // Berhasil login
+            return redirect()->intended('/mahasiswa/dashboard');
         }
 
-        // Jika gagal login
-        return back()
-            ->withErrors([
-                'email' => 'Email atau password salah.',
-            ])
-            ->onlyInput('email');
+        // Gagal login
+        return back()->with('error', 'Email atau password salah');
     }
 
     public function logout(Request $request)
