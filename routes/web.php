@@ -68,6 +68,16 @@ Route::middleware(['auth'])->group(function () {
 
     // Melihat profile mahasiswa
     Route::get('/mahasiswa/profile', [MahasiswaController::class, 'show'])->name('mahasiswa.profile.show');
+
+    // Route untuk halaman/form pendaftaran PKL
+    Route::get('/mahasiswa/pendaftaran', function () {
+        return view('mahasiswa.pendaftaran');
+    })->name('mahasiswa.pendaftaran');
+
+    // Route upload laporan magang
+    Route::get('/mahasiswa/laporan', function () {
+        return view('mahasiswa.laporan');
+    })->name('mahasiswa.laporan');
 });
 
 // Redirect route

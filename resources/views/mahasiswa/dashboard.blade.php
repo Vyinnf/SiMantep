@@ -70,6 +70,18 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('mahasiswa.pendaftaran') }}">
+                    <i class="icon-paper menu-icon"></i>
+                    <span class="menu-title">Pendaftaran PKL</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('mahasiswa.laporan') }}">
+                    <i class="icon-upload menu-icon"></i>
+                    <span class="menu-title">Upload Laporan Magang</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
                     aria-controls="auth">
                     <i class="icon-head menu-icon"></i>
@@ -164,7 +176,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <footer class="footer">
                         <div class="d-sm-flex justify-content-center justify-content-sm-between">
                             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©
