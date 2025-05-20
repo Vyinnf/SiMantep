@@ -75,3 +75,26 @@ Route::get('/login', function () {
     return redirect('/mahasiswa/dashboard');
 })->name('login');
 
+// ============ AUTH DOSEN ============
+// Pastikan controller DosenLoginController sudah dibuat
+use App\Http\Controllers\DosenLoginController;
+
+// ============ ROUTE KHUSUS DOSEN ============
+
+Route::middleware(['auth'])->group(function () {
+    // Dashboard Dosen
+    Route::get('/dosen/dashboard', function () {
+        return view('dosen.dashboard');
+    })->name('dosen.dashboard');
+
+    // Profil Dosen (contoh, sesuaikan dengan kebutuhan)
+    // Route::get('/dosen/profil', [DosenController::class, 'editProfil'])->name('dosen.profil.edit');
+    // Route::post('/dosen/profil/update', [DosenController::class, 'update'])->name('dosen.profil.update');
+});
+
+// ============ VIEW LOGIN DOSEN ============
+
+Route::get('/login/dosen', [DosenLoginController::class, 'showLoginForm'])->name('dosen.login');
+Route::post('/login/dosen', [DosenLoginController::class, 'login'])->name('dosen.login.submit');
+Route::post('/logout/dosen', [DosenLoginController::class, 'logout'])->name('dosen.logout');
+
