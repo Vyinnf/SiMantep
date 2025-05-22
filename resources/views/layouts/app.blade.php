@@ -575,8 +575,8 @@
 
            <!-- Section Title -->
 <div class="container section-title" data-aos="fade-up">
-    <h2>Kontak</h2>
-    <p>Hubungi kami untuk pertanyaan, kerja sama, atau informasi lebih lanjut seputar layanan kami.</p>
+    <h2>Contact</h2>
+    <p>"Silakan hubungi kami jika Anda memiliki pertanyaan, ingin menjalin kerja sama, atau membutuhkan informasi lebih lanjut terkait penggunaan dan layanan dari SIMantep – Sistem Informasi Manajemen Praktik Kerja Lapangan."</p>
 </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -585,8 +585,7 @@
                     <div class="col-lg-5">
                         <div class="info-box" data-aos="fade-up" data-aos-delay="200">
                             <h3>Contact Info</h3>
-                            <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante
-                                ipsum primis.</p>
+                            <p>Jika Anda memiliki pertanyaan, membutuhkan bantuan teknis, atau ingin menjalin kerja sama terkait layanan SIMantep, silakan hubungi kami melalui informasi berikut. Tim kami siap membantu Anda.</p>
 
                             <div class="info-item" data-aos="fade-up" data-aos-delay="300">
                                 <div class="icon-box">
@@ -594,8 +593,8 @@
                                 </div>
                                 <div class="content">
                                     <h4>Our Location</h4>
-                                    <p>A108 Adam Street</p>
-                                    <p>New York, NY 535022</p>
+                                    <p>Jl. Raya Lenteng, No. 10 Batuan, </p>
+                                    <p> Sumenep - Madura</p>
                                 </div>
                             </div>
 
@@ -616,8 +615,8 @@
                                 </div>
                                 <div class="content">
                                     <h4>Email Address</h4>
-                                    <p>info@example.com</p>
-                                    <p>contact@example.com</p>
+                                    <p>support@simantep.id</p>
+                                    <p>admin@simantep.id</p>
                                 </div>
                             </div>
                         </div>
@@ -626,8 +625,7 @@
                     <div class="col-lg-7">
                         <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
                             <h3>Get In Touch</h3>
-                            <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante
-                                ipsum primis.</p>
+                            <p>Silakan isi formulir berikut untuk mengirimkan pertanyaan, saran, atau permintaan informasi lebih lanjut seputar SIMantep.</p>
 
                             <form action="forms/contact.php" method="post" class="php-email-form"
                                 data-aos="fade-up" data-aos-delay="200">
@@ -635,29 +633,29 @@
 
                                     <div class="col-md-6">
                                         <input type="text" name="name" class="form-control"
-                                            placeholder="Your Name" required="">
+                                            placeholder="Nama Anda" required="">
                                     </div>
 
                                     <div class="col-md-6 ">
                                         <input type="email" class="form-control" name="email"
-                                            placeholder="Your Email" required="">
+                                            placeholder="Email Anda" required="">
                                     </div>
 
                                     <div class="col-12">
                                         <input type="text" class="form-control" name="subject"
-                                            placeholder="Subject" required="">
+                                            placeholder="Subjek" required="">
                                     </div>
 
                                     <div class="col-12">
-                                        <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                                        <textarea class="form-control" name="message" rows="6" placeholder="Pesan Anda" required=""></textarea>
                                     </div>
 
                                     <div class="col-12 text-center">
                                         <div class="loading">Loading</div>
                                         <div class="error-message"></div>
-                                        <div class="sent-message">Your message has been sent. Thank you!</div>
+                                        <div class="sent-message">Pesan Anda telah terkirim. Terima kasih!</div>
 
-                                        <button type="submit" class="btn">Send Message</button>
+                                        <button type="submit" class="btn">Kirim Pesan</button>
                                     </div>
 
                                 </div>
