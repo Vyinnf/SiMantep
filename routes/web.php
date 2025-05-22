@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaLoginController;
 use App\Http\Controllers\MahasiswaRegisterController;
@@ -90,21 +92,24 @@ Route::get('/login', function () {
 use App\Http\Controllers\DosenLoginController;
 
 // ============ ROUTE KHUSUS DOSEN ============
-
 Route::middleware(['auth'])->group(function () {
     // Dashboard Dosen
     Route::get('/dosen/dashboard', function () {
         return view('dosen.dashboard');
     })->name('dosen.dashboard');
-
-    // Profil Dosen (contoh, sesuaikan dengan kebutuhan)
-    // Route::get('/dosen/profil', [DosenController::class, 'editProfil'])->name('dosen.profil.edit');
-    // Route::post('/dosen/profil/update', [DosenController::class, 'update'])->name('dosen.profil.update');
 });
 
-// ============ VIEW LOGIN DOSEN ============
-
+// ============ VIEW LOGIN DOSEN ===========
 Route::get('/login/dosen', [DosenLoginController::class, 'showLoginForm'])->name('dosen.login');
 Route::post('/login/dosen', [DosenLoginController::class, 'login'])->name('dosen.login.submit');
 Route::post('/logout/dosen', [DosenLoginController::class, 'logout'])->name('dosen.logout');
 
+// ============ AUTH ADMIN ============
+Route::get('login-admin', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('login-admin', [AdminLoginController::class, 'login'])->name('admin.login.submit');
+Route::post('logout-admin', [AdminLoginController::class, 'logout'])->name('admin.logout');
+
+// Admin Dashboard
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard')->middleware('auth:admin');

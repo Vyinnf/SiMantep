@@ -60,7 +60,7 @@ class MahasiswaController extends Controller
         ]);
 
         // Gabungkan TTL
-        $validated['ttl'] = $validated['tempat_lahir'] . ', ' . $validated['tanggal_lahir'];
+        $validated['ttl'] = $validated['tempat_lahir'] . '. ' . $validated['tanggal_lahir'];
         unset($validated['tempat_lahir'], $validated['tanggal_lahir']);
 
         // Update email di tabel users
