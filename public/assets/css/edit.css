@@ -1,0 +1,422 @@
+/* Import font Inter dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap');
+
+/* Modern, clean, and elegant form style for Skydash theme */
+
+html {
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    background: #fff; /* Ganti background jadi putih */
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #181818;
+    position: relative;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 24px;
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.18), 0 1.5px 8px 0 rgba(127,83,172,0.06);
+    border: 1.5px solid #e9edfb;
+    backdrop-filter: blur(6px);
+    padding: 0;
+    margin-top: 48px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: box-shadow 0.3s, transform 0.2s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 0 16px 48px 0 rgba(44, 62, 80, 0.22), 0 4px 24px 0 rgba(127,83,172,0.10);
+    background: rgba(255,255,255,0.95);
+    transform: translateY(-3px) scale(1.012);
+}
+
+/* Card Header Hiasan */
+.card-title {
+    position: relative;
+    text-align: center;
+    background: none;
+    margin-bottom: 18px;
+    font-family: 'Inter', 'Roboto', Arial, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #23272f;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1.3;
+    display: flex;
+    justify-content: center;
+}
+
+.card-title span {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+.card-title::after {
+    display: none !important; /* Hilangkan garis lama */
+}
+
+.card-title span::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: #6777ef;
+    border-radius: 2px;
+    margin: 0 auto;
+    opacity: 0.7;
+    width: 0;
+    transition: width 0.25s;
+}
+
+.card-title span:hover::after {
+    width: 100%;
+}
+
+/* Card Body */
+.card-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 24px;
+    padding: 24px 0 16px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: none;
+    scrollbar-width: thin;
+    scrollbar-color: #6777ef #f8fafc;
+}
+.card-body::-webkit-scrollbar {
+    width: 8px;
+    background: #f8fafc;
+}
+.card-body::-webkit-scrollbar-thumb {
+    background: #6777ef;
+    border-radius: 8px;
+}
+
+/* Hilangkan card, buat form 1 layar penuh */
+.card,
+.card:hover {
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+    position: static !important;
+    overflow: visible !important;
+}
+
+/* Card body lebar penuh */
+.card-body {
+    max-width: 100vw;
+    width: 100%;
+    margin: 0 auto;
+    background: none;
+    padding: 32px 0 24px 0;
+}
+
+/* Responsive: padding lebih kecil di mobile */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 10px 0 8px 0;
+    }
+}
+
+/* Form Group */
+.form-group {
+    flex: 1 1 28%;
+    min-width: 180px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.form-group label {
+    font-family: 'Inter', 'Roboto', Arial, sans-serif;
+    font-weight: 600;
+    color: #23272f;
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
+    font-size: 0.98rem;
+    background: none;
+    padding: 0 2px;
+    border-radius: 2px;
+    z-index: 2;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.form-group label:hover {
+    color: #6777ef;
+}
+.form-group label i {
+    margin-right: 7px;
+    color: #6777ef;
+    font-size: 1.05em;
+    vertical-align: middle;
+}
+
+/* Form Controls */
+.form-control,
+textarea.form-control,
+select.form-control {
+    border-radius: 7px;
+    border: 1.2px solid #d1d5db;
+    font-size: 1rem;
+    padding: 10px 14px;
+    background: #f8fafc;
+    color: #23272f;
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+    box-shadow: none;
+    width: 100%;
+    min-height: 40px;
+    font-family: 'Inter', 'Roboto', Arial, sans-serif;
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input[type="file"].form-control-file {
+    padding: 7px 0;
+    background: transparent;
+    border: none;
+    min-height: unset;
+}
+
+.form-control:focus,
+textarea.form-control:focus,
+select.form-control:focus {
+    border-color: #6777ef;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 2px #e9edfb;
+}
+
+/* Hover efek minimalis pada input */
+.form-group:hover .form-control,
+.form-group:hover textarea.form-control,
+.form-group:hover select.form-control {
+    border-color: #6777ef;
+    background: #f4f6fb;
+}
+
+/* Foto Preview */
+#preview {
+    border-radius: 50%;
+    border: 3px solid #e9edfb;
+    object-fit: cover;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(90, 103, 216, 0.13);
+    width: 110px;
+    height: 110px;
+    background: #f4f5fa;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+#preview:hover {
+    box-shadow: 0 4px 18px rgba(90, 103, 216, 0.18);
+    border-color: #6777ef;
+}
+
+/* Button Styling minimalis */
+.btn-primary,
+.btn-light,
+.btn-secondary {
+    border-radius: 7px;
+    padding: 10px 28px;
+    background: #6777ef;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    min-width: 100px;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.1s;
+    font-family: 'Inter', 'Roboto', Arial, sans-serif;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(103, 119, 239, 0.06);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-primary:hover,
+.btn-light:hover,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background: #4d5edb;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(103, 119, 239, 0.10);
+    transform: translateY(-1px) scale(1.01);
+}
+
+.btn i {
+    margin-right: 8px;
+    font-size: 1.08em;
+    vertical-align: middle;
+    /* Agar ikon dan teks selalu rata tengah */
+    display: inline-block;
+}
+
+/* Tombol diatur sejajar dan rata kanan */
+.form-actions {
+    flex-basis: 100%;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+/* Responsive tombol */
+@media (max-width: 576px) {
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .btn-primary, .btn-light, .btn-secondary {
+        padding: 9px 8px;
+        font-size: 0.98rem;
+        min-width: 80px;
+    }
+}
+
+/* Placeholder abu-abu */
+.form-control::placeholder,
+textarea.form-control::placeholder {
+    color: #b0b0b0;
+    opacity: 1;
+    font-family: 'Inter', 'Roboto', Arial, sans-serif;
+}
+
+/* Alert Styling */
+.alert {
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-bottom: 22px;
+    padding: 16px 22px;
+    box-shadow: 0 2px 12px rgba(90, 103, 216, 0.09);
+    border: none;
+}
+
+.alert-success {
+    background: linear-gradient(90deg, #e0ffe7 0%, #e9edfb 100%);
+    color: #2d7a46;
+}
+.alert-danger {
+    background: linear-gradient(90deg, #ffe0e0 0%, #e9edfb 100%);
+    color: #a94442;
+}
+
+/* Custom Scrollbar for Card */
+.card-body {
+    scrollbar-width: thin;
+    scrollbar-color: #6777ef #f8fafc;
+}
+.card-body::-webkit-scrollbar {
+    width: 8px;
+    background: #f8fafc;
+}
+.card-body::-webkit-scrollbar-thumb {
+    background: #6777ef;
+    border-radius: 8px;
+}
+
+/* Cursor Glow Effect */
+.cursor-glow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    background: radial-gradient(circle, rgba(127,83,172,0.35) 0%, rgba(127,83,172,0.08) 80%, transparent 100%);
+    box-shadow: 0 0 24px 8px #a084ca55, 0 0 60px 10px #7f53ac33;
+    transform: translate(-50%, -50%);
+    transition: background 0.2s, box-shadow 0.2s;
+    mix-blend-mode: lighten;
+    opacity: 0.7;
+}
+
+/* Card Body: Dua Kolom */
+.card-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 32px;
+    padding: 32px 28px 24px 28px;
+    background: transparent;
+    scrollbar-width: thin;
+    scrollbar-color: #6777ef #f8fafc;
+}
+
+/* Form Group: Default dua kolom */
+.form-group {
+    flex: 1 1 45%;
+    min-width: 220px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+/* Foto & Alamat: Full width */
+.form-group:first-of-type,
+.form-group:last-of-type {
+    flex-basis: 100%;
+    min-width: 0;
+}
+
+/* Tombol: Full width */
+.form-actions {
+    flex-basis: 100%;
+    justify-content: flex-end;
+    gap: 14px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+/* Responsive: Satu Kolom di Mobile */
+@media (max-width: 768px) {
+    .card-body {
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 0 8px 0;
+    }
+    .form-group,
+    .form-group:first-of-type,
+    .form-group.full-width,
+    .form-group:last-of-type {
+        flex-basis: 100%;
+        min-width: 0;
+    }
+}
+
+/* Responsive: jika ingin garis tetap proporsional di mobile */
+@media (max-width: 576px) {
+    .card-title {
+        font-size: 1rem;
+    }
+}

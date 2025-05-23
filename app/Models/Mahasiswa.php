@@ -13,12 +13,18 @@ class Mahasiswa extends Authenticatable
     protected $guard = 'mahasiswa';
 
     protected $fillable = [
-        'nama',
-        'email',
-        'password',
+        'user_id', 'nama', 'email', 'nim', 'semester', 'prodi', 'ttl', 'alamat', 'foto'
     ];
 
     protected $hidden = [
         'password',
     ];
+
+
+
+    //App\Models\Mahasiswa.php
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

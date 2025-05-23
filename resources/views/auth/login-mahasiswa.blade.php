@@ -13,7 +13,7 @@
     <div class="container" id="container">
         <!-- Sign Up Form -->
         <div class="form-container sign-up-container">
-            <form method="POST" action="{{ route('mahasiswa.register') }}">
+            <form method="POST" action="{{ route('mahasiswa.register.submit') }}">
                 @csrf
                 <h1>Create Account</h1>
                 <input type="text" placeholder="Name" name="nama" required />
@@ -84,6 +84,25 @@
             </div>
         </div>
     </div>
+
+    @if (session('success') || session('error'))
+    <div id="custom-alert" class="custom-alert {{ session('success') ? 'success' : 'error' }}">
+        <span class="alert-message">
+            {{ session('success') ?? session('error') }}
+        </span>
+        <button class="close-alert" onclick="document.getElementById('custom-alert').style.display='none'">&times;</button>
+    </div>
+    @endif
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
     <script src="{{ asset('assets/js/login-script.js') }}"></script>
 </body>

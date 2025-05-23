@@ -1,0 +1,16 @@
+body {
+    background: #f5f6fa;
+}
+.form-upload {
+    margin: 60px auto;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    padding: 32px 28px;
+}
+.form-title {
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #2d3e50;
+}

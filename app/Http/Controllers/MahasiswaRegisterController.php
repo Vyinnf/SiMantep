@@ -9,26 +9,26 @@ use Illuminate\Support\Facades\Hash;
 
 class MahasiswaRegisterController extends Controller
 {
-    public function showRegistrationForm()
-    {
-        return view('auth.register-mahasiswa');
-    }
-
     public function register(Request $request)
     {
         $request->validate([
             'nama'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:mahasiswas,email',
+            'email'    => 'required|email|unique:users,email|unique:mahasiswas,email',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        // Simpan ke database
-        Mahasiswa::create([
-            'nama'     => $request->nama,
+        $user = User::create([
+            'name'     => $request->nama,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('mahasiswa.login.form')->with('success', 'Registrasi berhasil, silakan login.');
+        Mahasiswa::create([
+            'user_id'  => $user->id,
+            'nama'     => $request->nama,
+            'email'    => $request->email,
+        ]);
+
+        return redirect()->route('mahasiswa.login')->with('success', 'Akun berhasil dibuat!');
     }
 }

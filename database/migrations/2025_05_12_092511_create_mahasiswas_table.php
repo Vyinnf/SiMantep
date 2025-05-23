@@ -6,17 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('nama');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('nim')->nullable();
+            $table->integer('semester')->nullable();
+            $table->string('prodi')->nullable();
+            $table->string('ttl')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

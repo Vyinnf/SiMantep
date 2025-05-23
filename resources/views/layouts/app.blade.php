@@ -45,19 +45,36 @@
                 <ul>
                     <li><a href="#hero" class="active">Beranda</a></li>
                     <li><a href="#about">Tentang Kami</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#features">Fitur Unggulan</a></li>
+                    <li><a href="#contact">Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="{{ route('mahasiswa.login') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                    class="bi bi-person" viewBox="0 0 16 16">
-                    <path
-                        d="M8 0a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 1a2 2 0 1 1-2 2 2 2 0 0 1 2-2zm4 7c1.657 0 3 1.343 3 3 0 1.657-1.343 3-3 3H4c-1.657 0-3-1.343-3-3 0-1.657 1.343-3 3-3h8zm0 1H4c-1.103 0-2 .897-2 2 0 1.103.897 2 2 2h8c1.103 0 2-.897 2-2 0-1.103-.897-2-2-2z" />
-                </svg>
-                Login</a>
+            <!-- Button Login Dropdown -->
+            <div class="dropdown">
+                <a class="btn-getstarted dropdown-toggle" href="#" role="button" id="loginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-person" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 1a2 2 0 1 1-2 2 2 2 0 0 1 2-2zm4 7c1.657 0 3 1.343 3 3 0 1.657-1.343 3-3 3H4c-1.657 0-3-1.343-3-3 0-1.657 1.343-3 3-3h8zm0 1H4c-1.103 0-2 .897-2 2 0 1.103.897 2 2 2h8c1.103 0 2-.897 2-2 0-1.103-.897-2-2-2z" />
+                    </svg>
+                    Login
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.login') }}">
+                            <i class="bi bi-person"></i> Login Mahasiswa
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('dosen.login') }}">
+                            <i class="bi bi-person-badge"></i> Login Dosen
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Button Login Dropdown -->
         </div>
     </header>
 
@@ -388,105 +405,7 @@
         <!-- Testimonials Section -->
         <section id="testimonials" class="testimonials section light-background">
 
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Testimonials</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-            </div>
-            <!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row g-5">
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
-                                alt="">
-                            <h3>Saul Goodman</h3>
-                            <h4>Ceo &amp; Founder</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                    rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                    risus at semper.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                                alt="">
-                            <h3>Sara Wilsson</h3>
-                            <h4>Designer</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                    cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                    legam anim culpa.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
-                                alt="">
-                            <h3>Jena Karlis</h3>
-                            <h4>Store Owner</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                    veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint
-                                    minim.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
-                                alt="">
-                            <h3>Matt Brandon</h3>
-                            <h4>Freelancer</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                    fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem
-                                    dolore labore illum veniam.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                </div>
-
-            </div>
-
+           
         </section>
         <!-- /Testimonials Section -->
 
@@ -498,7 +417,8 @@
 
                     <div class="col-lg-5" data-aos="fade-up">
                         <h2 class="faq-title">Punya Pertanyaan? Lihat FAQ Kami</h2>
-                        <p class="faq-description">Pertanyaan umum seputar penggunaan Sistem Informasi Manajemen PKL Terpadu (SiMantep).</p>
+                        <p class="faq-description">Pertanyaan umum seputar penggunaan Sistem Informasi Manajemen PKL
+                            Terpadu (SiMantep).</p>
                         <div class="faq-arrow d-none d-lg-block" data-aos="fade-up" data-aos-delay="200">
                             <svg class="faq-arrow" width="200" height="211" viewBox="0 0 200 211"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -515,7 +435,9 @@
                             <div class="faq-item faq-active">
                                 <h3>Apa itu SiMantep?</h3>
                                 <div class="faq-content">
-                                    <p>SiMantep adalah sistem informasi manajemen tempat PKL untuk mahasiswa, dosen, dan admin. Sistem ini memudahkan proses pemilihan instansi dan pengajuan instansi non-mitra.</p>
+                                    <p>SiMantep adalah sistem informasi manajemen tempat PKL untuk mahasiswa, dosen, dan
+                                        admin. Sistem ini memudahkan proses pemilihan instansi dan pengajuan instansi
+                                        non-mitra.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div><!-- End Faq item-->
@@ -523,7 +445,8 @@
                             <div class="faq-item">
                                 <h3>Siapa saja yang bisa menggunakan SiMantep?</h3>
                                 <div class="faq-content">
-                                    <p>Mahasiswa, dosen pembimbing, dan admin kampus. Masing-masing memiliki hak akses dan fitur yang berbeda.</p>
+                                    <p>Mahasiswa, dosen pembimbing, dan admin kampus. Masing-masing memiliki hak akses
+                                        dan fitur yang berbeda.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div><!-- End Faq item-->
@@ -531,7 +454,9 @@
                             <div class="faq-item">
                                 <h3>Bagaimana cara mengajukan instansi non-mitra?</h3>
                                 <div class="faq-content">
-                                    <p>Mahasiswa dapat mengisi form pengajuan instansi non-mitra pada dashboard. Setelah itu, sistem akan memproses dan menampilkan surat pengajuan otomatis dalam format PDF.
+                                    <p>Mahasiswa dapat mengisi form pengajuan instansi non-mitra pada dashboard. Setelah
+                                        itu, sistem akan memproses dan menampilkan surat pengajuan otomatis dalam format
+                                        PDF.
                                     </p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
@@ -540,7 +465,8 @@
                             <div class="faq-item">
                                 <h3>Bagaimana cara mencetak surat pengajuan otomatis?</h3>
                                 <div class="faq-content">
-                                    <p>Setelah pengajuan disetujui oleh dosen, mahasiswa dapat mencetak surat pengajuan dengan klik tombol "Cetak Surat" di dashboard.</p>
+                                    <p>Setelah pengajuan disetujui oleh dosen, mahasiswa dapat mencetak surat pengajuan
+                                        dengan klik tombol "Cetak Surat" di dashboard.</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div><!-- End Faq item-->
@@ -548,7 +474,8 @@
                             <div class="faq-item">
                                 <h3>Apakah saya bisa mengganti instansi PKL setelah disetujui?</h3>
                                 <div class="faq-content">
-                                    <p>Bisa, namun harus ada alasan kuat dan mendapat persetujuan ulang dari dosen pembimbing dan admin.
+                                    <p>Bisa, namun harus ada alasan kuat dan mendapat persetujuan ulang dari dosen
+                                        pembimbing dan admin.
                                     </p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
@@ -557,7 +484,8 @@
                             <div class="faq-item">
                                 <h3>Saya lupa password, apa yang harus saya lakukan?</h3>
                                 <div class="faq-content">
-                                    <p>Gunakan fitur "Lupa Password" di halaman login dan ikuti instruksi untuk reset password melalui email.x</p>
+                                    <p>Gunakan fitur "Lupa Password" di halaman login dan ikuti instruksi untuk reset
+                                        password melalui email.x</p>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div><!-- End Faq item-->
@@ -573,18 +501,18 @@
         <!-- Contact Section -->
         <section id="contact" class="contact section light-background">
 
-           <!-- Section Title -->
-<div class="container section-title" data-aos="fade-up">
-    <h2>Contact</h2>
-    <p>"Silakan hubungi kami jika Anda memiliki pertanyaan, ingin menjalin kerja sama, atau membutuhkan informasi lebih lanjut terkait penggunaan dan layanan dari SIMantep – Sistem Informasi Manajemen Praktik Kerja Lapangan."</p>
-</div><!-- End Section Title -->
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Kontak</h2>
+                <p>Silakan hubungi kami jika Anda memiliki pertanyaan, ingin menjalin kerja sama, atau membutuhkan informasi lebih lanjut terkait penggunaan dan layanan dari SIMantep – Sistem Informasi Manajemen Praktik Kerja Lapangan.</p>
+            </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="row g-4 g-lg-5">
                     <div class="col-lg-5">
                         <div class="info-box" data-aos="fade-up" data-aos-delay="200">
-                            <h3>Contact Info</h3>
+                            <h3>Info Kontak</h3>
                             <p>Jika Anda memiliki pertanyaan, membutuhkan bantuan teknis, atau ingin menjalin kerja sama terkait layanan SIMantep, silakan hubungi kami melalui informasi berikut. Tim kami siap membantu Anda.</p>
 
                             <div class="info-item" data-aos="fade-up" data-aos-delay="300">
@@ -592,7 +520,7 @@
                                     <i class="bi bi-geo-alt"></i>
                                 </div>
                                 <div class="content">
-                                    <h4>Our Location</h4>
+                                    <h4>Lokasi Kami</h4>
                                     <p>Jl. Raya Lenteng, No. 10 Batuan, </p>
                                     <p> Sumenep - Madura</p>
                                 </div>
@@ -603,7 +531,7 @@
                                     <i class="bi bi-telephone"></i>
                                 </div>
                                 <div class="content">
-                                    <h4>Phone Number</h4>
+                                    <h4>Nomor Telepon</h4>
                                     <p>+1 5589 55488 55</p>
                                     <p>+1 6678 254445 41</p>
                                 </div>
@@ -614,7 +542,7 @@
                                     <i class="bi bi-envelope"></i>
                                 </div>
                                 <div class="content">
-                                    <h4>Email Address</h4>
+                                    <h4>Alamat Email</h4>
                                     <p>support@simantep.id</p>
                                     <p>admin@simantep.id</p>
                                 </div>
@@ -624,7 +552,7 @@
 
                     <div class="col-lg-7">
                         <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
-                            <h3>Get In Touch</h3>
+                            <h3>Hubungi Kami</h3>
                             <p>Silakan isi formulir berikut untuk mengirimkan pertanyaan, saran, atau permintaan informasi lebih lanjut seputar SIMantep.</p>
 
                             <form action="forms/contact.php" method="post" class="php-email-form"
@@ -677,14 +605,14 @@
         <div class="container footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="logo d-flex align-items-center">
-                        <span class="sitename">iLanding</span>
+                    <a href="#hero" class="logo d-flex align-items-center">
+                        <span class="sitename">SIMantep</span>
                     </a>
                     <div class="footer-contact pt-3">
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+                        <p>Jl. Raya Lenteng, No. 10 Batuan,</p>
+                        <p>Sumenep - Madura</p>
+                        <p class="mt-3"><strong>Telp:</strong> <span>+1 5589 55488 55</span></p>
+                        <p><strong>Email:</strong> <span>support@simantep.id</span></p>
                     </div>
                     <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -695,46 +623,46 @@
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Useful Links</h4>
+                    <h4>Tautan Utama</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Fitur Unggulan</a></li>
+                        <li><a href="#">Kontak</a></li>
+                        <li><a href="#">Login</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Layanan</h4>
                     <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Product Management</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Graphic Design</a></li>
+                        <li><a href="#">Pengajuan PKL</a></li>
+                        <li><a href="#">Monitoring & Evaluasi</a></li>
+                        <li><a href="#">Jadwal Bimbingan</a></li>
+                        <li><a href="#">Laporan Akhir</a></li>
+                        <li><a href="#">Cetak Surat Tugas</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Hic solutasetp</h4>
+                    <h4>Panduan</h4>
                     <ul>
-                        <li><a href="#">Molestiae accusamus iure</a></li>
-                        <li><a href="#">Excepturi dignissimos</a></li>
-                        <li><a href="#">Suscipit distinctio</a></li>
-                        <li><a href="#">Dilecta</a></li>
-                        <li><a href="#">Sit quas consectetur</a></li>
+                        <li><a href="#">Cara Mendaftar</a></li>
+                        <li><a href="#">Upload Laporan</a></li>
+                        <li><a href="#">Download Template</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Hubungi Admin</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Nobis illum</h4>
+                    <h4>Mitra & Info Tambahan</h4>
                     <ul>
-                        <li><a href="#">Ipsam</a></li>
-                        <li><a href="#">Laudantium dolorum</a></li>
-                        <li><a href="#">Dinera</a></li>
-                        <li><a href="#">Trodelas</a></li>
-                        <li><a href="#">Flexo</a></li>
+                        <li><a href="#">Daftar Mitra Industri</a></li>
+                        <li><a href="#">Info Pendaftaran</a></li>
+                        <li><a href="#">Kalender Akademik</a></li>
+                        <li><a href="#">Kontak Dosen Pembimbing</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
                     </ul>
                 </div>
 
@@ -742,17 +670,15 @@
         </div>
 
         <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">iLanding</strong> <span>All Rights
-                    Reserved</span></p>
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">SIMantep</strong> <span>Hak Cipta Dilindungi.</span></p>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you've purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed By <a
-                    href="https://themewagon.com">ThemeWagon</a>
+                Dikembangkan oleh Mahasiswa Universitas Bahaudin Mudhary Madura
             </div>
-        </div>
+        </div> 
 
     </footer>
 
@@ -761,15 +687,15 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
 
     <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 
