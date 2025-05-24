@@ -16,19 +16,19 @@ class DosenLoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        // Ganti 'dosen' dengan guard atau logic sesuai kebutuhan Anda
-        if (Auth::attempt($credentials)) {
+        // Gunakan guard 'dosen' agar mengambil data dari tabel dosens
+        if (Auth::guard('dosen')->attempt($credentials, $request->remember)) {
             return redirect()->route('dosen.dashboard');
         }
 
         return back()->withErrors([
             'email' => 'Email atau password salah.',
-        ]);
+        ])->withInput($request->only('email'));
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('dosen')->logout();
         return redirect()->route('dosen.login');
     }
 }

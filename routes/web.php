@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DosenLoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\MahasiswaController;
@@ -88,17 +89,11 @@ Route::get('/login', function () {
     return redirect('/mahasiswa/dashboard');
 })->name('login');
 
-// ============ AUTH DOSEN ============
-// Pastikan controller DosenLoginController sudah dibuat
-use App\Http\Controllers\DosenLoginController;
-
 // ============ ROUTE KHUSUS DOSEN ============
-Route::middleware(['auth'])->group(function () {
-    // Dashboard Dosen
-    Route::get('/dosen/dashboard', function () {
-        return view('dosen.dashboard');
-    })->name('dosen.dashboard');
-});
+// ============ ROUTE KHUSUS DOSEN ============
+Route::get('/dosen/dashboard', function () {
+    return view('dosen.dashboard');
+})->name('dosen.dashboard')->middleware('auth:dosen');
 
 // ============ VIEW LOGIN DOSEN ===========
 Route::get('/login/dosen', [DosenLoginController::class, 'showLoginForm'])->name('dosen.login');

@@ -68,7 +68,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('dosen.login') }}">
+                        <a class="dropdown-item" href="{{ route('dosen.login.submit') }}">
                             <i class="bi bi-person-badge"></i> Login Dosen
                         </a>
                     </li>
@@ -405,7 +405,7 @@
         <!-- Testimonials Section -->
         <section id="testimonials" class="testimonials section light-background">
 
-           
+
         </section>
         <!-- /Testimonials Section -->
 
@@ -678,7 +678,7 @@
                 <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
                 Dikembangkan oleh Mahasiswa Universitas Bahaudin Mudhary Madura
             </div>
-        </div> 
+        </div>
 
     </footer>
 
