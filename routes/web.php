@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaLoginController;
@@ -113,3 +114,9 @@ Route::post('logout-admin', [AdminLoginController::class, 'logout'])->name('admi
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard')->middleware('auth:admin');
+
+Route::get('/admin/dosen/create', function () {
+    return view('admin.tambah-dosen');
+})->name('admin.dosen.create')->middleware('auth:admin');
+
+Route::post('admin/dosen/store', [AdminController::class, 'storeDosen'])->name('admin.dosen.store')->middleware('auth:admin');

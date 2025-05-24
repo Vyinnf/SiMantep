@@ -1,4 +1,3 @@
-{{-- filepath: c:\laragon\www\Project Sistem PKL\laravel\resources\views\admin\login.blade.php --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
