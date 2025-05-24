@@ -6,6 +6,9 @@ use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\PendaftaranPKL;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MahasiswaExport;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -32,11 +35,11 @@ public function indexMahasiswa()
     return view('admin.mahasiswa.index', compact('mahasiswa'));
 }
 
-// public function showMahasiswa($id)
-// {
-//     $mahasiswa = Mahasiswa::findOrFail($id);
-//     return view('admin.mahasiswa.show', compact('mahasiswa'));
-// }
+public function showMahasiswa($id)
+{
+    $mahasiswa = Mahasiswa::findOrFail($id);
+    return view('admin.mahasiswa.show', compact('mahasiswa'));
+}
 
 // public function editMahasiswa($id)
 // {
@@ -96,5 +99,18 @@ public function tolakPendaftaran($id)
     $pendaftaran->status = 'rejected';
     $pendaftaran->save();
     return redirect()->route('admin.pendaftaran.index')->with('success', 'Pendaftaran berhasil ditolak.');
+}
+
+public function exportMahasiswa(Request $request)
+{
+    $type = $request->query('type');
+    if ($type == 'excel') {
+        return Excel::download(new MahasiswaExport, 'mahasiswa.xlsx');
+    } elseif ($type == 'pdf') {
+        $mahasiswa = \App\Models\Mahasiswa::all();
+        $pdf = PDF::loadView('admin.mahasiswa.export-pdf', compact('mahasiswa'));
+        return $pdf->download('mahasiswa.pdf');
+    }
+    return redirect()->back();
 }
 }

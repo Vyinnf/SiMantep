@@ -453,10 +453,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.logout') }}">
-                            <i class="mdi mdi-logout menu-icon"></i>
-                            <span class="menu-title">Logout</span>
-                        </a>
+                        <form action="{{ route('admin.logout') }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link"
+                                style="padding: 0; color: inherit; background: none; border: none;">
+                                <i class="mdi mdi-logout menu-icon"></i>
+                                <span class="menu-title">Logout</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </nav>

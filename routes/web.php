@@ -116,6 +116,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::get('/mahasiswa/{id}/edit', [AdminController::class, 'editMahasiswa'])->name('admin.mahasiswa.edit');
     Route::put('/mahasiswa/{id}', [AdminController::class, 'updateMahasiswa'])->name('admin.mahasiswa.update');
     Route::delete('/mahasiswa/{id}', [AdminController::class, 'destroyMahasiswa'])->name('admin.mahasiswa.destroy');
+    Route::get('/mahasiswa/export', [AdminController::class, 'exportMahasiswa'])->name('admin.mahasiswa.export');
 
     Route::get('/dosen', [AdminController::class, 'indexDosen'])->name('admin.dosen.index');
     Route::get('/dosen/create', function () {

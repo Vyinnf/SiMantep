@@ -3,12 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Data Mahasiswa</title>
-    <link rel="stylesheet" href="{{ asset('assets-admin/css/vertical-layout-light/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-admin/css/admin-mhs.css') }}">
+    <!-- Tambahkan CDN untuk icon jika belum ada -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <div class="container">
         <h2>Data Mahasiswa</h2>
-        <table class="table table-bordered">
+        <div style="margin-bottom: 18px; display: flex; gap: 8px;">
+            <a href="#" class="btn btn-outline-dark" onclick="window.print();return false;">
+                <i class="bi bi-printer"></i> Print
+            </a>
+            <div class="dropdown" style="display:inline-block;">
+                <a href="#" class="btn btn-primary text-white dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-download"></i> Export
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('admin.mahasiswa.export', ['type' => 'excel']) }}">
+                            <i class="bi bi-file-earmark-excel"></i> Export Excel
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('admin.mahasiswa.export', ['type' => 'pdf']) }}">
+                            <i class="bi bi-file-earmark-pdf"></i> Export PDF
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <table class="table-mahasiswa">
             <thead>
                 <tr>
                     <th>No</th>
@@ -41,5 +65,7 @@
             </tbody>
         </table>
     </div>
+    <!-- Bootstrap JS untuk dropdown (jika belum ada di layout utama) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
