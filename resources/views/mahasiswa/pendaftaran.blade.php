@@ -17,9 +17,30 @@
                 <label for="nama" class="form-label">Nama Mahasiswa</label>
                 <input type="text" class="form-control" id="nama" name="nama" value="{{ auth()->user()->name }}" readonly>
             </div>
+
             <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
+            </div>
+                        <div class="mb-3">
                 <label for="nim" class="form-label">NIM</label>
-                <input type="text" class="form-control" id="nim" name="nim" value="{{ auth()->user()->mahasiswa->nim ?? '' }}" readonly>
+                <input type="text" class="form-control" id="nim" name="nim" value="{{ auth()->user()->mahasiswa->nim ?? '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="prodi" class="form-label">Program Studi</label>
+                <input type="text" class="form-control" id="prodi" name="prodi" value="{{ auth()->user()->mahasiswa->prodi ?? '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="semester" class="form-label">Semester</label>
+                <input type="number" min="1" max="14" class="form-control" id="semester" name="semester" value="{{ auth()->user()->mahasiswa->semester ?? '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="alamat_mahasiswa" class="form-label">Alamat Mahasiswa</label>
+                <input type="text" class="form-control" id="alamat_mahasiswa" name="alamat_mahasiswa" value="{{ auth()->user()->mahasiswa->alamat ?? '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="no_hp" class="form-label">No HP/WA</label>
+                <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ auth()->user()->mahasiswa->no_hp ?? '' }}" required>
             </div>
             <div class="mb-3">
                 <label for="instansi" class="form-label">Instansi Tujuan PKL</label>
@@ -28,10 +49,6 @@
             <div class="mb-3">
                 <label for="alamat_instansi" class="form-label">Alamat Instansi</label>
                 <input type="text" class="form-control" id="alamat_instansi" name="alamat_instansi" required>
-            </div>
-            <div class="mb-3">
-                <label for="dokumen" class="form-label">Upload Dokumen Persyaratan (PDF)</label>
-                <input type="file" class="form-control" id="dokumen" name="dokumen" accept="application/pdf" required>
             </div>
             <button type="submit" class="btn btn-primary w-100">Daftar PKL</button>
         </form>
