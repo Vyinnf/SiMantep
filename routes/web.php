@@ -90,7 +90,6 @@ Route::get('/login', function () {
 })->name('login');
 
 // ============ ROUTE KHUSUS DOSEN ============
-// ============ ROUTE KHUSUS DOSEN ============
 Route::get('/dosen/dashboard', function () {
     return view('dosen.dashboard');
 })->name('dosen.dashboard')->middleware('auth:dosen');
@@ -110,8 +109,21 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard')->middleware('auth:admin');
 
-Route::get('/admin/dosen/create', function () {
-    return view('admin.tambah-dosen');
-})->name('admin.dosen.create')->middleware('auth:admin');
+// Data Mahasiswa (Admin)
+Route::middleware('auth:admin')->prefix('admin')->group(function () {
+    Route::get('/mahasiswa', [AdminController::class, 'indexMahasiswa'])->name('admin.mahasiswa.index');
+    Route::get('/mahasiswa/{id}', [AdminController::class, 'showMahasiswa'])->name('admin.mahasiswa.show');
+    Route::get('/mahasiswa/{id}/edit', [AdminController::class, 'editMahasiswa'])->name('admin.mahasiswa.edit');
+    Route::put('/mahasiswa/{id}', [AdminController::class, 'updateMahasiswa'])->name('admin.mahasiswa.update');
+    Route::delete('/mahasiswa/{id}', [AdminController::class, 'destroyMahasiswa'])->name('admin.mahasiswa.destroy');
 
-Route::post('admin/dosen/store', [AdminController::class, 'storeDosen'])->name('admin.dosen.store')->middleware('auth:admin');
+    Route::get('/dosen', [AdminController::class, 'indexDosen'])->name('admin.dosen.index');
+    Route::get('/dosen/create', function () {
+        return view('admin.tambah-dosen');
+    })->name('admin.dosen.create');
+    Route::post('/dosen/store', [AdminController::class, 'storeDosen'])->name('admin.dosen.store');
+
+    Route::get('/pendaftaran', [AdminController::class, 'indexPendaftaran'])->name('admin.pendaftaran.index');
+    Route::post('/pendaftaran/{id}/verifikasi', [AdminController::class, 'verifikasiPendaftaran'])->name('admin.pendaftaran.verifikasi');
+    Route::post('/pendaftaran/{id}/tolak', [AdminController::class, 'tolakPendaftaran'])->name('admin.pendaftaran.tolak');
+});

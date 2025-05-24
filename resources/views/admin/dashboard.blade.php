@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin2 </title>
+    <title> Dashboard Admin </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets-admin/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets-admin/vendors/mdi/css/materialdesignicons.min.css') }}">
@@ -429,11 +429,35 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.dosen.create') }}">
-                        <i class="mdi mdi-account-plus menu-icon"></i>
-                        <span class="menu-title">Tambah Dosen</span>
-                    </a>
-                </li>
+                        <a class="nav-link" href="{{ route('admin.mahasiswa.index') }}">
+                            <i class="mdi mdi-account-multiple menu-icon"></i>
+                            <span class="menu-title">Data Mahasiswa</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.dosen.index') }}">
+                            <i class="mdi mdi-account-star menu-icon"></i>
+                            <span class="menu-title">Data Dosen</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.dosen.create') }}">
+                            <i class="mdi mdi-account-plus menu-icon"></i>
+                            <span class="menu-title">Tambah Dosen</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.pendaftaran.index') }}">
+                            <i class="mdi mdi-file-document-box menu-icon"></i>
+                            <span class="menu-title">Pendaftaran PKL</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.logout') }}">
+                            <i class="mdi mdi-logout menu-icon"></i>
+                            <span class="menu-title">Logout</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- partial -->
@@ -1492,15 +1516,15 @@
     <script src="{{ asset('assets-admin/js/Chart.roundedBarCharts.js') }}"></script>
     <!-- End custom js for this page-->
     <script>
-    function getGreeting() {
-        const hour = new Date().getHours();
-        if (hour >= 5 && hour < 12) return "Good Morning";
-        if (hour >= 12 && hour < 17) return "Good Afternoon";
-        if (hour >= 17 && hour < 21) return "Good Evening";
-        return "Good Night";
-    }
-    document.getElementById('greeting').textContent = getGreeting();
-</script>
+        function getGreeting() {
+            const hour = new Date().getHours();
+            if (hour >= 5 && hour < 12) return "Good Morning";
+            if (hour >= 12 && hour < 17) return "Good Afternoon";
+            if (hour >= 17 && hour < 21) return "Good Evening";
+            return "Good Night";
+        }
+        document.getElementById('greeting').textContent = getGreeting();
+    </script>
 </body>
 
 </html>
