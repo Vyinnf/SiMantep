@@ -8,7 +8,9 @@ use App\Models\PendaftaranPKL;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MahasiswaExport;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Hash;
+
 
 class AdminController extends Controller
 {
@@ -23,7 +25,7 @@ class AdminController extends Controller
     \App\Models\Dosen::create([
         'name' => $request->name,
         'email' => $request->email,
-        'password' => \Hash::make($request->password),
+        'password' => Hash::make($request->password),
     ]);
 
     return redirect()->route('admin.dosen.create')->with('success', 'Akun dosen berhasil ditambahkan!');
@@ -40,12 +42,6 @@ public function showMahasiswa($id)
     $mahasiswa = Mahasiswa::findOrFail($id);
     return view('admin.mahasiswa.show', compact('mahasiswa'));
 }
-
-// public function editMahasiswa($id)
-// {
-//     $mahasiswa = Mahasiswa::findOrFail($id);
-//     return view('admin.mahasiswa.edit', compact('mahasiswa'));
-// }
 
 public function updateMahasiswa(Request $request, $id)
 {

@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::table('mahasiswas', function (Blueprint $table) {
             $table->string('email')->nullable()->change();
-            $table->string('password')->nullable()->change();
+            // $table->string('password')->nullable()->change();
         });
     }
 
@@ -17,7 +17,7 @@ return new class extends Migration {
     {
         Schema::table('mahasiswas', function (Blueprint $table) {
             $table->string('email')->nullable(false)->change();
-            $table->string('password')->nullable(false)->change();
+            // $table->string('password')->nullable(false)->change();
         });
     }
 };

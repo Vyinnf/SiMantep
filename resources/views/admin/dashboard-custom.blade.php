@@ -3,7 +3,7 @@
 @section('title', 'Dashboard Admin')
 
 @section('content')
-<h2 class="mb-4">Dashboard Statistik</h2>
+<h2 class="mb-4">Dashboard Statistik Admin</h2>
 <div class="row g-4">
     <div class="col-md-6 col-12">
         <div class="card card-rounded card-square text-center shadow-sm mb-4" style="border-top: 4px solid #2563eb;">
