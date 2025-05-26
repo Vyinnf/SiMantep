@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Daftar Pendaftaran PKL</title>
-    <link rel="stylesheet" href="{{ asset('assets-admin/css/vertical-layout-light/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-admin/css/admin-pendaftaran.css') }}">
 </head>
 <body>
     <div class="container">
+        @extends('layouts.admin')
+        @section('title', 'Daftar Pendaftaran PKL')
+        @section('content')
         <h2>Daftar Pendaftaran PKL Mahasiswa</h2>
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -62,6 +65,7 @@
                 @endforelse
             </tbody>
         </table>
+        @endsection
     </div>
 </body>
 </html>

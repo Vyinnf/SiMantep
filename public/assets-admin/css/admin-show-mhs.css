@@ -1,0 +1,91 @@
+.detail-box {
+            max-width: 600px;
+            margin: 48px auto 0 auto;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0 0 32px 0;
+        }
+        .detail-title {
+            text-align: center;
+            margin-bottom: 32px;
+            color: #181818;
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #181818;
+            padding-bottom: 12px;
+        }
+        .detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+        }
+        .detail-table tr {
+            transition: background 0.2s;
+        }
+        .detail-table tr:hover td {
+            background: #f7f7f7;
+        }
+        .detail-table td {
+            padding: 16px 20px;
+            font-size: 1.05rem;
+            color: #181818;
+            border-bottom: 1.5px solid #ececec;
+            transition: background 0.2s, color 0.2s;
+        }
+        .detail-table td:first-child {
+            font-weight: 600;
+            color: #111;
+            background: #f3f3f3;
+            width: 38%;
+            border-right: 2px solid #e5e7eb;
+            letter-spacing: 0.5px;
+        }
+        .detail-table td:last-child {
+            color: #444;
+            background: #fff;
+        }
+        .detail-table tr:last-child td {
+            border-bottom: none;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-top: 32px;
+            background: linear-gradient(90deg, #181818 70%, #444 100%);
+            color: #fff;
+            padding: 11px 36px;
+            border-radius: 7px;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1.08rem;
+            font-weight: 600;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            letter-spacing: 1px;
+            outline: none;
+        }
+        .btn-back:hover, .btn-back:focus {
+            background: #fff;
+            color: #181818;
+            border: 1.5px solid #181818;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+        }
+        @media (max-width: 700px) {
+    .detail-box {
+        max-width: 98vw;
+        padding: 0 2vw 24px 2vw;
+    }
+    .detail-table td {
+        font-size: 0.97rem;
+        padding: 10px 8px;
+    }
+    .detail-table td:first-child {
+        width: 45%;
+    }
+    .btn-back {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1rem;
+    }
+}

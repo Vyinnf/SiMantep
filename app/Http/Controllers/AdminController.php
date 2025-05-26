@@ -31,7 +31,7 @@ class AdminController extends Controller
 
 public function indexMahasiswa()
 {
-    $mahasiswa = Mahasiswa::all();
+    $mahasiswa = Mahasiswa::with('user')->get();
     return view('admin.mahasiswa.index', compact('mahasiswa'));
 }
 
@@ -69,6 +69,9 @@ public function updateMahasiswa(Request $request, $id)
 public function destroyMahasiswa($id)
 {
     $mahasiswa = Mahasiswa::findOrFail($id);
+    if ($mahasiswa->user) {
+        $mahasiswa->user->delete();
+    }
     $mahasiswa->delete();
     return redirect()->route('admin.mahasiswa.index')->with('success', 'Data mahasiswa berhasil dihapus.');
 }
@@ -112,5 +115,14 @@ public function exportMahasiswa(Request $request)
         return $pdf->download('mahasiswa.pdf');
     }
     return redirect()->back();
+}
+
+public function dashboardCustom() {
+    // Ambil data statistik, chart, dsb
+    return view('admin.dashboard-custom', [
+        // 'totalMahasiswa' => ...,
+        // 'totalDosen' => ...,
+        // dst
+    ]);
 }
 }

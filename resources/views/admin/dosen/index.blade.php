@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Data Dosen</title>
-    <link rel="stylesheet" href="{{ asset('assets-admin/css/vertical-layout-light/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-admin/css/admin-dosen.css') }}">
 </head>
 <body>
     <div class="container">
+        
+        @extends('layouts.admin')
+        @section('title', 'Data Dosen')
+        @section('content')
         <h2>Data Dosen</h2>
         <a href="{{ route('admin.dosen.create') }}" class="btn btn-primary" style="margin-bottom: 15px;">Tambah Dosen</a>
         <table class="table table-bordered">
@@ -31,6 +35,7 @@
                 @endforelse
             </tbody>
         </table>
+        @endsection
     </div>
 </body>
 </html>

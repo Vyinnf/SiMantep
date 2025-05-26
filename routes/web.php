@@ -105,9 +105,7 @@ Route::post('login-admin', [AdminLoginController::class, 'login'])->name('admin.
 Route::post('logout-admin', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
 // Admin Dashboard
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard')->middleware('auth:admin');
+Route::get('/admin/dashboard', [AdminController::class, 'dashboardCustom'])->name('admin.dashboard');;
 
 // Data Mahasiswa (Admin)
 Route::middleware('auth:admin')->prefix('admin')->group(function () {

@@ -1,0 +1,229 @@
+/* Layout utama admin panel - clean, profesional, putih dengan aksen biru pastel */
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f9fafb;
+    color: #181818;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container-scroller {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 230px;
+    background: #fff;
+    min-height: 100vh;
+    padding-top: 32px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    border-right: 1.5px solid #e3e8ee;
+    box-shadow: 2px 0 16px 0 rgba(80,120,200,0.04);
+}
+
+.sidebar .nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .nav-item {
+    margin-bottom: 6px;
+}
+
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 14px 28px;
+    color: #181818;
+    text-decoration: none;
+    font-size: 1.05rem;
+    border-radius: 0 24px 24px 0;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 500;
+    gap: 14px;
+    position: relative;
+}
+
+.sidebar .nav-link .menu-icon {
+    font-size: 1.3rem;
+    margin-right: 10px;
+    color: #6ea8fe;
+    transition: color 0.2s;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background: #eaf2fb;
+    color: #2563eb;
+}
+
+.sidebar .nav-link:hover .menu-icon,
+.sidebar .nav-link.active .menu-icon {
+    color: #2563eb;
+}
+
+.sidebar form {
+    width: 100%;
+}
+
+.sidebar .nav-item.mt-3 {
+    margin-top: 32px;
+    border-top: 1px solid #e3e8ee;
+    padding-top: 18px;
+}
+
+.main-panel {
+    margin-left: 230px;
+    width: calc(100% - 230px);
+    min-height: 100vh;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    padding: 36px 36px 24px 36px;
+    flex: 1;
+}
+
+.card, .table, .card-rounded {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px 0 rgba(80,120,200,0.06);
+    border: 1.5px solid #e3e8ee;
+}
+
+.table th, .table td {
+    border-bottom: 1px solid #e3e8ee;
+}
+
+.table th {
+    background: #eaf2fb;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.btn, .btn-primary, .btn-outline-dark {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-outline-dark {
+    background: #fff;
+    color: #2563eb;
+    border: 1.5px solid #2563eb;
+}
+
+.btn:hover, .btn-primary:hover {
+    background: #1746a0;
+    color: #fff;
+}
+
+.btn-outline-dark:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 12px;
+    font-size: 0.97rem;
+    font-weight: 500;
+    color: #fff;
+}
+.bg-warning { background: #facc15; color: #181818; }
+.bg-success { background: #2563eb; color: #fff; }
+.bg-danger { background: #fff; color: #e11d48; border: 1.5px solid #e11d48; }
+
+.text-center {
+    text-align: center;
+}
+
+/* Card dashboard persegi */
+.card-square {
+    aspect-ratio: 1/1;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@media (max-width: 767px) {
+    .card-square {
+        aspect-ratio: unset;
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 60px;
+        padding-top: 18px;
+    }
+    .sidebar .nav-link {
+        padding: 14px 10px;
+        justify-content: center;
+        border-radius: 12px;
+        font-size: 0.97rem;
+    }
+    .sidebar .menu-title {
+        display: none;
+    }
+    .main-panel {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+    }
+    .content-wrapper {
+        padding: 18px 6vw 18px 6vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-panel {
+        margin-left: 0;
+        width: 100%;
+    }
+    .sidebar {
+        position: static;
+        width: 100vw;
+        min-height: auto;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 0;
+        border-right: none;
+        box-shadow: none;
+    }
+    .sidebar .nav {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+    }
+    .sidebar .nav-item {
+        margin: 0 2px;
+    }
+    .sidebar .nav-link {
+        border-radius: 12px;
+        padding: 10px 8px;
+        font-size: 0.95rem;
+    }
+    .content-wrapper {
+        padding: 12px 2vw 12px 2vw;
+    }
+}
