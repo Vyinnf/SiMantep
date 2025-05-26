@@ -55,7 +55,7 @@ public function updateMahasiswa(Request $request, $id)
     $mahasiswa->name = $request->name;
     $mahasiswa->email = $request->email;
     if ($request->filled('password')) {
-        $mahasiswa->password = \Hash::make($request->password);
+        $mahasiswa->password = Hash::make($request->password);
     }
     $mahasiswa->save();
 
