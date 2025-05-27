@@ -7,12 +7,11 @@
 </head>
 <body>
     <div class="container">
-        
+
         @extends('layouts.admin')
         @section('title', 'Data Dosen')
         @section('content')
         <h2>Data Dosen</h2>
-        <a href="{{ route('admin.dosen.create') }}" class="btn btn-primary" style="margin-bottom: 15px;">Tambah Dosen</a>
         <table class="table table-bordered">
             <thead>
                 <tr>

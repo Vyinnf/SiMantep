@@ -114,11 +114,13 @@ public function exportMahasiswa(Request $request)
 }
 
 public function dashboardCustom() {
-    // Ambil data statistik, chart, dsb
-    return view('admin.dashboard-custom', [
-        // 'totalMahasiswa' => ...,
-        // 'totalDosen' => ...,
-        // dst
-    ]);
+    $totalMahasiswa = \App\Models\Mahasiswa::count();
+    $totalDosen = \App\Models\Dosen::count();
+    $totalPendaftaran = \App\Models\PendaftaranPKL::count();
+    $totalNotifikasi = 0; // Ganti sesuai kebutuhan
+
+    return view('admin.dashboard-custom', compact(
+        'totalMahasiswa', 'totalDosen', 'totalPendaftaran', 'totalNotifikasi'
+    ));
 }
 }

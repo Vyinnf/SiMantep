@@ -100,6 +100,14 @@ body {
     border: 1.5px solid #e3e8ee;
 }
 
+.card {
+    padding: 0 !important;
+}
+
+.card-body {
+    padding: 32px 28px 24px 28px !important;
+}
+
 .table th, .table td {
     border-bottom: 1px solid #e3e8ee;
 }
@@ -225,5 +233,270 @@ body {
     }
     .content-wrapper {
         padding: 12px 2vw 12px 2vw;
+    }
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 32px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 32px auto;
+    min-height: 400px;
+}
+
+.dashboard-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(80,120,200,0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    border-top: 4px solid #2563eb;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card .mdi {
+    font-size: 2.7rem;
+    margin-bottom: 14px;
+    opacity: 0.93;
+}
+
+.dashboard-card .label {
+    font-size: 1.13rem;
+    font-weight: 600;
+    color: #181818;
+    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+}
+
+.dashboard-card .value {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+}
+
+.dashboard-card.dosen { border-top-color: #6ea8fe; }
+.dashboard-card.pendaftaran { border-top-color: #facc15; }
+.dashboard-card.notifikasi { border-top-color: #e11d48; }
+.dashboard-card.dosen .value { color: #6ea8fe; }
+.dashboard-card.pendaftaran .value { color: #facc15; }
+.dashboard-card.notifikasi .value { color: #e11d48; }
+
+.dashboard-card:hover {
+    box-shadow: 0 8px 32px 0 rgba(80,120,200,0.13);
+    transform: translateY(-4px) scale(1.03);
+}
+
+@media (max-width: 900px) {
+    .dashboard-grid {
+        max-width: 98vw;
+        gap: 18px;
+    }
+}
+@media (max-width: 600px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: unset;
+        gap: 18px;
+        min-height: unset;
+    }
+    .dashboard-card {
+        aspect-ratio: unset;
+        min-height: 140px;
+    }
+}
+
+/* --- Tambahan khusus form tambah dosen --- */
+.card {
+    border-radius: 16px;
+    box-shadow: 0 4px 24px 0 rgba(80,120,200,0.09);
+    border: 1.5px solid #e3e8ee;
+    background: #fff;
+}
+
+.card-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #2563eb;
+    letter-spacing: 1px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 6px;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1.5px solid #e3e8ee;
+    padding: 10px 14px;
+    font-size: 1rem;
+    background: #f9fafb;
+    color: #181818;
+    transition: border 0.2s, box-shadow 0.2s;
+    margin-bottom: 8px;
+}
+
+.form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px #eaf2fb;
+    background: #fff;
+    outline: none;
+}
+
+.btn-primary.w-100 {
+    width: 100%;
+    background: linear-gradient(90deg, #2563eb 60%, #6ea8fe 100%);
+    border: none;
+    font-weight: 600;
+    font-size: 1.07rem;
+    padding: 10px 0;
+    border-radius: 8px;
+    margin-top: 8px;
+    box-shadow: 0 2px 8px 0 rgba(80,120,200,0.07);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary.w-100:hover {
+    background: #1746a0;
+    color: #fff;
+    box-shadow: 0 4px 16px 0 rgba(80,120,200,0.13);
+}
+
+.alert {
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+.alert-success {
+    background: #eafbe7;
+    color: #1e7e34;
+    border: 1.5px solid #b6e6b0;
+}
+
+.alert-danger {
+    background: #fff0f0;
+    color: #e11d48;
+    border: 1.5px solid #f5bfc0;
+}
+
+.table-mahasiswa {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 16px 0 rgba(80,120,200,0.06);
+}
+
+.table-mahasiswa th, .table-mahasiswa td {
+    padding: 14px 18px;
+    border-bottom: 1.5px solid #e3e8ee;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.table-mahasiswa th {
+    background: #eaf2fb;
+    color: #2563eb;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.table-mahasiswa tr:last-child td {
+    border-bottom: none;
+}
+
+.table-mahasiswa tr:hover td {
+    background: #f4f8fb;
+    transition: background 0.2s;
+}
+
+.btn-info.btn-sm {
+    background: #6ea8fe;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-size: 0.97rem;
+    margin-right: 4px;
+    transition: background 0.2s;
+}
+
+.btn-info.btn-sm:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+.btn-danger.btn-sm {
+    background: #e11d48;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-size: 0.97rem;
+    transition: background 0.2s;
+}
+
+.btn-danger.btn-sm:hover {
+    background: #b91c1c;
+    color: #fff;
+}
+
+.action-bar {
+    margin-bottom: 18px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.dropdown-menu {
+    min-width: 160px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px 0 rgba(80,120,200,0.08);
+    border: 1.5px solid #e3e8ee;
+    padding: 6px 0;
+}
+
+.dropdown-item {
+    font-size: 1rem;
+    color: #181818;
+    padding: 8px 18px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-item:hover {
+    background: #eaf2fb;
+    color: #2563eb;
+}
+
+@media (max-width: 600px) {
+    .card {
+        border-radius: 10px;
+    }
+    .card-title {
+        font-size: 1.08rem;
+    }
+    .form-control {
+        font-size: 0.97rem;
+        padding: 8px 10px;
+    }
+    .card-body {
+        padding: 18px 8px 16px 8px !important;
     }
 }
