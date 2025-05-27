@@ -29,7 +29,6 @@ class DosenProfileController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        // Simpan field lain jika ada
         $user->save();
 
         return redirect()->route('dosen.profile')->with('success', 'Profil berhasil diperbarui.');

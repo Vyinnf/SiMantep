@@ -35,6 +35,23 @@
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="nip" class="form-label">NIP</label>
+                            <input type="nip" class="form-control" id="nip" name="nip" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Jenis Kelamin</label>
+                            <select name="gender" id="gender" class="form-select">
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="Laki-laki" {{ old('gender') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+
+                                <option value="Perempuan"
+                                    {{ old('gender') == 'Perempuan' ? 'selected' : '' }}>Perempuan
+                                </option>
+                            </select>
+                        </div>
+
+
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">Tambah Dosen</button>
                             <button type="reset" class="btn btn-outline-dark w-100">Reset</button>

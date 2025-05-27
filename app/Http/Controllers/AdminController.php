@@ -20,11 +20,14 @@ class AdminController extends Controller
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:dosens,email',
         'password' => 'required|min:6',
+        'nip' => 'required|digits:18',
     ]);
 
     \App\Models\Dosen::create([
         'name' => $request->name,
         'email' => $request->email,
+        'nip' => $request->nip,
+        'gender' =>$request->gender,
         'password' => Hash::make($request->password),
     ]);
 

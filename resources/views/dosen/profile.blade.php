@@ -20,6 +20,15 @@
                             <th>Email</th>
                             <td>{{ Auth::user()->email }}</td>
                         </tr>
+                        <tr>
+                            <th>NIP</th>
+                            <td>{{ Auth::user()->nip }}</td>
+                        </tr>
+                        <tr>
+                            <th>Jenis Kelamin</th>
+                            <td>{{ Auth::user()->gender == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
+                        </tr>
+                        <tr>
                         {{-- Tambahkan data lain jika ada, misal NIP, No HP, dsb --}}
                     </table>
                     <a href="{{ route('dosen.profile.edit') }}" class="btn btn-primary">
