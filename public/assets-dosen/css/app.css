@@ -1,0 +1,132 @@
+/* Reset & base */
+body {
+    background: #f4f8fb;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    color: #22223b;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar */
+/* .sidebar {
+    min-height: 100vh;
+    background: #fff;
+    border-right: 1.5px solid #e3e8ee;
+    box-shadow: 0 2px 16px 0 rgba(80,120,200,0.06);
+    padding-top: 2rem;
+} */
+
+.sidebar .text-center img {
+    border: 3px solid #eaf2fb;
+    box-shadow: 0 2px 8px 0 rgba(80,120,200,0.08);
+    margin-bottom: 0.5rem;
+}
+
+.sidebar .fw-bold {
+    font-size: 1.1rem;
+    color: #1d3557;
+}
+
+.sidebar .text-muted {
+    color: #6c757d !important;
+}
+
+.sidebar .btn-outline-primary {
+    border-radius: 6px;
+    font-size: 0.95rem;
+    padding: 2px 18px;
+    margin-top: 0.5rem;
+}
+
+.sidebar .nav {
+    margin-top: 2rem;
+}
+
+.sidebar .nav-link {
+    color: #2563eb;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s, color 0.2s;
+    background: transparent;
+    border: none;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+    background: #eaf2fb;
+    color: #1d4ed8;
+    text-decoration: none;
+}
+
+.sidebar .nav-link i {
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
+
+.sidebar .nav-link.text-danger {
+    color: #e11d48 !important;
+}
+
+.sidebar .nav-link.text-danger:hover {
+    background: #fee2e2;
+    color: #b91c1c !important;
+}
+
+/* Main Content */
+main {
+    background: #f4f8fb;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+}
+
+/* Card & Table */
+.card {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px 0 rgba(80,120,200,0.07);
+    border: none;
+}
+
+.table {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background: #eaf2fb;
+    color: #1d3557;
+    font-weight: 600;
+    border-bottom: 2px solid #e3e8ee;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.badge {
+    font-size: 0.95em;
+    padding: 0.4em 0.8em;
+    border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .sidebar {
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1.5px solid #e3e8ee;
+        padding-top: 1rem;
+    }
+    main {
+        min-height: auto;
+        padding: 1rem 0.5rem;
+    }
+    .sidebar .nav {
+        margin-top: 1rem;
+    }
+}

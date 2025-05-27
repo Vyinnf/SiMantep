@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\DosenDashboardController;
+use App\Http\Controllers\DosenVerifikasiController;
+use App\Http\Controllers\DosenProfileController;
+use App\Http\Controllers\DosenMahasiswaController;
+use App\Http\Controllers\DosenLaporanController;
+use App\Http\Controllers\DosenNilaiController;
+use App\Http\Controllers\DosenNotifikasiController;
 use App\Http\Controllers\DosenLoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
@@ -98,6 +105,46 @@ Route::get('/dosen/dashboard', function () {
 Route::get('/login/dosen', [DosenLoginController::class, 'showLoginForm'])->name('dosen.login');
 Route::post('/login/dosen', [DosenLoginController::class, 'login'])->name('dosen.login.submit');
 Route::post('/logout/dosen', [DosenLoginController::class, 'logout'])->name('dosen.logout');
+
+// Fitur-fitur khusus dosen
+Route::get('dashboard', [DosenDashboardController::class, 'index'])->name('dosen.dashboard');
+Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
+    Route::get('profile', [DosenProfileController::class, 'show'])->name('dosen.profile');
+    Route::get('profile/edit', [DosenProfileController::class, 'edit'])->name('dosen.profile.edit');
+    Route::put('profile', [DosenProfileController::class, 'update'])->name('dosen.profile.update');
+});
+
+Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
+    Route::get('dashboard', [DosenDashboardController::class, 'index'])->name('dosen.dashboard');
+    Route::get('verifikasi', [DosenVerifikasiController::class, 'index'])->name('dosen.verifikasi');
+});
+
+Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
+    Route::put('verifikasi/{id}', [DosenVerifikasiController::class, 'update'])->name('dosen.verifikasi.update');
+});
+
+Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
+    Route::get('mahasiswa', [DosenMahasiswaController::class, 'index'])->name('dosen.mahasiswa');
+});
+
+Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
+    // ...
+    Route::get('laporan', [DosenLaporanController::class, 'index'])->name('dosen.laporan');
+    Route::get('laporan/{id}', [DosenLaporanController::class, 'show'])->name('dosen.laporan.show');
+    Route::post('laporan/{id}/revisi', [DosenLaporanController::class, 'revisi'])->name('dosen.laporan.revisi');
+    Route::post('laporan/{id}/terima', [DosenLaporanController::class, 'terima'])->name('dosen.laporan.terima');
+});
+
+Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
+    // ...
+    Route::get('nilai', [DosenNilaiController::class, 'index'])->name('dosen.nilai');
+    Route::post('nilai/{id}', [DosenNilaiController::class, 'store'])->name('dosen.nilai.store');
+});
+
+Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
+    // ...
+    Route::get('notifikasi', [DosenNotifikasiController::class, 'index'])->name('dosen.notifikasi');
+});
 
 // ============ AUTH ADMIN ============
 Route::get('login-admin', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');

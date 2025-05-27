@@ -20,16 +20,4 @@ class PendaftaranPKL extends Model
     {
         return $this->belongsTo(Mahasiswa::class);
     }
-
-    public function up()
-    {
-        Schema::create('pendaftaran_p_k_l_s', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('mahasiswa_id');
-            $table->string('status')->default('pending');
-            $table->timestamps();
-
-            $table->foreign('mahasiswa_id')->references('id')->on('mahasiswas')->onDelete('cascade');
-        });
-    }
 }
