@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\InstansiController;
 use App\Http\Controllers\DosenDashboardController;
 use App\Http\Controllers\DosenVerifikasiController;
 use App\Http\Controllers\DosenProfileController;
@@ -172,4 +173,13 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::get('/pendaftaran', [AdminController::class, 'indexPendaftaran'])->name('admin.pendaftaran.index');
     Route::post('/pendaftaran/{id}/verifikasi', [AdminController::class, 'verifikasiPendaftaran'])->name('admin.pendaftaran.verifikasi');
     Route::post('/pendaftaran/{id}/tolak', [AdminController::class, 'tolakPendaftaran'])->name('admin.pendaftaran.tolak');
+});
+
+Route::middleware('auth:admin')->prefix('admin')->group(function () {
+    Route::get('/instansi', [InstansiController::class, 'index'])->name('admin.instansi.index');
+    Route::get('/instansi/create', [InstansiController::class, 'create'])->name('admin.instansi.create');
+    Route::post('/instansi', [InstansiController::class, 'store'])->name('admin.instansi.store');
+    Route::get('/instansi/{id}/edit', [InstansiController::class, 'edit'])->name('admin.instansi.edit');
+    Route::put('/instansi/{id}', [InstansiController::class, 'update'])->name('admin.instansi.update');
+    Route::delete('/instansi/{id}', [InstansiController::class, 'destroy'])->name('admin.instansi.destroy');
 });
