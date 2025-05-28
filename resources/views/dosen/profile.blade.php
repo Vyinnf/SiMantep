@@ -26,7 +26,15 @@
                         </tr>
                         <tr>
                             <th>Jenis Kelamin</th>
-                            <td>{{ Auth::user()->gender == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
+                            <td>{{ Auth::user()->gender == 'Laki-laki' ? 'Laki-laki' : 'Perempuan' }}</td>
+                        </tr>
+                        <tr>
+                            <th>No HP</th>
+                            <td>{{ Auth::user()->phone_number }}</td>
+                        </tr>
+                        <tr>
+                            <th>Alamat</th>
+                            <td>{{ Auth::user()->address }}</td>
                         </tr>
                         <tr>
                         {{-- Tambahkan data lain jika ada, misal NIP, No HP, dsb --}}
