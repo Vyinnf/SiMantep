@@ -37,6 +37,12 @@
                         <span class="menu-title">Manajemen Instansi</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.notifications.index') }}" class="nav-link">
+                        <i class="mdi mdi-bell-ring menu-icon"></i>
+                        <span class="menu-title">Notifikasi</span>
+                    </a>
+                </li>
                 <li class="nav-item mt-3">
                     <form action="{{ route('admin.logout') }}" method="POST" style="margin:0; padding:0;">
                         @csrf

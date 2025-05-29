@@ -24,7 +24,7 @@ class MahasiswaController extends Controller
                 'ttl' => '-',
                 'alamat' => '-',
                 'email' => $user->email ?? 'email@kosong.com',
-            ]
+            ],
         );
 
         // Pisahkan ttl jadi tempat_lahir dan tanggal_lahir
@@ -93,4 +93,5 @@ class MahasiswaController extends Controller
         $mahasiswa = auth()->user()->mahasiswa;
         return view('mahasiswa.profile', compact('mahasiswa'));
     }
+
 }

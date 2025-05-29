@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminNotifikasiController;
+use App\Http\Controllers\Notifications\PendaftaranBaruNotification;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\Admin\InstansiController;
 use App\Http\Controllers\DosenDashboardController;
 use App\Http\Controllers\DosenVerifikasiController;
@@ -53,17 +56,12 @@ Route::post('/forgot-password', function (Request $request) {
         'password' => 'required|min:8|confirmed',
     ]);
 
-    $status = Password::reset(
-        $request->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user, $password) {
-            $user->password = Hash::make($password);
-            $user->save();
-        }
-    );
+    $status = Password::reset($request->only('email', 'password', 'password_confirmation', 'token'), function ($user, $password) {
+        $user->password = Hash::make($password);
+        $user->save();
+    });
 
-    return $status === Password::PASSWORD_RESET
-        ? redirect()->route('mahasiswa.login')->with('success', __($status))
-        : back()->withErrors(['email' => [__($status)]]);
+    return $status === Password::PASSWORD_RESET ? redirect()->route('mahasiswa.login')->with('success', __($status)) : back()->withErrors(['email' => [__($status)]]);
 })->name('password.update');
 
 // ============ ROUTE KHUSUS MAHASISWA ============
@@ -81,10 +79,8 @@ Route::middleware(['auth'])->group(function () {
     // Melihat profile mahasiswa
     Route::get('/mahasiswa/profile', [MahasiswaController::class, 'show'])->name('mahasiswa.profile.show');
 
-    // Route untuk halaman/form pendaftaran PKL
-    Route::get('/mahasiswa/pendaftaran', function () {
-        return view('mahasiswa.pendaftaran');
-    })->name('mahasiswa.pendaftaran');
+    Route::get('/mahasiswa/pendaftaran', [PendaftaranController::class, 'create'])->name('mahasiswa.pendaftaran');
+    Route::post('/mahasiswa/pendaftaran', [PendaftaranController::class, 'store'])->name('mahasiswa.pendaftaran.store');
 
     // Route upload laporan magang
     Route::get('/mahasiswa/laporan', function () {
@@ -100,7 +96,9 @@ Route::get('/login', function () {
 // ============ ROUTE KHUSUS DOSEN ============
 Route::get('/dosen/dashboard', function () {
     return view('dosen.dashboard');
-})->name('dosen.dashboard')->middleware('auth:dosen');
+})
+    ->name('dosen.dashboard')
+    ->middleware('auth:dosen');
 
 // ============ VIEW LOGIN DOSEN ===========
 Route::get('/login/dosen', [DosenLoginController::class, 'showLoginForm'])->name('dosen.login');
@@ -109,43 +107,57 @@ Route::post('/logout/dosen', [DosenLoginController::class, 'logout'])->name('dos
 
 // Fitur-fitur khusus dosen
 Route::get('dashboard', [DosenDashboardController::class, 'index'])->name('dosen.dashboard');
-Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
-    Route::get('profile', [DosenProfileController::class, 'show'])->name('dosen.profile');
-    Route::get('profile/edit', [DosenProfileController::class, 'edit'])->name('dosen.profile.edit');
-    Route::put('profile', [DosenProfileController::class, 'update'])->name('dosen.profile.update');
-});
+Route::middleware(['auth:dosen'])
+    ->prefix('dosen')
+    ->group(function () {
+        Route::get('profile', [DosenProfileController::class, 'show'])->name('dosen.profile');
+        Route::get('profile/edit', [DosenProfileController::class, 'edit'])->name('dosen.profile.edit');
+        Route::put('profile', [DosenProfileController::class, 'update'])->name('dosen.profile.update');
+    });
 
-Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
-    Route::get('dashboard', [DosenDashboardController::class, 'index'])->name('dosen.dashboard');
-    Route::get('verifikasi', [DosenVerifikasiController::class, 'index'])->name('dosen.verifikasi');
-});
+Route::middleware(['auth:dosen'])
+    ->prefix('dosen')
+    ->group(function () {
+        Route::get('dashboard', [DosenDashboardController::class, 'index'])->name('dosen.dashboard');
+        Route::get('verifikasi', [DosenVerifikasiController::class, 'index'])->name('dosen.verifikasi');
+    });
 
-Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
-    Route::put('verifikasi/{id}', [DosenVerifikasiController::class, 'update'])->name('dosen.verifikasi.update');
-});
+Route::middleware(['auth:dosen'])
+    ->prefix('dosen')
+    ->group(function () {
+        Route::put('verifikasi/{id}', [DosenVerifikasiController::class, 'update'])->name('dosen.verifikasi.update');
+    });
 
-Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
-    Route::get('mahasiswa', [DosenMahasiswaController::class, 'index'])->name('dosen.mahasiswa');
-});
+Route::middleware(['auth:dosen'])
+    ->prefix('dosen')
+    ->group(function () {
+        Route::get('mahasiswa', [DosenMahasiswaController::class, 'index'])->name('dosen.mahasiswa');
+    });
 
-Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
-    // ...
-    Route::get('laporan', [DosenLaporanController::class, 'index'])->name('dosen.laporan');
-    Route::get('laporan/{id}', [DosenLaporanController::class, 'show'])->name('dosen.laporan.show');
-    Route::post('laporan/{id}/revisi', [DosenLaporanController::class, 'revisi'])->name('dosen.laporan.revisi');
-    Route::post('laporan/{id}/terima', [DosenLaporanController::class, 'terima'])->name('dosen.laporan.terima');
-});
+Route::middleware(['auth:dosen'])
+    ->prefix('dosen')
+    ->group(function () {
+        // ...
+        Route::get('laporan', [DosenLaporanController::class, 'index'])->name('dosen.laporan');
+        Route::get('laporan/{id}', [DosenLaporanController::class, 'show'])->name('dosen.laporan.show');
+        Route::post('laporan/{id}/revisi', [DosenLaporanController::class, 'revisi'])->name('dosen.laporan.revisi');
+        Route::post('laporan/{id}/terima', [DosenLaporanController::class, 'terima'])->name('dosen.laporan.terima');
+    });
 
-Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
-    // ...
-    Route::get('nilai', [DosenNilaiController::class, 'index'])->name('dosen.nilai');
-    Route::post('nilai/{id}', [DosenNilaiController::class, 'store'])->name('dosen.nilai.store');
-});
+Route::middleware(['auth:dosen'])
+    ->prefix('dosen')
+    ->group(function () {
+        // ...
+        Route::get('nilai', [DosenNilaiController::class, 'index'])->name('dosen.nilai');
+        Route::post('nilai/{id}', [DosenNilaiController::class, 'store'])->name('dosen.nilai.store');
+    });
 
-Route::middleware(['auth:dosen'])->prefix('dosen')->group(function () {
-    // ...
-    Route::get('notifikasi', [DosenNotifikasiController::class, 'index'])->name('dosen.notifikasi');
-});
+Route::middleware(['auth:dosen'])
+    ->prefix('dosen')
+    ->group(function () {
+        // ...
+        Route::get('notifikasi', [DosenNotifikasiController::class, 'index'])->name('dosen.notifikasi');
+    });
 
 // ============ AUTH ADMIN ============
 Route::get('login-admin', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
@@ -153,33 +165,42 @@ Route::post('login-admin', [AdminLoginController::class, 'login'])->name('admin.
 Route::post('logout-admin', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
 // Admin Dashboard
-Route::get('/admin/dashboard', [AdminController::class, 'dashboardCustom'])->name('admin.dashboard');;
+Route::get('/admin/dashboard', [AdminController::class, 'dashboardCustom'])->name('admin.dashboard');
 
 // Data Mahasiswa (Admin)
-Route::middleware('auth:admin')->prefix('admin')->group(function () {
-    Route::get('/mahasiswa', [AdminController::class, 'indexMahasiswa'])->name('admin.mahasiswa.index');
-    Route::get('/mahasiswa/{id}', [AdminController::class, 'showMahasiswa'])->name('admin.mahasiswa.show');
-    Route::get('/mahasiswa/{id}/edit', [AdminController::class, 'editMahasiswa'])->name('admin.mahasiswa.edit');
-    Route::put('/mahasiswa/{id}', [AdminController::class, 'updateMahasiswa'])->name('admin.mahasiswa.update');
-    Route::delete('/mahasiswa/{id}', [AdminController::class, 'destroyMahasiswa'])->name('admin.mahasiswa.destroy');
-    Route::get('/mahasiswa/export', [AdminController::class, 'exportMahasiswa'])->name('admin.mahasiswa.export');
+Route::middleware('auth:admin')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/mahasiswa', [AdminController::class, 'indexMahasiswa'])->name('admin.mahasiswa.index');
+        Route::get('/mahasiswa/{id}', [AdminController::class, 'showMahasiswa'])->name('admin.mahasiswa.show');
+        Route::get('/mahasiswa/{id}/edit', [AdminController::class, 'editMahasiswa'])->name('admin.mahasiswa.edit');
+        Route::put('/mahasiswa/{id}', [AdminController::class, 'updateMahasiswa'])->name('admin.mahasiswa.update');
+        Route::delete('/mahasiswa/{id}', [AdminController::class, 'destroyMahasiswa'])->name('admin.mahasiswa.destroy');
+        Route::get('/mahasiswa/export', [AdminController::class, 'exportMahasiswa'])->name('admin.mahasiswa.export');
 
-    Route::get('/dosen', [AdminController::class, 'indexDosen'])->name('admin.dosen.index');
-    Route::get('/dosen/create', function () {
-        return view('admin.tambah-dosen');
-    })->name('admin.dosen.create');
-    Route::post('/dosen/store', [AdminController::class, 'storeDosen'])->name('admin.dosen.store');
+        Route::get('/dosen', [AdminController::class, 'indexDosen'])->name('admin.dosen.index');
+        Route::get('/dosen/create', function () {
+            return view('admin.tambah-dosen');
+        })->name('admin.dosen.create');
+        Route::post('/dosen/store', [AdminController::class, 'storeDosen'])->name('admin.dosen.store');
 
-    Route::get('/pendaftaran', [AdminController::class, 'indexPendaftaran'])->name('admin.pendaftaran.index');
-    Route::post('/pendaftaran/{id}/verifikasi', [AdminController::class, 'verifikasiPendaftaran'])->name('admin.pendaftaran.verifikasi');
-    Route::post('/pendaftaran/{id}/tolak', [AdminController::class, 'tolakPendaftaran'])->name('admin.pendaftaran.tolak');
-});
+        Route::get('/pendaftaran', [AdminController::class, 'indexPendaftaran'])->name('admin.pendaftaran.index');
+        Route::post('/pendaftaran/{id}/verifikasi', [AdminController::class, 'verifikasiPendaftaran'])->name('admin.pendaftaran.verifikasi');
+        Route::post('/pendaftaran/{id}/tolak', [AdminController::class, 'tolakPendaftaran'])->name('admin.pendaftaran.tolak');
 
-Route::middleware('auth:admin')->prefix('admin')->group(function () {
-    Route::get('/instansi', [InstansiController::class, 'index'])->name('admin.instansi.index');
-    Route::get('/instansi/create', [InstansiController::class, 'create'])->name('admin.instansi.create');
-    Route::post('/instansi', [InstansiController::class, 'store'])->name('admin.instansi.store');
-    Route::get('/instansi/{id}/edit', [InstansiController::class, 'edit'])->name('admin.instansi.edit');
-    Route::put('/instansi/{id}', [InstansiController::class, 'update'])->name('admin.instansi.update');
-    Route::delete('/instansi/{id}', [InstansiController::class, 'destroy'])->name('admin.instansi.destroy');
-});
+        // Route::get('/notifikasi', [\App\Http\Controllers\Admin\AdminNotifikasiController::class, 'index'])->name('admin.notifications.index');
+        Route::get('/notifications', [AdminNotifikasiController::class, 'index'])->name('admin.notifications.index');
+        Route::put('/notifications/{id}/read', [AdminNotifikasiController::class, 'markAsRead'])->name('admin.notifications.markAsRead');
+        Route::delete('/notifications/{id}', [AdminNotifikasiController::class, 'destroy'])->name('admin.notifications.destroy');
+    });
+
+Route::middleware('auth:admin')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/instansi', [InstansiController::class, 'index'])->name('admin.instansi.index');
+        Route::get('/instansi/create', [InstansiController::class, 'create'])->name('admin.instansi.create');
+        Route::post('/instansi', [InstansiController::class, 'store'])->name('admin.instansi.store');
+        Route::get('/instansi/{id}/edit', [InstansiController::class, 'edit'])->name('admin.instansi.edit');
+        Route::put('/instansi/{id}', [InstansiController::class, 'update'])->name('admin.instansi.update');
+        Route::delete('/instansi/{id}', [InstansiController::class, 'destroy'])->name('admin.instansi.destroy');
+    });

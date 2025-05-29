@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pendaftaran_p_k_l_s', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('notifications', function (Blueprint $table) {
+            //
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pendaftaran_p_k_l_s');
+        Schema::table('notifications', function (Blueprint $table) {
+            //
+        });
     }
 };
