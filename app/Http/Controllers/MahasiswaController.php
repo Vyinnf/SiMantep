@@ -94,4 +94,12 @@ class MahasiswaController extends Controller
         return view('mahasiswa.profile', compact('mahasiswa'));
     }
 
+    public function dashboard()
+    {
+        $mahasiswa = auth()->user()->mahasiswa;
+
+        $pendaftaran = $mahasiswa ? $mahasiswa->pendaftaranPKL()->latest()->first() : null;
+
+        return view('mahasiswa.dashboard', compact('pendaftaran'));
+    }
 }

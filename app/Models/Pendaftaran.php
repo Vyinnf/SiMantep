@@ -18,6 +18,8 @@ class Pendaftaran extends Model
         'alamat_mahasiswa',
         'no_hp',
         'alamat_instansi',
+        'judul_pkl',
+        'status',
     ];
 
     public function mahasiswa()
@@ -32,6 +34,6 @@ class Pendaftaran extends Model
 
     public function instansi()
     {
-        return $this->belongsTo(Instansi::class);
+        return $this->belongsTo(Instansi::class, 'instansi_id');
     }
 }

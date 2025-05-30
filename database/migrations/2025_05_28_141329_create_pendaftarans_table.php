@@ -19,9 +19,8 @@ class CreatePendaftaransTable extends Migration
             $table->string('no_hp', 15);
             $table->string('alamat_instansi');
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('instansi_id')->references('id')->on('instansis')->onDelete('cascade');
+            $table->foreign('instansi_id')->references('id')->on('instansi')->onDelete('cascade');
         });
     }
     public function down()

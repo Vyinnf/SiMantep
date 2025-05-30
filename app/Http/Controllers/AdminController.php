@@ -90,7 +90,7 @@ public function indexPendaftaran()
 public function verifikasiPendaftaran($id)
 {
     $pendaftaran = PendaftaranPKL::findOrFail($id);
-    $pendaftaran->status = 'verified';
+    $pendaftaran->status = 'diterima';
     $pendaftaran->save();
     return redirect()->route('admin.pendaftaran.index')->with('success', 'Pendaftaran berhasil diverifikasi.');
 }

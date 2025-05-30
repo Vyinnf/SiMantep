@@ -9,9 +9,17 @@ class PendaftaranPKL extends Model
 {
     use HasFactory;
 
-    protected $table = 'pendaftaran_p_k_l_s';
+    protected $table = 'pendaftarans';
 
     protected $fillable = [
+        'id',
+        'user_id',
+        'instansi_id',
+        'nim',
+        'prodi',
+        'semester',
+        'alamat_mahasiswa',
+        'no_hp',
         'mahasiswa_id',
         'status',
     ];

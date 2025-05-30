@@ -72,6 +72,8 @@ Route::middleware(['auth'])->group(function () {
         return view('mahasiswa.dashboard');
     })->name('mahasiswa.dashboard');
 
+    Route::get('/mahasiswa/dashboard', [PendaftaranController::class, 'dashboard'])->name('mahasiswa.dashboard');
+    
     // Profil Mahasiswa
     Route::get('/mahasiswa/profil', [MahasiswaController::class, 'editProfil'])->name('mahasiswa.profil.edit');
     Route::post('/mahasiswa/profil/update', [MahasiswaController::class, 'update'])->name('mahasiswa.profil.update');

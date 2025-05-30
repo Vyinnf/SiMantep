@@ -37,9 +37,9 @@
                     <td>
                         @if($item->status == 'pending')
                             <span class="badge bg-warning">Pending</span>
-                        @elseif($item->status == 'verified')
+                        @elseif($item->status == 'diterima')
                             <span class="badge bg-success">Terverifikasi</span>
-                        @elseif($item->status == 'rejected')
+                        @elseif($item->status == 'ditolak')
                             <span class="badge bg-danger">Ditolak</span>
                         @endif
                     </td>

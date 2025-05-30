@@ -81,6 +81,12 @@
                     value="{{ auth()->user()->mahasiswa->no_hp ?? '' }}" required>
             </div>
             <div class="mb-3">
+                <label for="judul_pkl" class="form-label">Judul PKL</label>
+                <input type="text" class="form-control" id="judul_pkl" name="judul_pkl"
+                    value="{{ old('judul_pkl') }}" required>
+            </div>
+
+            <div class="mb-3">
                 <label for="instansi_id" class="form-label">Instansi Tujuan PKL</label>
                 <select class="form-select" id="instansi_id" name="instansi_id" required>
                     <option value="" selected disabled>-- Pilih Instansi --</option>

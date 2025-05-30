@@ -23,6 +23,19 @@
 </head>
 
 <body>
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -106,10 +119,27 @@
             </div>
         </nav>
         <!-- partial -->
+
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-md-12 grid-margin">
+                        <div class="row mb-3">
+                            @if (auth()->user()->unreadNotifications->count() > 0)
+                                <div class="alert alert-info">
+                                    <h5>Notifikasi Baru</h5>
+                                    <ul>
+                                        @foreach (auth()->user()->unreadNotifications as $notification)
+                                            <li>{{ $notification->data['message'] ?? 'Notifikasi baru' }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @else
+                                <div class="alert alert-secondary">
+                                    Tidak ada notifikasi baru.
+                                </div>
+                            @endif
+                        </div>
                         <div class="row">
                             <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                 @php
@@ -154,22 +184,33 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <p class="card-title">Sales Report</p>
-                                    <a href="#" class="text-info">View all</a>
-                                </div>
-                                <p class="font-weight-500">The total number of sessions within the date range. It
-                                    is
-                                    the period time a user is actively engaged with your website, page or app, etc
-                                </p>
-                                <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
-                                <canvas id="sales-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
+                    @if (isset($pendaftaran))
+    <ul class="list-group">
+        <li class="list-group-item">
+            <strong>Tanggal Pengajuan:</strong> {{ $pendaftaran->created_at->format('d M Y') }}
+        </li>
+        <li class="list-group-item">
+            <strong>Status:</strong>
+            @if ($pendaftaran->status == 'pending')
+                <span class="badge bg-warning text-dark">Menunggu Verifikasi</span>
+            @elseif ($pendaftaran->status == 'accepted')
+                <span class="badge bg-success">Diterima</span>
+            @elseif ($pendaftaran->status == 'rejected')
+                <span class="badge bg-danger">Ditolak</span>
+            @else
+                <span class="badge bg-secondary">Belum Ada Status</span>
+            @endif
+        </li>
+        <li class="list-group-item">
+            <strong>Instansi:</strong> {{ $pendaftaran->instansi->nama_instansi ?? 'Instansi manual' }}
+        </li>
+    </ul>
+@else
+    <div class="alert alert-warning">
+        Anda belum melakukan pendaftaran PKL.
+    </div>
+@endif
+
                 </div>
 
                 <footer class="footer">
@@ -190,11 +231,10 @@
         </div>
     </div>
 
+
     <!-- plugins:js -->
     <script src="{{ asset('assets/vendor/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src=') }}{{ asset('assets/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>

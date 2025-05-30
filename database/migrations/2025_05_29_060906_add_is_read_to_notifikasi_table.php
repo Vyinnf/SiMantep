@@ -8,14 +8,14 @@ return new class extends Migration
 {
     public function up()
 {
-    Schema::table('notifikasi', function (Blueprint $table) {
+    Schema::table('notifications', function (Blueprint $table) {
         $table->boolean('is_read')->default(false);
     });
 }
 
 public function down()
 {
-    Schema::table('notifikasi', function (Blueprint $table) {
+    Schema::table('notifications', function (Blueprint $table) {
         $table->dropColumn('is_read');
     });
 }
