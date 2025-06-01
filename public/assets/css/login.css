@@ -1,75 +1,214 @@
-body {
-    background: linear-gradient(120deg, #181c24 0%, #232936 100%);
-    min-height: 100vh;
-    color: #e9ecef;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-dark: #0d1117; /* GitHub dark background */
+    --secondary-dark: #161b22; /* GitHub dark card/secondary background */
+    --text-light: #c9d1d9; /* GitHub dark text */
+    --text-muted-dark: #8b949e; /* GitHub dark muted text */
+    --accent-color: #58a6ff; /* GitHub dark blue accent */
+    --accent-color-rgb: 88, 166, 255;
+    --accent-color-darker: #3081f7;
+    --input-bg: #0d1117; /* Input background same as primary dark */
+    --input-border: #30363d; /* GitHub dark input border */
+    --input-border-focus: var(--accent-color);
+    --danger-bg: #52161F;
+    --danger-border: #8C2B3A;
+    --danger-text: #FADBD8;
 }
 
-.card {
-    border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(20, 20, 30, 0.10);
-    background: #232936;
-    border: 1px solid #232936;
-    transition:
-        box-shadow 0.3s cubic-bezier(.4,2,.3,1),
-        border-color 0.3s,
-        transform 0.2s;
+/* Keyframes untuk animasi (bisa dipertahankan dari versi sebelumnya) */
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes topHighlightFlow {
+    0% { transform: translateX(-150%) skewX(-30deg); } /* Mulai lebih jauh & miring */
+    100% { transform: translateX(250%) skewX(-30deg); }
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--primary-dark);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 430px; /* Sedikit lebih ramping */
+    background-color: var(--secondary-dark);
+    border-radius: 16px; /* Radius border disesuaikan */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(var(--input-border), 0.7); /* Shadow lebih dalam + border halus */
+    padding: 2.5rem;
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    animation: fadeInSlideUp 0.7s 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-.card:hover, .card:focus-within {
-    box-shadow: 0 8px 32px rgba(37, 117, 252, 0.10), 0 4px 24px rgba(20, 20, 30, 0.12);
-    border-color: #2a2f3a;
-    transform: translateY(-2px) scale(1.01);
+/* Highlight dekoratif di atas kartu */
+.card-highlight { /* Menggantikan .login-card::before untuk kontrol lebih mudah jika diperlukan */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(var(--accent-color-rgb),0) 0%, rgba(var(--accent-color-rgb),0.6) 50%, rgba(var(--accent-color-rgb),0) 100%);
+    opacity: 0.8;
+    animation: topHighlightFlow 5s linear infinite;
+    animation-delay: 0.8s;
 }
 
-.card::before {
-    display: none;
+.login-title {
+    font-weight: 600; /* Sedikit lebih tipis */
+    color: #ffffff;
+    margin-bottom: 1.8rem; /* Jarak lebih besar ke form */
+    font-size: 1.7rem;
 }
 
-h3 {
-    color: #fff;
-    font-weight: 700;
-    letter-spacing: 1px;
+/* STYLING INPUT FIELD BARU */
+.input-field-group {
+    position: relative;
 }
 
-.form-label {
-    color: #b0b8c1;
+.input-label {
+    position: absolute;
+    left: 18px; /* Posisi dari kiri */
+    top: -9px;  /* Mengangkat label agar "memotong" border atas input */
+    background: var(--secondary-dark); /* Sama dengan background kartu, ini KUNCI untuk efek "cut-out" */
+    color: var(--text-muted-dark); /* Warna label saat tidak fokus */
+    padding: 0 6px; /* Padding horizontal untuk memberi ruang pada border input */
+    font-size: 0.78rem; /* Ukuran font label */
     font-weight: 500;
+    display: inline-flex; /* Agar ikon dan teks sejajar */
+    align-items: center;
+    z-index: 1; /* Di atas border input */
+    transition: color 0.2s ease-out, top 0.2s ease-out, font-size 0.2s ease-out;
+    pointer-events: none; /* Agar klik bisa tembus ke input jika perlu */
+}
+
+.input-label i {
+    margin-right: 6px;
+    font-size: 0.95em; /* Ukuran ikon relatif terhadap label */
 }
 
 .form-control {
-    border-radius: 8px;
-    border: 1px solid #343b4a;
-    font-size: 15px;
-    background: #232936;
-    color: #e9ecef;
+    background-color: var(--input-bg) !important;
+    color: #ffffff !important; /* TEKS INPUT WARNA PUTIH */
+    border-radius: 10px; /* Radius border input */
+    padding: 0.9rem 1rem; /* Padding dalam input: Atas/Bawah Kiri/Kanan */
+    font-size: 0.95rem;
+    border: 2px solid var(--input-border); /* Border default */
+    width: 100%;
+    transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out;
+    line-height: 1.5; /* Pastikan tinggi baris cukup */
 }
 
+.form-control::placeholder { /* Styling placeholder jika digunakan (saat ini " ") */
+    color: var(--text-muted-dark);
+    opacity: 0.7;
+}
+
+/* Saat input mendapatkan fokus */
 .form-control:focus {
-    border-color: #2575fc;
-    box-shadow: 0 0 0 2px rgba(37,117,252,0.15);
-    background: #232936;
-    color: #fff;
+    border-color: var(--input-border-focus) !important;
+    box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2); /* Glow effect */
+    outline: none; /* Hapus outline default browser */
 }
 
-.btn-primary {
-    background: #2575fc;
+/* Label berubah saat input terkaitnya fokus */
+.form-control:focus + .input-label {
+    color: var(--accent-color);
+    /* top: -9px; font-size: 0.78rem; /* Label tetap di tempat jika itu desainnya */
+}
+
+/* Autofill styles (penting untuk tema gelap) */
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus,
+.form-control:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 40px var(--input-bg) inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff;
+    border-radius: 10px;
+    border-color: var(--input-border-focus); /* Border saat autofill */
+}
+
+
+/* Tombol Login (bisa dipertahankan atau sedikit disesuaikan) */
+.login-button {
+    background: var(--accent-color);
     border: none;
+    color: #ffffff;
+    padding: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
-    border-radius: 8px;
-    transition: background 0.2s;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(var(--accent-color-rgb), 0.25);
 }
 
-.btn-primary:hover, .btn-primary:focus {
-    background: #1a5edb;
+.login-button:hover {
+    background: var(--accent-color-darker);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(var(--accent-color-rgb), 0.35);
+}
+.login-button:hover::after { /* Efek kilau (jika masih diinginkan) */
+    content: '';
+    position: absolute;
+    top: -10%; left: -75%; width: 50%; height: 120%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation: buttonShine 1.5s 0.3s forwards; /* Atur animasi jika perlu */
+}
+@keyframes buttonShine { /* Definisikan jika menggunakan animasi kilau */
+    0% { left: -75%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { left: 125%; opacity: 0; }
+}
+
+
+.login-button:active {
+    transform: translateY(-1px) scale(0.99);
+    box-shadow: 0 3px 10px rgba(var(--accent-color-rgb), 0.2);
+}
+
+.login-button i {
+    margin-right: 8px;
 }
 
 .alert-danger {
-    border-radius: 8px;
-    font-size: 14px;
-    background: #2d1a1a;
-    color: #ffb3b3;
-    border: 1px solid #ff4d4d;
+    background-color: var(--danger-bg);
+    border: 1px solid var(--danger-border); /* Tambahkan border agar lebih jelas */
+    color: var(--danger-text);
+    border-radius: 10px; /* Sesuaikan radius */
+    padding: 0.9rem 1rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(var(--danger-bg),0.3);
+}
+
+.alert-danger .btn-close {
+    filter: brightness(0) invert(1) opacity(0.7);
+}
+
+.text-muted {
+    color: var(--text-muted-dark) !important;
+    font-size: 0.85rem;
 }

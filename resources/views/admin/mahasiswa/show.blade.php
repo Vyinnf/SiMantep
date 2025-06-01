@@ -1,12 +1,8 @@
-<!-- filepath: c:\laragon\www\Project Sistem PKL\laravel\resources\views\admin\mahasiswa\show.blade.php -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Detail Mahasiswa</title>
-    <link rel="stylesheet" href="{{ asset('assets-admin/css/admin-show-mhs.css') }}">
-</head>
-<body>
+@extends('layouts.admin')
+
+@section('title', 'Detail Mahasiswa')
+
+@section('content')
     <div class="detail-box">
         <div class="detail-title">Detail Mahasiswa</div>
         <table class="detail-table">
@@ -51,5 +47,5 @@
         </table>
         <a href="{{ route('admin.mahasiswa.index') }}" class="btn-back">Kembali</a>
     </div>
-</body>
-</html>
+
+    @endsection

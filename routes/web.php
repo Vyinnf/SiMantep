@@ -18,6 +18,8 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaLoginController;
 use App\Http\Controllers\MahasiswaRegisterController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\Admin\PengajuanInstansiController;
+use App\Http\Controllers\Admin\SuratPklController;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -68,12 +70,12 @@ Route::post('/forgot-password', function (Request $request) {
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard Mahasiswa
-    Route::get('/mahasiswa/dashboard', function () {
-        return view('mahasiswa.dashboard');
-    })->name('mahasiswa.dashboard');
+    // Route::get('/mahasiswa/dashboard', function () {
+    //     return view('mahasiswa.dashboard');
+    // })->name('mahasiswa.dashboard');
 
     Route::get('/mahasiswa/dashboard', [PendaftaranController::class, 'dashboard'])->name('mahasiswa.dashboard');
-    
+
     // Profil Mahasiswa
     Route::get('/mahasiswa/profil', [MahasiswaController::class, 'editProfil'])->name('mahasiswa.profil.edit');
     Route::post('/mahasiswa/profil/update', [MahasiswaController::class, 'update'])->name('mahasiswa.profil.update');
@@ -205,4 +207,24 @@ Route::middleware('auth:admin')
         Route::get('/instansi/{id}/edit', [InstansiController::class, 'edit'])->name('admin.instansi.edit');
         Route::put('/instansi/{id}', [InstansiController::class, 'update'])->name('admin.instansi.update');
         Route::delete('/instansi/{id}', [InstansiController::class, 'destroy'])->name('admin.instansi.destroy');
+    });
+
+    // Pengajuan Instansi
+    Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function(){
+    Route::prefix('instansi-diminta')->name('instansi.diminta.')->group(function () {
+        Route::get('/', [PengajuanInstansiController::class, 'index'])->name('index');
+        Route::post('/{pengajuanInstansi}/approve', [PengajuanInstansiController::class, 'approve'])->name('approve');
+        Route::post('/{pengajuanInstansi}/reject', [PengajuanInstansiController::class, 'reject'])->name('reject');
+        Route::delete('/{pengajuanInstansi}', [PengajuanInstansiController::class, 'destroy'])->name('destroy');
+    });
+    Route::prefix('surat-pkl')->name('surat.pkl.')->group(function () {
+        Route::get('/', [SuratPklController::class, 'index'])->name('index');
+        Route::get('/create', [SuratPklController::class, 'create'])->name('create');
+        Route::post('/', [SuratPklController::class, 'store'])->name('store');
+        Route::get('/{suratPkl}', [SuratPklController::class, 'show'])->name('show'); // Tambahkan show jika perlu
+        Route::get('/{suratPkl}/edit', [SuratPklController::class, 'edit'])->name('edit');
+        Route::put('/{suratPkl}', [SuratPklController::class, 'update'])->name('update');
+        Route::delete('/{suratPkl}', [SuratPklController::class, 'destroy'])->name('destroy');
+        Route::get('/{suratPkl}/download', [SuratPklController::class, 'download'])->name('download');
+    });
     });

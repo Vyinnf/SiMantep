@@ -185,31 +185,32 @@
                         </div>
                     </div>
                     @if (isset($pendaftaran))
-    <ul class="list-group">
-        <li class="list-group-item">
-            <strong>Tanggal Pengajuan:</strong> {{ $pendaftaran->created_at->format('d M Y') }}
-        </li>
-        <li class="list-group-item">
-            <strong>Status:</strong>
-            @if ($pendaftaran->status == 'pending')
-                <span class="badge bg-warning text-dark">Menunggu Verifikasi</span>
-            @elseif ($pendaftaran->status == 'accepted')
-                <span class="badge bg-success">Diterima</span>
-            @elseif ($pendaftaran->status == 'rejected')
-                <span class="badge bg-danger">Ditolak</span>
-            @else
-                <span class="badge bg-secondary">Belum Ada Status</span>
-            @endif
-        </li>
-        <li class="list-group-item">
-            <strong>Instansi:</strong> {{ $pendaftaran->instansi->nama_instansi ?? 'Instansi manual' }}
-        </li>
-    </ul>
-@else
-    <div class="alert alert-warning">
-        Anda belum melakukan pendaftaran PKL.
-    </div>
-@endif
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>Tanggal Pengajuan:</strong> {{ $pendaftaran->created_at->format('d M Y') }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Status:</strong>
+                                @if ($pendaftaran->status == 'pending')
+                                    <span class="badge bg-warning text-dark">Menunggu Verifikasi</span>
+                                @elseif ($pendaftaran->status == 'accepted')
+                                    <span class="badge bg-success">Diterima</span>
+                                @elseif ($pendaftaran->status == 'rejected')
+                                    <span class="badge bg-danger">Ditolak</span>
+                                @else
+                                    <span class="badge bg-secondary">Belum Ada Status</span>
+                                @endif
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Instansi:</strong>
+                                {{ $pendaftaran->instansi->nama_instansi ?? 'Instansi manual' }}
+                            </li>
+                        </ul>
+                    @else
+                        <div class="alert alert-warning">
+                            Anda belum melakukan pendaftaran PKL.
+                        </div>
+                    @endif
 
                 </div>
 

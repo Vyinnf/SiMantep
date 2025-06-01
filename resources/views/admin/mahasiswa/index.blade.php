@@ -1,4 +1,4 @@
-{{-- filepath: resources/views/admin/mahasiswa/index.blade.php --}}
+
 @extends('layouts.admin')
 @section('title', 'Data Mahasiswa')
 @section('content')
