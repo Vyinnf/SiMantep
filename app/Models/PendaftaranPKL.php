@@ -19,13 +19,15 @@ class PendaftaranPKL extends Model
         'prodi',
         'semester',
         'alamat_mahasiswa',
+        'alamat_instansi',
         'no_hp',
         'mahasiswa_id',
+        'judul_pkl',
         'status',
     ];
 
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class);
+        return $this->belongsTo(Mahasiswa::class, 'user_id', 'user_id');
     }
 }

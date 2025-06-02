@@ -98,7 +98,7 @@ public function verifikasiPendaftaran($id)
 public function tolakPendaftaran($id)
 {
     $pendaftaran = PendaftaranPKL::findOrFail($id);
-    $pendaftaran->status = 'rejected';
+    $pendaftaran->status = 'ditolak';
     $pendaftaran->save();
     return redirect()->route('admin.pendaftaran.index')->with('success', 'Pendaftaran berhasil ditolak.');
 }

@@ -27,7 +27,6 @@
                         <tr>
                             <th>No</th>
                             <th>NIM</th>
-                            <th>Nama</th>
                             <th>Prodi</th>
                             <th>Tanggal Daftar</th>
                             <th>Status</th>
@@ -38,9 +37,10 @@
                         @forelse($pendaftaran as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->mahasiswa->nim ?? '-' }}</td>
+                                <td>{{ $item->nim ?? '-' }}</td>
                                 <td>{{ $item->mahasiswa->name ?? '-' }}</td>
-                                <td>{{ $item->mahasiswa->prodi ?? '-' }}</td>
+                                <td>{{ $item->prodi ?? '-' }}</td>
+                                <td>{{ $item->judul_pkl ?? '-' }}</td>
                                 <td>{{ $item->created_at->format('d-m-Y') }}</td>
                                 <td>
                                     @if($item->status == 'pending')

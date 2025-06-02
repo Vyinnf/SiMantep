@@ -194,6 +194,7 @@
                                 @if ($pendaftaran->status == 'pending')
                                     <span class="badge bg-warning text-dark">Menunggu Verifikasi</span>
                                 @elseif ($pendaftaran->status == 'accepted')
+
                                     <span class="badge bg-success">Diterima</span>
                                 @elseif ($pendaftaran->status == 'rejected')
                                     <span class="badge bg-danger">Ditolak</span>
@@ -205,6 +206,9 @@
                                 <strong>Instansi:</strong>
                                 {{ $pendaftaran->instansi->nama_instansi ?? 'Instansi manual' }}
                             </li>
+
+                            {{-- tempat ketika di setujui, menambah kolom untuk memasukkan tanggal mulai-selesai PKL --}}
+
                         </ul>
                     @else
                         <div class="alert alert-warning">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PengajuanInstansi;
 use App\Models\PendaftaranPKL;
 use App\Models\Pendaftaran;
 use App\Models\Instansi;
@@ -16,8 +17,6 @@ class PendaftaranController extends Controller
     public function create()
     {
         $instansiList = Instansi::all();
-
-        // Ambil data mahasiswa yang terkait user login
         $mahasiswa = auth()->user()->mahasiswa;
 
         return view('mahasiswa.pendaftaran', compact('instansiList', 'mahasiswa'));
@@ -37,13 +36,15 @@ class PendaftaranController extends Controller
             'judul_pkl' => 'required|string|max:255',
         ]);
 
+        // dd($request->all());
+
         // Update data Mahasiswa jika ada
         $mahasiswa = auth()->user()->mahasiswa;
         if (!$mahasiswa) {
             return redirect()->back()->with('error', 'Data mahasiswa tidak ditemukan. Harap lengkapi profil terlebih dahulu.');
         }
 
-        // Update data mahasiswa jika ada
+        // Update data mahasiswa
         $mahasiswa->update([
             'nim' => $request->nim,
             'prodi' => $request->prodi,
@@ -54,20 +55,27 @@ class PendaftaranController extends Controller
 
         // Proses instansi
         if ($request->instansi_id === 'other') {
-            $instansi = Instansi::create([
+            $pengajuanInstansi = PengajuanInstansi::create([
                 'nama_instansi' => $request->nama_instansi_manual,
                 'alamat' => $request->alamat_instansi_manual,
+                'kontak_instansi' => $request->no_hp,
+                'user_id' => auth()->id(),
+                'status' => 'pending',
             ]);
-            $instansiId = $instansi->id;
+
+            $instansiId = null;
             $alamatInstansi = $request->alamat_instansi_manual;
+
         } else {
-            $instansiId = $request->instansi_id;
-            $instansi = Instansi::find($instansiId);
+            $instansi = Instansi::find($request->instansi_id);
+            $instansiId = $instansi ? $instansi->id : null;
             $alamatInstansi = $instansi ? $instansi->alamat : null;
         }
 
         // Buat data pendaftaran dan simpan ke variable $pendaftaran
-        $pendaftaran = Pendaftaran::create([
+
+        // dd($alamatInstansi);
+        PendaftaranPKL::create([
             'user_id' => auth()->id(),
             'instansi_id' => $instansiId,
             'nim' => $request->nim,
@@ -100,7 +108,7 @@ class PendaftaranController extends Controller
         $mahasiswa = auth()->user()->mahasiswa;
 
         // Ambil pendaftaran terbaru atau semua pendaftaran milik user
-        $pendaftaran = Pendaftaran::where('user_id', auth()->id())
+        $pendaftaran = PendaftaranPKL::where('user_id', auth()->id())
             ->latest()
             ->first();
 
@@ -108,7 +116,7 @@ class PendaftaranController extends Controller
     }
     public function index()
     {
-        $pendaftaran = Pendaftaran::with('mahasiswa')->latest()->get(); // Relasi mahasiswa wajib di-load
+        $pendaftaran = PendaftaranPKL::with('mahasiswa')->latest()->get(); // Relasi mahasiswa wajib di-load
 
         return view('admin.pendaftaran.index', compact('pendaftaran'));
     }

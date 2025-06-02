@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    <!-- Alert sukses -->
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -19,7 +18,6 @@
         </div>
     @endif
 
-    <!-- Alert error -->
     @if (session('error'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ session('error') }}
@@ -27,7 +25,6 @@
         </div>
     @endif
 
-    <!-- Menampilkan error validasi -->
     @if ($errors->any())
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong>Periksa kembali isian Anda:</strong>
@@ -44,7 +41,7 @@
         <h3 class="form-title text-center">Formulir Pendaftaran PKL</h3>
         <form action="{{ route('mahasiswa.pendaftaran.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <!-- Data Otomatis dari Auth -->
+
             <div class="mb-3">
                 <label class="form-label">Nama Mahasiswa</label>
                 <input type="text" class="form-control" value="{{ auth()->user()->name }}" readonly>
@@ -58,28 +55,33 @@
             <div class="mb-3">
                 <label for="nim" class="form-label">NIM</label>
                 <input type="text" class="form-control" id="nim" name="nim"
-                    value="{{ auth()->user()->mahasiswa->nim ?? '' }}" required>
+                    value="{{ old('nim', auth()->user()->mahasiswa->nim ?? '') }}" required>
             </div>
+
             <div class="mb-3">
                 <label for="prodi" class="form-label">Program Studi</label>
                 <input type="text" class="form-control" id="prodi" name="prodi"
-                    value="{{ auth()->user()->mahasiswa->prodi ?? '' }}" required>
+                    value="{{ old('prodi', auth()->user()->mahasiswa->prodi ?? '') }}" required>
             </div>
+
             <div class="mb-3">
                 <label for="semester" class="form-label">Semester</label>
                 <input type="number" min="1" max="14" class="form-control" id="semester" name="semester"
-                    value="{{ auth()->user()->mahasiswa->semester ?? '' }}" required>
+                    value="{{ old('semester', auth()->user()->mahasiswa->semester ?? '') }}" required>
             </div>
+
             <div class="mb-3">
                 <label for="alamat_mahasiswa" class="form-label">Alamat Mahasiswa</label>
                 <input type="text" class="form-control" id="alamat_mahasiswa" name="alamat_mahasiswa"
-                    value="{{ auth()->user()->mahasiswa->alamat ?? '' }}" required>
+                    value="{{ old('alamat_mahasiswa', auth()->user()->mahasiswa->alamat ?? '') }}" required>
             </div>
+
             <div class="mb-3">
                 <label for="no_hp" class="form-label">No HP/WA</label>
                 <input type="text" class="form-control" id="no_hp" name="no_hp"
-                    value="{{ auth()->user()->mahasiswa->no_hp ?? '' }}" required>
+                    value="{{ old('no_hp', auth()->user()->mahasiswa->no_hp ?? '') }}" required>
             </div>
+
             <div class="mb-3">
                 <label for="judul_pkl" class="form-label">Judul PKL</label>
                 <input type="text" class="form-control" id="judul_pkl" name="judul_pkl"
@@ -91,44 +93,61 @@
                 <select class="form-select" id="instansi_id" name="instansi_id" required>
                     <option value="" selected disabled>-- Pilih Instansi --</option>
                     @foreach ($instansiList as $instansi)
-                        <option value="{{ $instansi->id }}">{{ $instansi->nama_instansi }}</option>
+                        <option value="{{ $instansi->id }}"
+                            {{ old('instansi_id') == $instansi->id ? 'selected' : '' }}>
+                            {{ $instansi->nama_instansi }}
+                        </option>
                     @endforeach
-                    <option value="other">Lainnya / Belum Terdaftar</option>
+                    <option value="other" {{ old('instansi_id') == 'other' ? 'selected' : '' }}>
+                        Lainnya / Belum Terdaftar
+                    </option>
                 </select>
             </div>
 
-            <!-- Ini disembunyikan awalnya, baru muncul kalau pilih 'Lainnya' -->
-            <div id="manual-instansi" style="display:none;">
+            <!-- Bagian manual (muncul jika 'other') -->
+            <div id="manual-instansi" style="display: none;">
                 <div class="mb-3">
                     <label for="nama_instansi_manual" class="form-label">Nama Instansi (Manual)</label>
-                    <input type="text" class="form-control" name="nama_instansi_manual">
+                    <input type="text" class="form-control" id="nama_instansi_manual" name="nama_instansi_manual"
+                        value="{{ old('nama_instansi_manual') }}" disabled>
                 </div>
                 <div class="mb-3">
                     <label for="alamat_instansi_manual" class="form-label">Alamat Instansi (Manual)</label>
-                    <input type="text" class="form-control" name="alamat_instansi_manual">
+                    <input type="text" class="form-control" id="alamat_instansi_manual" name="alamat_instansi_manual"
+                        value="{{ old('alamat_instansi_manual') }}" disabled>
                 </div>
             </div>
+
             <button type="submit" class="btn btn-primary w-100">Daftar PKL</button>
         </form>
+
         <a href="{{ route('mahasiswa.dashboard') }}" class="btn btn-link w-100 mt-3">← Kembali ke Dashboard</a>
-    </div>
+    </div>  
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const select = document.getElementById('instansi_id');
             const manualSection = document.getElementById('manual-instansi');
+            const namaManual = document.getElementById('nama_instansi_manual');
+            const alamatManual = document.getElementById('alamat_instansi_manual');
 
-            select.addEventListener('change', function() {
-                if (this.value === 'other') {
-                    manualSection.style.display = 'block';
-                } else {
-                    manualSection.style.display = 'none';
-                }
+            function toggleManualInstansi(value) {
+                const isManual = value === 'other';
+                manualSection.style.display = isManual ? 'block' : 'none';
+                namaManual.disabled = !isManual;
+                alamatManual.disabled = !isManual;
+            }
+
+            // Saat load halaman, cek old value
+            toggleManualInstansi(select.value);
+
+            // Saat user mengganti pilihan
+            select.addEventListener('change', function () {
+                toggleManualInstansi(this.value);
             });
         });
     </script>
-
-
 </body>
 
 </html>
