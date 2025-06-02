@@ -1,15 +1,104 @@
-@tailwindcss base;
-@tailwindcss components;
-@tailwindcss utilities;
+/* resources/css/app.css */
 
-@import 'tailwindcss';
+/* 1. Impor direktif dasar Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* 2. Gaya Dasar (Base Styles) menggunakan CSS Custom Properties */
+@layer base {
+  :root {
+    /* Variabel Warna untuk Tema Terang (mengambil dari config) */
+    --color-bg-body: theme('colors.bg-body');
+    --color-bg-surface: theme('colors.bg-surface');
+    --color-text-primary: theme('colors.text-primary');
+    --color-text-secondary: theme('colors.text-secondary');
+    --color-text-muted: theme('colors.text-muted');
+    --color-border: theme('colors.border-color');
+    --color-accent: theme('colors.accent.DEFAULT');
+    --color-accent-hover: theme('colors.accent.hover');
+    --color-accent-text-on-accent: theme('colors.accent.text-on-accent');
+  }
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+  html.dark :root { /* Target class .dark pada elemen <html> */
+    /* Variabel Warna untuk Tema Gelap (mengambil dari config) */
+    --color-bg-body: theme('colors.dark-bg-body');
+    --color-bg-surface: theme('colors.dark-bg-surface');
+    --color-text-primary: theme('colors.dark-text-primary');
+    --color-text-secondary: theme('colors.dark-text-secondary');
+    --color-text-muted: theme('colors.dark-text-muted');
+    --color-border: theme('colors.dark-border-color');
+    /* Warna aksen bisa tetap sama jika kontrasnya baik, atau definisikan varian gelap */
+    /* Jika menggunakan warna aksen yang sama dengan tema terang: */
+    --color-accent: theme('colors.accent.DEFAULT');
+    --color-accent-hover: theme('colors.accent.hover');
+    --color-accent-text-on-accent: theme('colors.accent.text-on-accent');
+  }
+
+  body {
+    font-family: theme('fontFamily.sans');
+    font-size: theme('fontSize.base');
+    font-weight: theme('fontWeight.normal');
+    line-height: theme('lineHeight.normal');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+
+    /* Menggunakan Variabel CSS yang sudah didefinisikan */
+    background-color: var(--color-bg-body);
+    color: var(--color-text-primary);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold; /* Menggunakan utility class Tailwind untuk ketebalan */
+    color: var(--color-text-primary); /* Menggunakan variabel CSS */
+  }
+
+  a:not([class*="btn-"]) { /* Target link umum, kecuali yang sudah di-style sebagai tombol */
+    color: var(--color-accent);
+    text-decoration: none; /* Hapus underline default jika diinginkan */
+    @apply transition-colors duration-150;
+  }
+  a:not([class*="btn-"]):hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline; /* Tambah underline saat hover jika diinginkan */
+  }
+
+  .container-scroller {
+    @apply min-h-screen w-full flex overflow-hidden;
+  }
+
+  /* Gaya scrollbar (opsional, sesuaikan jika perlu) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-body);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-text-muted);
+    border-radius: theme('borderRadius.full');
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-secondary);
+  }
 }
+
+/* 3. Kustomisasi Komponen (Components) - Opsional */
+/*
+@layer components {
+  .btn-primary-custom {
+    @apply px-4 py-2 bg-accent text-accent-text-on-accent rounded-md font-semibold
+           hover:bg-accent-hover focus:outline-none focus:ring-2
+           focus:ring-accent focus:ring-opacity-50 transition-colors duration-150;
+  }
+  .card-custom {
+    @apply bg-bg-surface shadow-md rounded-lg p-4 md:p-6;
+    border: 1px solid var(--color-border); // Contoh penggunaan variabel border
+  }
+  html.dark .card-custom { // Atau .dark .card-custom jika .dark di body
+    // Tidak perlu override di sini jika warna bg-surface sudah benar via variabel
+  }
+}
+*/

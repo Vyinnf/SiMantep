@@ -25,16 +25,16 @@ return new class extends Migration
         });
 
         // Insert admin setelah tabel dibuat
-        Admin::create([
-            'name' => 'Arif',
-            'email' => 'admin@simantep.id',
-            'password' => Hash::make('admin123'),
-        ]);
-        Admin::create([
-            'name' => 'Abdi',
-            'email' => 'abdi@simantep.id',
-            'password' => Hash::make('admin123'),
-        ]);
+        // Admin::create([
+        //     'name' => 'Arif',
+        //     'email' => 'admin@simantep.id',
+        //     'password' => Hash::make('admin123'),
+        // ]);
+        // Admin::create([
+        //     'name' => 'Abdi',
+        //     'email' => 'abdi@simantep.id',
+        //     'password' => Hash::make('admin123'),
+        // ]);
     }
 
     /**

@@ -12,11 +12,11 @@ return new class extends Migration
             $table->id();
             $table->string('nomor_surat')->unique()->nullable();
             $table->foreignId('user_id')->comment('ID User Mahasiswa')->constrained('users')->onDelete('cascade');
-            $table->foreignId('instansi_id')->comment('ID Instansi Tujuan')->constrained('instansis')->onDelete('cascade');
+            $table->foreignId('instansi_id')->comment('ID Instansi Tujuan')->constrained('instansis')->onDelete('cascade'); // Pastikan nama tabel 'instansis' sudah benar
             $table->date('tanggal_mulai_pkl');
             $table->date('tanggal_selesai_pkl');
-            $table->string('judul_pkl')->nullable();
-            $table->enum('status_surat', ['diajukan', 'diproses', 'selesai_dibuat'])->default('diajukan');
+            $table->string('judul_pkl')->nullable(); // INI YANG PENTING SESUAI MODEL ANDA
+            $table->enum('status_surat', ['diajukan', 'diproses', 'selesai_dibuat', 'diambil', 'ditolak'])->default('diajukan');
             $table->string('file_surat_path')->nullable();
             $table->text('catatan_admin')->nullable();
             $table->foreignId('admin_user_id')->nullable()->comment('ID User Admin yang memproses')->constrained('users')->onDelete('set null');

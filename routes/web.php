@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AkunAdminController;
 use App\Http\Controllers\Admin\AdminNotifikasiController;
 use App\Http\Controllers\Notifications\PendaftaranBaruNotification;
 use App\Http\Controllers\PendaftaranController;
@@ -209,22 +210,40 @@ Route::middleware('auth:admin')
         Route::delete('/instansi/{id}', [InstansiController::class, 'destroy'])->name('admin.instansi.destroy');
     });
 
-    // Pengajuan Instansi
-    Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function(){
-    Route::prefix('instansi-diminta')->name('instansi.diminta.')->group(function () {
-        Route::get('/', [PengajuanInstansiController::class, 'index'])->name('index');
-        Route::post('/{pengajuanInstansi}/approve', [PengajuanInstansiController::class, 'approve'])->name('approve');
-        Route::post('/{pengajuanInstansi}/reject', [PengajuanInstansiController::class, 'reject'])->name('reject');
-        Route::delete('/{pengajuanInstansi}', [PengajuanInstansiController::class, 'destroy'])->name('destroy');
-    });
-    Route::prefix('surat-pkl')->name('surat.pkl.')->group(function () {
-        Route::get('/', [SuratPklController::class, 'index'])->name('index');
-        Route::get('/create', [SuratPklController::class, 'create'])->name('create');
-        Route::post('/', [SuratPklController::class, 'store'])->name('store');
-        Route::get('/{suratPkl}', [SuratPklController::class, 'show'])->name('show'); // Tambahkan show jika perlu
-        Route::get('/{suratPkl}/edit', [SuratPklController::class, 'edit'])->name('edit');
-        Route::put('/{suratPkl}', [SuratPklController::class, 'update'])->name('update');
-        Route::delete('/{suratPkl}', [SuratPklController::class, 'destroy'])->name('destroy');
-        Route::get('/{suratPkl}/download', [SuratPklController::class, 'download'])->name('download');
-    });
+// Pengajuan Instansi
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware('auth:admin')
+    ->group(function () {
+        Route::prefix('instansi-diminta')
+            ->name('instansi.diminta.')
+            ->group(function () {
+                Route::get('/', [PengajuanInstansiController::class, 'index'])->name('index');
+                Route::post('/{pengajuanInstansi}/approve', [PengajuanInstansiController::class, 'approve'])->name('approve');
+                Route::post('/{pengajuanInstansi}/reject', [PengajuanInstansiController::class, 'reject'])->name('reject');
+                Route::delete('/{pengajuanInstansi}', [PengajuanInstansiController::class, 'destroy'])->name('destroy');
+            });
+        Route::prefix('surat-pkl')
+            ->name('surat.pkl.')
+            ->group(function () {
+                Route::get('/', [SuratPklController::class, 'index'])->name('index');
+                Route::get('/create', [SuratPklController::class, 'create'])->name('create');
+                Route::post('/', [SuratPklController::class, 'store'])->name('store');
+                Route::get('/{suratPkl}', [SuratPklController::class, 'show'])->name('show'); // Tambahkan show jika perlu
+                Route::get('/{suratPkl}/edit', [SuratPklController::class, 'edit'])->name('edit');
+                Route::put('/{suratPkl}', [SuratPklController::class, 'update'])->name('update');
+                Route::delete('/{suratPkl}', [SuratPklController::class, 'destroy'])->name('destroy');
+                Route::get('/{suratPkl}/download', [SuratPklController::class, 'download'])->name('download');
+            });
+
+        Route::prefix('akun')
+            ->name('akun.')
+            ->group(function () {
+                Route::get('/', [AkunAdminController::class, 'index'])->name('index');
+                Route::get('/create', [AkunAdminController::class, 'create'])->name('create');
+                Route::post('/', [AkunAdminController::class, 'store'])->name('store');
+                Route::get('/{admin}/edit', [AkunAdminController::class, 'edit'])->name('edit'); // Parameter jadi {admin}
+                Route::put('/{admin}', [AkunAdminController::class, 'update'])->name('update'); // Parameter jadi {admin}
+                Route::delete('/{admin}', [AkunAdminController::class, 'destroy'])->name('destroy'); // Parameter jadi {admin}
+            });
     });
