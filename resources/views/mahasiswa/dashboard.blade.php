@@ -194,7 +194,6 @@
                                 @if ($pendaftaran->status == 'pending')
                                     <span class="badge bg-warning text-dark">Menunggu Verifikasi</span>
                                 @elseif ($pendaftaran->status == 'accepted')
-
                                     <span class="badge bg-success">Diterima</span>
                                 @elseif ($pendaftaran->status == 'rejected')
                                     <span class="badge bg-danger">Ditolak</span>
@@ -204,10 +203,23 @@
                             </li>
                             <li class="list-group-item">
                                 <strong>Instansi:</strong>
-                                {{ $pendaftaran->instansi->nama_instansi ?? 'Instansi manual' }}
+                                @if ($pendaftaran->instansi)
+                                    {{ $pendaftaran->instansi->nama_instansi }}
+                                @else
+                                    <span class="text-muted">Instansi manual belum disetujui</span>
+                                @endif
                             </li>
-
-                            {{-- tempat ketika di setujui, menambah kolom untuk memasukkan tanggal mulai-selesai PKL --}}
+                            @if ($pendaftaran->status == 'approved')
+                                <li class="list-group-item">
+                                    <strong>Periode PKL:</strong>
+                                    @if ($pendaftaran->tanggal_mulai && $pendaftaran->tanggal_selesai)
+                                        {{ \Carbon\Carbon::parse($pendaftaran->tanggal_mulai)->format('d M Y') }} -
+                                        {{ \Carbon\Carbon::parse($pendaftaran->tanggal_selesai)->format('d M Y') }}
+                                    @else
+                                        <span class="text-danger">Tanggal belum diatur oleh admin.</span>
+                                    @endif
+                                </li>
+                            @endif
 
                         </ul>
                     @else
@@ -215,6 +227,10 @@
                             Anda belum melakukan pendaftaran PKL.
                         </div>
                     @endif
+                    <li class="list-group-item">
+                        <strong>Dosen Pembimbing: </strong>
+                        {{ $pendaftaran->dosen ? $pendaftaran->dosen->name : 'Belum ditentukan' }}
+                    </li>
 
                 </div>
 

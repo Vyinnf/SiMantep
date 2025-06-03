@@ -6,20 +6,20 @@
     --font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-family-monospace: 'Roboto Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-    /* Ukuran Font Dasar */
+    /* Base Font Sizes */
     --font-size-base: 0.875rem; /* 14px */
     --font-size-sm: 0.75rem;   /* 12px */
     --font-size-lg: 1rem;     /* 16px */
     --font-size-xl: 1.125rem; /* 18px */
-    --font-size-display: 2.25rem; /* Untuk angka besar di dashboard card */
+    --font-size-display: 2.5rem; /* Increased for impact on dashboard cards */
 
     --font-size-h1: 2rem;    /* 32px */
-    --font-size-h2: 1.5rem;  /* 24px - Digunakan untuk .page-title */
-    --font-size-h3: 1.25rem; /* 20px */
+    --font-size-h2: 1.75rem; /* 28px - Adjusted for .page-title */
+    --font-size-h3: 1.375rem;/* 22px */
     --font-size-h4: 1.125rem;/* 18px */
     --font-size-h5: 1rem;    /* 16px */
 
-    /* Ketebalan Font */
+    /* Font Weights */
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -27,13 +27,15 @@
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
 
-    /* Radius Sudut */
+    /* Corner Radii */
+    --border-radius-xs: 0.125rem; /* 2px - New for very small elements */
     --border-radius-sm: 0.25rem;  /* 4px */
-    --border-radius: 0.5rem;   /* 8px - Default untuk banyak elemen */
+    --border-radius: 0.5rem;    /* 8px - Default */
     --border-radius-md: 0.5rem;   /* 8px */
-    --border-radius-lg: 0.75rem;  /* 12px - Untuk kartu utama */
-    --border-radius-xl: 1rem;    /* 16px */
+    --border-radius-lg: 0.75rem;  /* 12px - For main cards */
+    --border-radius-xl: 1rem;     /* 16px - For larger elements like modals */
     --border-radius-pill: 50rem;
+    --border-radius-full: 50%; /* For circular elements */
 
     /* Spacing */
     --spacing-1: 0.25rem; /* 4px */
@@ -42,189 +44,219 @@
     --spacing-4: 1rem;    /* 16px */
     --spacing-5: 1.25rem; /* 20px */
     --spacing-6: 1.5rem;  /* 24px */
+    --spacing-7: 1.75rem; /* 28px */
     --spacing-8: 2rem;    /* 32px */
     --spacing-10: 2.5rem; /* 40px */
+    --spacing-12: 3rem;   /* 48px */
 
-    /* Transisi */
-    --transition-base: all 0.2s ease-in-out;
-    --transition-fast: all 0.15s ease-in-out;
+    /* Transitions */
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Lebar & Tinggi Spesifik */
+    /* Specific Dimensions */
     --sidebar-width: 260px;
-    --topbar-height: 64px; /* Sedikit lebih tinggi untuk kesan modern */
+    --topbar-height: 70px; /* Slightly taller for a more spacious feel */
 
-    /* Variabel RGB untuk opacity (contoh) */
-    --color-accent-rgb: 59, 130, 246; /* Untuk #3B82F6 */
-    --color-success-rgb: 16, 185, 129;
-    --color-danger-rgb: 239, 68, 68;
-    --color-warning-rgb: 245, 159, 11;
-    --color-info-rgb: 59, 130, 246;
+    /* RGB Variables for opacity */
+    /* Light Theme RGBs */
+    --color-accent-rgb-light: 59, 130, 246; /* #3B82F6 */
+    --color-success-rgb-light: 16, 185, 129; /* #10B981 */
+    --color-danger-rgb-light: 239, 68, 68;   /* #EF4444 */
+    --color-warning-rgb-light: 245, 159, 11; /* #F59E0B */
+    --color-info-rgb-light: 14, 165, 233;   /* #0EA5E9 */
 
-    /* SVG Ikon untuk Tombol Close (digunakan di .btn-close) */
-    --svg-icon-close-dark-fill: '%234B5568'; /* Warna fill untuk tema terang */
-    --svg-icon-close-light-fill: '%239CA3AF'; /* Warna fill untuk tema gelap */
-    --svg-icon-close-path: "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='{FILL_COLOR}'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e";
+    /* Dark Theme RGBs - Adjusted for dark background */
+    --color-accent-rgb-dark: 96, 165, 250;  /* #60A5FA - Lighter accent for dark theme */
+    --color-success-rgb-dark: 52, 211, 153; /* #34D399 */
+    --color-danger-rgb-dark: 248, 113, 113; /* #F87171 */
+    --color-warning-rgb-dark: 251, 191, 36; /* #FBBF24 */
+    --color-info-rgb-dark: 56, 189, 248;   /* #38BDF8 */
+
+    /* SVG Icons for Close Button - These are fully formed data URIs */
+    /* Fallback, will be overridden by themes */
+    --btn-close-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23A0AEC0'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
 }
 
-/* Variabel Tema Terang (Light Theme) */
-body.light-theme {
-    --color-bg-body: #F4F7FA;
-    --color-bg-surface: #FFFFFF;
-    --color-bg-surface-alt: #F8F9FA;
-    --color-bg-hover: #F0F2F5;
-    --color-bg-active: #E5E8EB;
+/* Light Theme */
+body, body.light-theme { /* Default to light theme */
+    --color-bg-body: #F9FAFB; /* Very light gray, almost white */
+    --color-bg-surface: #FFFFFF; /* Pure white for cards, sidebar, etc. */
+    --color-bg-surface-alt: #F3F4F6; /* Slightly off-white for subtle contrasts */
+    --color-bg-hover: #F0F2F5; /* Subtle hover */
+    --color-bg-active: #E5E8EB; /* Subtle active */
     --color-bg-input: #FFFFFF;
     --color-bg-disabled: #E9ECEF;
 
-    --color-text-primary: #1A202C;
-    --color-text-secondary: #4A5568;
-    --color-text-muted: #718096;
-    --color-text-placeholder: #A0AEC0;
-    --color-text-disabled: #A0AEC0;
+    --color-text-primary: #111827; /* Darker gray for strong text */
+    --color-text-secondary: #4B5563; /* Medium gray */
+    --color-text-muted: #6B7280; /* Lighter gray for muted text */
+    --color-text-placeholder: #9CA3AF;
+    --color-text-disabled: #9CA3AF;
     --color-text-on-accent: #FFFFFF;
     --color-text-on-status: #FFFFFF;
-    --color-text-on-warning: #1A202C;
+    --color-text-on-warning: #1F2937; /* Dark text on yellow warning for accessibility */
 
-    --color-border: #E2E8F0;
-    --color-border-light: #EDF2F7;
-    --color-border-input: #CBD5E0;
+    --color-border: #E5E7EB; /* Light, subtle border */
+    --color-border-light: #F3F4F6; /* Even lighter for internal separations */
+    --color-border-input: #D1D5DB;
     --color-border-input-focus: var(--color-accent);
 
-    --color-accent: #3B82F6;
-    --color-accent-hover: #2563EB;
-    --color-accent-active: #1D4ED8;
+    --color-accent: #3B82F6; /* Blue */
+    --color-accent-hover: #2563EB; /* Darker blue */
+    --color-accent-active: #1D4ED8; /* Even darker blue */
 
-    --color-success: #059669;
-    --color-danger: #DC2626;
-    --color-warning: #D97706;
-    --color-info: #3B82F6;
+    --color-success: #059669; /* Green */
+    --color-danger: #DC2626;  /* Red */
+    --color-warning: #D97706; /* Amber */
+    --color-info: #0EA5E9;    /* Sky blue */
 
-    --shadow-xs: 0 0 0 1px rgba(0, 0, 0, 0.05);
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --shadow-inner: inset 0 2px 4px 0 rgba(0,0,0,0.05);
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07);
+    --shadow-md: 0 6px 10px -2px rgba(0, 0, 0, 0.08), 0 4px 6px -3px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --shadow-inner: inset 0 1px 2px 0 rgba(0,0,0,0.04);
 
-    --btn-close-icon: url(#{'"{}"'}#{replace(str-slice(#{inspect(var(--svg-icon-close-path))}, 2, -2), '{FILL_COLOR}', var(--svg-icon-close-dark-fill))});
+    --btn-close-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23A0AEC0'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
+
+    /* RGBs for this theme */
+    --color-accent-rgb: var(--color-accent-rgb-light);
+    --color-success-rgb: var(--color-success-rgb-light);
+    --color-danger-rgb: var(--color-danger-rgb-light);
+    --color-warning-rgb: var(--color-warning-rgb-light);
+    --color-info-rgb: var(--color-info-rgb-light);
 }
 
-/* Variabel Tema Gelap (Dark Theme) */
+/* Dark Theme */
 body.dark-theme {
-    --color-bg-body: #101314;
-    --color-bg-surface: #1E2124;
-    --color-bg-surface-alt: #2C3136;
-    --color-bg-hover: #2C3136;
-    --color-bg-active: #393F45;
-    --color-bg-input: #2C3136;
-    --color-bg-disabled: #374151;
+    --color-bg-body: #0F172A; /* Dark blue-gray, very dark */
+    --color-bg-surface: #1E293B; /* Darker slate */
+    --color-bg-surface-alt: #283548; /* Slightly lighter slate for secondary surfaces */
+    --color-bg-hover: #334155; /* Slate hover */
+    --color-bg-active: #475569; /* Slate active */
+    --color-bg-input: #283548; /* Dark input background */
+    --color-bg-disabled: #334155;
 
-    --color-text-primary: #E5E7EB;
-    --color-text-secondary: #9CA3AF;
-    --color-text-muted: #6B7280;
-    --color-text-placeholder: #4B5563;
-    --color-text-disabled: #4B5563;
+    --color-text-primary: #E2E8F0; /* Light gray for primary text */
+    --color-text-secondary: #94A3B8; /* Medium light gray */
+    --color-text-muted: #64748B; /* Darker gray for muted text */
+    --color-text-placeholder: #64748B;
+    --color-text-disabled: #475569;
     --color-text-on-accent: #FFFFFF;
-    --color-text-on-status: #FFFFFF;
-    --color-text-on-warning: #1F2937;
+    --color-text-on-status: #FFFFFF; /* Generally white for high contrast status colors */
+    --color-text-on-warning: #1E293B; /* Dark text on yellow warning */
 
-    --color-border: #374151;
-    --color-border-light: #4B5563;
-    --color-border-input: #4B5563;
+    --color-border: #334155; /* Visible border on dark backgrounds */
+    --color-border-light: #475569; /* Lighter border for subtle internal lines */
+    --color-border-input: #475569;
     --color-border-input-focus: var(--color-accent);
 
-    --color-accent: #3B82F6;
-    --color-accent-hover: #60A5FA;
-    --color-accent-active: #2563EB;
+    --color-accent: #60A5FA; /* Lighter blue for dark theme */
+    --color-accent-hover: #93C5FD; /* Even lighter blue for hover */
+    --color-accent-active: #3B82F6; /* Original blue for active */
 
-    --color-success: #10B981;
-    --color-danger: #F87171;
-    --color-warning: #FBBF24;
-    --color-info: #60A5FA;
+    --color-success: #34D399; /* Bright green */
+    --color-danger: #F87171;  /* Bright red */
+    --color-warning: #FBBF24; /* Bright yellow */
+    --color-info: #38BDF8;    /* Bright cyan */
 
-    --shadow-xs: 0 0 0 1px rgba(255, 255, 255, 0.03);
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
-    --shadow-inner: inset 0 2px 4px 0 rgba(0,0,0,0.15);
+    /* Shadows for dark theme need to be more subtle or use lighter colors if based on black */
+    --shadow-xs: 0 0 0 1px rgba(255, 255, 255, 0.04);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    --shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25), 0 1px 2px 0 rgba(0,0,0,0.15);
+    --shadow-md: 0 4px 8px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 8px 16px -3px rgba(0, 0, 0, 0.35), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 15px 30px -5px rgba(0, 0, 0, 0.4), 0 10px 15px -5px rgba(0, 0, 0, 0.25);
+    --shadow-inner: inset 0 1px 2px 0 rgba(0,0,0,0.2);
 
-    --btn-close-icon: url(#{'"{}"'}#{replace(str-slice(#{inspect(var(--svg-icon-close-path))}, 2, -2), '{FILL_COLOR}', var(--svg-icon-close-light-fill))});
+    --btn-close-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23718096'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
+
+    /* RGBs for this theme */
+    --color-accent-rgb: var(--color-accent-rgb-dark);
+    --color-success-rgb: var(--color-success-rgb-dark);
+    --color-danger-rgb: var(--color-danger-rgb-dark);
+    --color-warning-rgb: var(--color-warning-rgb-dark);
+    --color-info-rgb: var(--color-info-rgb-dark);
 }
 
 
-/* 2. Gaya Dasar Body & HTML */
+/* 2. Base Styles */
 html {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    font-size: 100%; /* Base for rem units */
 }
 *, *::before, *::after {
     box-sizing: inherit;
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
 }
 
 body {
     font-family: var(--font-family-sans-serif);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-normal);
-    line-height: 1.6;
+    line-height: 1.65; /* Slightly increased line height for readability */
     color: var(--color-text-primary);
     background-color: var(--color-bg-body);
-    margin: 0;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
+    transition: background-color var(--transition-base), color var(--transition-base); /* Smooth theme transitions */
 }
 
-/* 3. Layout Utama */
+/* 3. Main Layout */
 .container-scroller {
     display: flex;
     min-height: 100vh;
     width: 100%;
-    overflow: hidden;
+    overflow: hidden; /* Prevents scrollbars from layout shifts if sidebar collapses */
 }
 
 .sidebar {
     width: var(--sidebar-width);
-    min-width: var(--sidebar-width);
+    min-width: var(--sidebar-width); /* Prevent squishing */
     height: 100vh;
-    position: fixed;
+    position: fixed; /* Sticky sidebar */
     top: 0;
     left: 0;
-    z-index: 1030;
+    z-index: 1030; /* High z-index */
     background-color: var(--color-bg-surface);
     border-right: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
-    transition: width 0.25s ease-in-out, transform 0.25s ease-in-out;
+    transition: width var(--transition-base), transform var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .sidebar-brand {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Center logo if sidebar is collapsed to icons only */
     height: var(--topbar-height);
     padding: 0 var(--spacing-4);
     border-bottom: 1px solid var(--color-border-light);
-    flex-shrink: 0;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .sidebar-brand a {
     text-decoration: none;
     display: flex;
     align-items: center;
+    color: var(--color-text-primary); /* Ensure link color inherits */
 }
 
 .sidebar-brand .brand-logo {
-    max-height: calc(var(--topbar-height) - 2 * var(--spacing-4));
+    height: calc(var(--topbar-height) * 0.5); /* Adjust logo size relative to topbar */
+    width: auto;
     margin-right: var(--spacing-3);
+    object-fit: contain;
 }
 
 .sidebar-brand .brand-text {
     font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text-primary);
+    font-weight: var(--font-weight-bold); /* Bolder brand text */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -235,24 +267,38 @@ body {
     padding: var(--spacing-4) var(--spacing-3);
     margin: 0;
     flex-grow: 1;
-    overflow-y: auto;
+    overflow-y: auto; /* Scroll for long menus */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+/* Custom scrollbar for sidebar nav */
+.sidebar .nav::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar .nav::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: var(--border-radius-pill);
+}
+.sidebar .nav::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
+
 .sidebar .nav .nav-item {
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-1); /* Reduced margin for tighter packing */
 }
 
 .sidebar .nav .nav-item .nav-link {
     display: flex;
     align-items: center;
-    padding: var(--spacing-3) var(--spacing-4);
+    padding: var(--spacing-3) var(--spacing-4); /* Consistent padding */
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium);
     color: var(--color-text-secondary);
     text-decoration: none;
     border-radius: var(--border-radius-md);
-    transition: var(--transition-base);
-    white-space: nowrap;
+    transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+    white-space: nowrap; /* Prevent text wrapping */
+    position: relative; /* For potential future pseudo-elements like active indicators */
 }
 
 .sidebar .nav .nav-item .nav-link:hover {
@@ -264,29 +310,45 @@ body {
     background-color: var(--color-accent);
     color: var(--color-text-on-accent);
     font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-sm);
 }
+/* Active indicator example (optional) */
+/* .sidebar .nav .nav-item.active .nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background-color: var(--color-text-on-accent);
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+} */
+
 
 .sidebar .nav .nav-item .nav-link .menu-icon {
-    font-size: 1.375rem;
-    width: 24px;
+    font-size: 1.375rem; /* Consistent icon size */
+    width: 24px; /* Fixed width for alignment */
     text-align: center;
     margin-right: var(--spacing-4);
-    color: inherit;
+    color: inherit; /* Icon color matches text */
     flex-shrink: 0;
+    transition: color var(--transition-fast);
 }
-.sidebar .nav .nav-item form button.nav-link {
+
+.sidebar .nav .nav-item form button.nav-link { /* For logout button etc. */
     width: 100%;
     text-align: left;
     background: none;
     border: none;
     cursor: pointer;
 }
-.sidebar .nav .nav-item form button.nav-link:hover {
-    background-color: var(--color-danger) !important;
-    color: var(--color-text-on-status) !important;
+.sidebar .nav .nav-item form button.nav-link.logout-btn:hover { /* Specific class for logout */
+    background-color: rgba(var(--color-danger-rgb), 0.1);
+    color: var(--color-danger);
 }
-.sidebar .nav .nav-item form button.nav-link:hover .menu-icon {
-    color: var(--color-text-on-status) !important;
+.sidebar .nav .nav-item form button.nav-link.logout-btn:hover .menu-icon {
+    color: var(--color-danger);
 }
 
 
@@ -296,20 +358,22 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    transition: margin-left 0.25s ease-in-out;
+    transition: margin-left var(--transition-base), background-color var(--transition-base);
+    background-color: var(--color-bg-body); /* Ensure main panel also has bg color */
 }
 
 .main-panel-topbar {
     height: var(--topbar-height);
     background-color: var(--color-bg-surface);
-    border-bottom: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border);
     display: flex;
     align-items: center;
     padding: 0 var(--spacing-6);
-    position: sticky;
+    position: sticky; /* Sticky topbar */
     top: 0;
-    z-index: 1020;
+    z-index: 1020; /* Below sidebar but above content */
     flex-shrink: 0;
+    transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .main-panel-topbar .topbar-content {
@@ -324,108 +388,121 @@ body {
     border: 1px solid var(--color-border);
     color: var(--color-text-secondary);
     padding: var(--spacing-2);
-    width: calc(1.5rem + 2 * var(--spacing-2));
-    height: calc(1.5rem + 2 * var(--spacing-2));
+    width: calc(1.75rem + 2 * var(--spacing-2)); /* Slightly larger for better touch target */
+    height: calc(1.75rem + 2 * var(--spacing-2));
     border-radius: var(--border-radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: var(--transition-base);
+    transition: var(--transition-fast);
 }
 .theme-switcher-btn:hover {
     background-color: var(--color-bg-hover);
     color: var(--color-text-primary);
     border-color: var(--color-border-light);
+    transform: scale(1.05); /* Subtle hover scale */
 }
 .theme-switcher-btn .mdi {
-    font-size: 1.5rem;
+    font-size: 1.75rem; /* Larger icon */
 }
 
 
 .content-wrapper {
     flex-grow: 1;
-    padding: var(--spacing-6) var(--spacing-8);
-    background-color: var(--color-bg-body);
-    overflow-y: auto;
+    padding: var(--spacing-8); /* Increased padding for more whitespace */
+    overflow-y: auto; /* Scroll for content */
 }
 
 .footer {
-    border-top: 1px solid var(--color-border-light);
+    border-top: 1px solid var(--color-border);
     background-color: var(--color-bg-surface);
-    padding: var(--spacing-4) var(--spacing-6);
+    padding: var(--spacing-5) var(--spacing-6); /* Adjusted padding */
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
     flex-shrink: 0;
+    transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 .footer .container-fluid {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: var(--spacing-2); /* Gap between items if they wrap */
 }
 
-/* Alert Global */
+/* Global Alerts */
 .global-alert {
-    border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-lg); /* More rounded */
     margin-bottom: var(--spacing-6);
     display: flex;
-    align-items: center;
-    padding: var(--spacing-4);
-    font-weight: var(--font-weight-medium);
-    border-left-width: 4px;
+    align-items: flex-start; /* Align icon to top with text */
+    padding: var(--spacing-4) var(--spacing-5); /* Adjusted padding */
+    font-weight: var(--font-weight-normal); /* Normal weight for better readability */
+    border-left-width: 5px; /* Thicker accent border */
     border-left-style: solid;
+    box-shadow: var(--shadow-sm);
 }
 .global-alert .alert-icon {
-    margin-right: var(--spacing-3);
-    font-size: 1.375rem;
+    margin-right: var(--spacing-4); /* More space for icon */
+    font-size: 1.5rem; /* Larger icon */
+    line-height: 1.2; /* Align icon better with first line of text */
     flex-shrink: 0;
 }
+.global-alert .alert-content {
+    flex-grow: 1;
+}
 .alert-success {
-    background-color: rgba(var(--color-success-rgb), 0.07);
+    background-color: rgba(var(--color-success-rgb), 0.1);
     border-left-color: var(--color-success);
     color: var(--color-success);
 }
 .alert-danger {
-    background-color: rgba(var(--color-danger-rgb), 0.07);
+    background-color: rgba(var(--color-danger-rgb), 0.1);
     border-left-color: var(--color-danger);
     color: var(--color-danger);
 }
 .alert-warning {
-    background-color: rgba(var(--color-warning-rgb), 0.1);
+    background-color: rgba(var(--color-warning-rgb), 0.15); /* Slightly more opaque for yellow */
     border-left-color: var(--color-warning);
-    color: var(--color-warning);
+    color: var(--color-warning); /* Text color should be defined by theme for warning */
 }
+body.light-theme .alert-warning { color: #855C00; } /* Darker yellow text for light theme */
+body.dark-theme .alert-warning { color: var(--color-warning); }
+
 .alert-info {
-    background-color: rgba(var(--color-info-rgb), 0.07);
+    background-color: rgba(var(--color-info-rgb), 0.1);
     border-left-color: var(--color-info);
     color: var(--color-info);
 }
 
-/* Tombol Close untuk Alert */
+/* Close Button for Alerts */
 .btn-close {
     background: transparent var(--btn-close-icon) center/1em auto no-repeat;
     border: 0;
     border-radius: var(--border-radius-sm);
-    opacity: 0.7;
+    opacity: 0.6; /* Slightly more subtle */
     padding: var(--spacing-2);
-    transition: opacity 0.15s ease-in-out;
-    margin-left: auto;
-    align-self: center;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    margin-left: auto; /* Pushes to the right */
+    align-self: center; /* Vertically center if alert items are centered */
 }
 .btn-close:hover {
     opacity: 1;
+    transform: scale(1.1);
 }
 
-/* 4. Komponen Umum (Tombol, Form, Kartu, Tabel, dll.) */
+/* 4. Common Components */
 
 /* Page Header */
 .page-header-container {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping for actions on small screens */
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-6);
-    padding-bottom: var(--spacing-3);
+    gap: var(--spacing-4); /* Gap between title and actions */
+    margin-bottom: var(--spacing-8); /* More space below header */
+    padding-bottom: var(--spacing-4); /* Increased padding */
     border-bottom: 1px solid var(--color-border-light);
 }
 .page-header-container .page-title {
@@ -433,72 +510,81 @@ body {
     font-weight: var(--font-weight-bold);
     margin: 0;
     color: var(--color-text-primary);
+    line-height: 1.3;
 }
 .page-header-container .action-bar {
     display: flex;
     gap: var(--spacing-3);
+    flex-wrap: wrap; /* Allow buttons to wrap */
 }
 
-/* Kartu (Card) - Gaya modern seperti referensi */
+/* Cards */
 .card {
     background-color: var(--color-bg-surface);
-    border: none;
-    border-radius: var(--border-radius-xl);
-    box-shadow: var(--shadow-lg);
-    margin-bottom: var(--spacing-6);
-    overflow: hidden;
+    border: 1px solid var(--color-border); /* Subtle border for cards */
+    border-radius: var(--border-radius-lg); /* Consistent with alerts */
+    box-shadow: var(--shadow-md); /* Default shadow */
+    margin-bottom: var(--spacing-8); /* More space between cards */
+    overflow: hidden; /* For child elements like images */
+    transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
 }
 .card-body {
     padding: var(--spacing-6);
 }
 .card-header {
-    padding: var(--spacing-4) var(--spacing-6);
-    background-color: transparent;
-    border-bottom: 1px solid var(--color-border-light);
+    padding: var(--spacing-5) var(--spacing-6); /* Adjusted padding */
+    background-color: var(--color-bg-surface-alt); /* Subtle header background */
+    border-bottom: 1px solid var(--color-border);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-lg);
     color: var(--color-text-primary);
+    display: flex; /* For alignment of title and potential actions */
+    justify-content: space-between;
+    align-items: center;
 }
 .card-footer {
     padding: var(--spacing-4) var(--spacing-6);
     background-color: var(--color-bg-surface-alt);
     border-top: 1px solid var(--color-border-light);
+    color: var(--color-text-muted);
 }
 
 
-/* Tombol (Button) */
+/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-base);
-    padding: var(--spacing-2) var(--spacing-4);
+    padding: calc(var(--spacing-2) + 2px) var(--spacing-4); /* Slightly taller buttons */
     border-radius: var(--border-radius-md);
     border: 1px solid transparent;
     cursor: pointer;
     text-decoration: none;
-    transition: var(--transition-base);
+    transition: var(--transition-fast); /* Faster button transitions */
     white-space: nowrap;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-xs); /* Softer default shadow */
+    line-height: 1.5; /* Ensure text is centered vertically */
 }
 .btn:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px); /* More noticeable hover lift */
 }
 .btn:active {
     transform: translateY(0px);
-    box-shadow: var(--shadow-xs);
+    box-shadow: var(--shadow-inner); /* Inner shadow on active */
 }
 .btn:disabled, .btn.disabled {
-    opacity: 0.5;
+    opacity: 0.55; /* Slightly more visible when disabled */
     cursor: not-allowed;
     box-shadow: none;
     transform: none;
 }
-.btn .mdi {
+.btn .mdi, .btn .material-icons { /* Support for Material Icons */
     margin-right: var(--spacing-2);
-    font-size: 1.2em;
+    font-size: 1.25em; /* Slightly larger icons in buttons */
+    line-height: 1; /* Prevent icon from affecting line height */
 }
 .btn-sm {
     padding: var(--spacing-1) var(--spacing-3);
@@ -517,49 +603,56 @@ body {
     background-color: var(--color-accent-hover);
     border-color: var(--color-accent-hover);
 }
-.btn-secondary, .btn-outline-dark {
+.btn-secondary, .btn-outline-dark { /* .btn-outline-dark is often used for this style */
     background-color: var(--color-bg-surface);
-    border-color: var(--color-border);
+    border-color: var(--color-border-input); /* Use input border for consistency */
     color: var(--color-text-primary);
-    box-shadow: var(--shadow-xs);
 }
 .btn-secondary:hover, .btn-outline-dark:hover {
     background-color: var(--color-bg-hover);
-    border-color: var(--color-border-light);
+    border-color: var(--color-border); /* Slightly darker border on hover */
 }
+
+/* Status Buttons */
 .btn-success { background-color: var(--color-success); border-color: var(--color-success); color: var(--color-text-on-status); }
-.btn-success:hover { background-color: color-mix(in srgb, var(--color-success) 80%, black); border-color: color-mix(in srgb, var(--color-success) 80%, black); }
+.btn-success:hover { background-color: color-mix(in srgb, var(--color-success) 85%, black); border-color: color-mix(in srgb, var(--color-success) 85%, black); }
 .btn-danger { background-color: var(--color-danger); border-color: var(--color-danger); color: var(--color-text-on-status); }
-.btn-danger:hover { background-color: color-mix(in srgb, var(--color-danger) 80%, black); border-color: color-mix(in srgb, var(--color-danger) 80%, black); }
+.btn-danger:hover { background-color: color-mix(in srgb, var(--color-danger) 85%, black); border-color: color-mix(in srgb, var(--color-danger) 85%, black); }
 .btn-warning { background-color: var(--color-warning); border-color: var(--color-warning); color: var(--color-text-on-warning); }
-.btn-warning:hover { background-color: color-mix(in srgb, var(--color-warning) 80%, black); border-color: color-mix(in srgb, var(--color-warning) 80%, black); }
+.btn-warning:hover { background-color: color-mix(in srgb, var(--color-warning) 85%, black); border-color: color-mix(in srgb, var(--color-warning) 85%, black); }
 .btn-info { background-color: var(--color-info); border-color: var(--color-info); color: var(--color-text-on-status); }
-.btn-info:hover { background-color: color-mix(in srgb, var(--color-info) 80%, black); border-color: color-mix(in srgb, var(--color-info) 80%, black); }
+.btn-info:hover { background-color: color-mix(in srgb, var(--color-info) 85%, black); border-color: color-mix(in srgb, var(--color-info) 85%, black); }
+
+body.dark-theme .btn-success:hover { background-color: color-mix(in srgb, var(--color-success) 85%, white); border-color: color-mix(in srgb, var(--color-success) 85%, white); }
+body.dark-theme .btn-danger:hover { background-color: color-mix(in srgb, var(--color-danger) 85%, white); border-color: color-mix(in srgb, var(--color-danger) 85%, white); }
+body.dark-theme .btn-warning:hover { background-color: color-mix(in srgb, var(--color-warning) 85%, #333 50%); border-color: color-mix(in srgb, var(--color-warning) 85%, #333 50%); } /* Mix with dark for warning in dark theme */
+body.dark-theme .btn-info:hover { background-color: color-mix(in srgb, var(--color-info) 85%, white); border-color: color-mix(in srgb, var(--color-info) 85%, white); }
+
 
 .btn-icon-only {
     padding: var(--spacing-2);
-    width: calc(1.25rem + 2 * var(--spacing-2));
-    height: calc(1.25rem + 2 * var(--spacing-2));
-    border-radius: var(--border-radius-full);
+    width: calc(1.5rem + 2 * var(--spacing-2)); /* Consistent size with theme switcher */
+    height: calc(1.5rem + 2 * var(--spacing-2));
+    border-radius: var(--border-radius-full); /* Fully circular */
 }
-.btn-icon-only .mdi {
+.btn-icon-only .mdi, .btn-icon-only .material-icons {
     margin-right: 0;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 
-/* Formulir (Form) */
+/* Forms */
 .form-label {
     display: block;
     font-weight: var(--font-weight-medium);
     margin-bottom: var(--spacing-2);
-    color: var(--color-text-primary);
+    color: var(--color-text-secondary); /* Label text slightly muted */
     font-size: var(--font-size-sm);
 }
 .form-control, .form-select {
     display: block;
     width: 100%;
-    padding: 0.625rem var(--spacing-3); /* 10px 12px */
+    padding: 0.675rem var(--spacing-3); /* Slightly more padding */
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
@@ -568,54 +661,68 @@ body {
     background-clip: padding-box;
     border: 1px solid var(--color-border-input);
     border-radius: var(--border-radius-md);
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    box-shadow: var(--shadow-inner);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+    /* Removed inner shadow for a flatter look, focus shadow is enough */
 }
 .form-control:focus, .form-select:focus {
     border-color: var(--color-border-input-focus);
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(var(--color-accent-rgb), 0.15);
+    box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.15); /* Slightly larger focus ring */
 }
 .form-control::placeholder {
     color: var(--color-text-placeholder);
-    opacity: 1;
+    opacity: 1; /* Ensure placeholder is visible */
 }
-.form-control:disabled, .form-control[readonly] {
+.form-control:disabled, .form-control[readonly],
+.form-select:disabled, .form-select[readonly] {
     background-color: var(--color-bg-disabled);
     opacity: 0.7;
     color: var(--color-text-disabled);
+    border-color: var(--color-border); /* Ensure border color changes for disabled */
 }
 textarea.form-control {
-    min-height: calc(1.5em * 3 + (0.625rem * 2) + 2px);
+    min-height: calc(1.5em * 4 + (0.675rem * 2) + 2px); /* Taller textarea */
+    resize: vertical; /* Allow vertical resize */
 }
 .form-check {
-    display: flex;
+    display: flex; /* Changed to flex for better alignment */
     align-items: center;
-    margin-bottom: var(--spacing-2);
-    padding-left: 0;
+    margin-bottom: var(--spacing-3); /* Increased margin */
+    padding-left: 0; /* Reset padding if any from frameworks */
 }
 .form-check-input {
-    width: 1.15em;
-    height: 1.15em;
-    margin-top: 0.125em;
+    width: 1.25em; /* Larger checkbox/radio */
+    height: 1.25em;
+    margin-top: 0; /* Remove margin-top, align with flex */
     margin-right: var(--spacing-2);
-    vertical-align: top;
+    vertical-align: top; /* Keep for fallback if flex not supported perfectly */
     background-color: var(--color-bg-input);
     border: 1px solid var(--color-border-input);
     border-radius: var(--border-radius-sm);
     flex-shrink: 0;
+    cursor: pointer;
+    transition: var(--transition-fast);
 }
 .form-check-input:checked {
     background-color: var(--color-accent);
     border-color: var(--color-accent);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 8l3 3 7-7'/%3e%3c/svg%3e"); /* Custom checkmark */
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .form-check-input[type="radio"] {
-    border-radius: 50%;
+    border-radius: var(--border-radius-full); /* Circular radio buttons */
+}
+.form-check-input[type="radio"]:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e"); /* Custom radio dot */
 }
 .form-check-label {
     color: var(--color-text-primary);
     font-weight: var(--font-weight-normal);
     font-size: var(--font-size-base);
+    cursor: pointer;
+    flex-grow: 1; /* Allow label to take space */
 }
 .invalid-feedback {
     display: none;
@@ -624,85 +731,99 @@ textarea.form-control {
     font-size: var(--font-size-sm);
     color: var(--color-danger);
 }
-.is-invalid ~ .invalid-feedback,
-.is-invalid ~ .form-text + .invalid-feedback {
+.is-invalid ~ .invalid-feedback { /* Simplified selector */
     display: block;
 }
-.form-control.is-invalid, textarea.is-invalid, select.is-invalid {
+.form-control.is-invalid, textarea.is-invalid, .form-select.is-invalid { /* Added .form-select */
     border-color: var(--color-danger);
 }
-.form-control.is-invalid:focus, textarea.is-invalid:focus, select.is-invalid:focus {
+.form-control.is-invalid:focus, textarea.is-invalid:focus, .form-select.is-invalid:focus {
     border-color: var(--color-danger);
-    box-shadow: 0 0 0 0.2rem rgba(var(--color-danger-rgb), 0.15);
+    box-shadow: 0 0 0 3px rgba(var(--color-danger-rgb), 0.15);
 }
 .form-text {
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
-    margin-top: var(--spacing-1);
+    margin-top: var(--spacing-2); /* More space for help text */
+    display: block; /* Ensure it takes full width */
 }
-.border-top-form-footer {
-    border-top: 1px solid var(--color-border-light);
-    padding-top: var(--spacing-5);
-    margin-top: var(--spacing-6);
+.border-top-form-footer { /* For form action sections */
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-6);
+    margin-top: var(--spacing-8); /* More separation */
+    display: flex;
+    justify-content: flex-end; /* Align buttons to right by default */
+    gap: var(--spacing-3);
 }
 
 
-/* Tabel (Table) */
+/* Tables */
 .table-responsive {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius-lg); /* Consistent with cards */
+    box-shadow: var(--shadow-sm); /* Softer shadow for tables */
+    margin-bottom: var(--spacing-6); /* Ensure space below table */
 }
 .table {
     width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 0; /* Handled by .table-responsive */
     color: var(--color-text-primary);
-    border-collapse: collapse;
+    border-collapse: separate; /* Allows border-radius on cells if needed, or use on .table-responsive */
+    border-spacing: 0; /* Reset if using separate */
+    text-align: left; /* Default align */
 }
 .table th, .table td {
-    padding: var(--spacing-3) var(--spacing-4);
+    padding: var(--spacing-4); /* Increased padding for cells */
     vertical-align: middle;
-    border-top: 1px solid var(--color-border-light);
-    text-align: left;
+    border-bottom: 1px solid var(--color-border-light); /* Use lighter border for rows */
+    transition: background-color var(--transition-fast);
 }
 .table thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border); /* Stronger border for header */
     font-weight: var(--font-weight-semibold);
-    background-color: var(--color-bg-surface-alt);
+    background-color: var(--color-bg-surface-alt); /* Subtle header background */
     color: var(--color-text-secondary);
     font-size: var(--font-size-sm);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    white-space: nowrap; /* Prevent header text wrapping */
 }
-.table tbody tr:first-child td {
-    border-top: none;
+.table tbody tr:last-child td {
+    border-bottom: none; /* Remove border from last row if inside .table-responsive */
 }
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: var(--color-bg-surface-alt);
 }
 body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(255,255,255,.02);
+    background-color: rgba(255,255,255,.03); /* More subtle striping for dark theme */
 }
 .table-hover tbody tr:hover {
     background-color: var(--color-bg-hover);
+    color: var(--color-text-primary); /* Ensure text color contrast on hover */
 }
-.data-empty-message td {
+.data-empty-message td { /* For "No data" messages */
     text-align: center;
-    padding: var(--spacing-8) 0;
+    padding: var(--spacing-10) 0; /* More padding */
     color: var(--color-text-muted);
     font-style: italic;
+    font-size: var(--font-size-lg);
 }
 .text-center { text-align: center !important; }
 .text-right { text-align: right !important; }
+.text-left { text-align: left !important; }
+.text-nowrap { white-space: nowrap !important; }
 
-/* Badge */
+
+/* Badges */
 .badge {
-    display: inline-block;
-    padding: var(--spacing-1) 0.625rem; /* Padding sedikit disesuaikan */
-    font-size: 0.7rem;
+    display: inline-flex; /* Use flex for centering text if needed */
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--spacing-1) + 1px) calc(var(--spacing-2) + 2px); /* Slightly adjusted padding */
+    font-size: 0.725rem; /* Slightly larger for readability */
     font-weight: var(--font-weight-bold);
     line-height: 1;
     text-align: center;
@@ -710,87 +831,117 @@ body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
     vertical-align: baseline;
     border-radius: var(--border-radius-pill);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em; /* Slightly more spacing */
 }
 .bg-success { background-color: rgba(var(--color-success-rgb), 0.15); color: var(--color-success); }
 .bg-danger { background-color: rgba(var(--color-danger-rgb), 0.15); color: var(--color-danger); }
-.bg-warning { background-color: rgba(var(--color-warning-rgb), 0.2); color: var(--color-warning); }
+.bg-warning {
+    background-color: rgba(var(--color-warning-rgb), 0.2);
+    color: var(--color-warning); /* Default, overridden by theme specific below */
+}
+body.light-theme .bg-warning { color: #855C00; } /* Darker yellow text for light theme */
+body.dark-theme .bg-warning { color: var(--color-warning); }
+
 .bg-info { background-color: rgba(var(--color-info-rgb), 0.15); color: var(--color-info); }
 .bg-secondary { background-color: var(--color-bg-hover); color: var(--color-text-secondary); }
+body.dark-theme .bg-secondary { background-color: var(--color-bg-surface-alt); color: var(--color-text-secondary); } /* Adjust for dark theme */
 
 
-/* Modal & Offcanvas */
+/* Modals & Offcanvas */
 .modal-content, .offcanvas {
-    border-radius: var(--border-radius-xl);
-    box-shadow: var(--shadow-xl);
-    border: none;
+    background-color: var(--color-bg-surface);
+    border-radius: var(--border-radius-xl); /* Larger radius for overlays */
+    box-shadow: var(--shadow-xl); /* Stronger shadow for overlays */
+    border: none; /* Remove default border if any */
+    display: flex; /* Ensure flex context */
+    flex-direction: column; /* Standard direction */
+    max-height: 90vh; /* Prevent overly tall modals */
 }
 .modal-header, .offcanvas-header {
     padding: var(--spacing-5) var(--spacing-6);
-    border-bottom: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border); /* Use main border color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
 }
 .modal-title, .offcanvas-title {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-h4); /* Slightly larger title */
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text-primary); /* Tambahkan warna */
+    color: var(--color-text-primary);
+    line-height: 1.4;
 }
 .modal-body, .offcanvas-body {
     padding: var(--spacing-6);
+    overflow-y: auto; /* Scrollable body */
+    flex-grow: 1; /* Allow body to take available space */
 }
 .modal-footer {
     padding: var(--spacing-5) var(--spacing-6);
-    border-top: 1px solid var(--color-border-light);
+    border-top: 1px solid var(--color-border); /* Use main border color */
+    display: flex;
+    justify-content: flex-end; /* Align buttons to right */
+    gap: var(--spacing-3);
+    background-color: var(--color-bg-surface-alt); /* Subtle footer background */
+    flex-shrink: 0;
 }
 
 
-/* List Group (Notifikasi) */
+/* List Group (e.g., for Notifications) */
 .list-group {
     border-radius: var(--border-radius-lg);
     border: 1px solid var(--color-border);
     background-color: var(--color-bg-surface);
-    overflow: hidden;
+    overflow: hidden; /* Clip items to rounded border */
+    padding: 0; /* Remove default list padding */
 }
 .list-group-item {
-    padding: var(--spacing-4);
+    padding: var(--spacing-4) var(--spacing-5); /* Adjusted padding */
     color: var(--color-text-primary);
     background-color: transparent;
     border-bottom: 1px solid var(--color-border-light);
-    transition: background-color var(--transition-fast);
-    display: flex; /* Untuk alignment tombol */
-    justify-content: space-between; /* Untuk alignment tombol */
-    align-items: center; /* Untuk alignment tombol */
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none; /* If used as links */
 }
 .list-group-item:last-child { border-bottom: none; }
-.list-group-item:hover { background-color: var(--color-bg-hover); }
+.list-group-item:hover { background-color: var(--color-bg-hover); color: var(--color-text-primary); }
 .list-group-item.active {
     color: var(--color-text-on-accent);
     background-color: var(--color-accent);
     border-color: var(--color-accent);
 }
-.list-group-item .text-muted { color: var(--color-text-muted) !important; }
-.list-group-item p.text-muted { color: var(--color-text-muted) !important; font-style: normal; opacity: 0.8; }
+.list-group-item .text-muted { color: var(--color-text-muted) !important; } /* Ensure specificity */
+.list-group-item p.text-muted { font-style: normal; opacity: 0.85; margin-bottom: var(--spacing-1); }
 
 
 /* Dashboard Specific Widgets */
 .dashboard-header-widgets {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: space-between; /* Distribute space */
     align-items: center;
     margin-bottom: var(--spacing-8);
     gap: var(--spacing-4);
-    flex-wrap: wrap;
 }
 .dashboard-header-widgets .widget {
     background-color: var(--color-bg-surface);
     padding: var(--spacing-3) var(--spacing-4);
     border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm); /* Softer shadow */
     font-size: var(--font-size-base);
     color: var(--color-text-secondary);
-    display: flex; /* Untuk ikon */
-    align-items: center; /* Untuk ikon */
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-border); /* Add subtle border */
 }
-.dashboard-header-widgets .widget .mdi { margin-right: var(--spacing-2); font-size: 1.25em; }
+.dashboard-header-widgets .widget .mdi {
+    margin-right: var(--spacing-3); /* More space for icon */
+    font-size: 1.375em;
+    color: var(--color-accent); /* Accent color for icons */
+}
 .dashboard-header-widgets .clock {
     font-family: var(--font-family-monospace);
     font-weight: var(--font-weight-semibold);
@@ -803,42 +954,48 @@ body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
     color: var(--color-text-primary);
     font-weight: var(--font-weight-bold);
     text-align: center;
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--spacing-10); /* More space below title */
 }
 
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--spacing-6);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Slightly larger minmax */
+    gap: var(--spacing-8); /* Increased gap */
     margin-bottom: var(--spacing-8);
 }
 .dashboard-card {
     background-color: var(--color-bg-surface);
     padding: var(--spacing-6);
-    border-radius: var(--border-radius-xl);
+    border-radius: var(--border-radius-xl); /* More pronounced rounding */
     box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--spacing-3);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    gap: var(--spacing-4); /* Increased gap */
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    border: 1px solid var(--color-border); /* Subtle border */
 }
 .dashboard-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px); /* More lift on hover */
     box-shadow: var(--shadow-xl);
 }
-.dashboard-card .mdi {
-    font-size: 2rem;
-    color: var(--color-text-on-accent);
+.dashboard-card .card-icon-wrapper { /* Wrapper for icon background */
     padding: var(--spacing-3);
-    background-color: var(--color-accent);
     border-radius: var(--border-radius-md);
     margin-bottom: var(--spacing-3);
+    display: inline-flex; /* To contain the icon properly */
 }
-.dashboard-card.mahasiswa .mdi { background-color: var(--color-info); }
-.dashboard-card.dosen .mdi { background-color: var(--color-success); }
-.dashboard-card.pendaftaran .mdi { background-color: var(--color-warning); color: var(--color-text-on-warning); }
-.dashboard-card.notifikasi .mdi { background-color: var(--color-danger); }
+.dashboard-card .card-icon-wrapper .mdi {
+    font-size: 2.25rem; /* Larger icons */
+    color: var(--color-text-on-status); /* White icon on colored background */
+    line-height: 1; /* Ensure icon is centered in its box */
+}
+
+.dashboard-card.mahasiswa .card-icon-wrapper { background-color: var(--color-info); }
+.dashboard-card.dosen .card-icon-wrapper { background-color: var(--color-success); }
+.dashboard-card.pendaftaran .card-icon-wrapper { background-color: var(--color-warning); }
+.dashboard-card.pendaftaran .card-icon-wrapper .mdi { color: var(--color-text-on-warning); } /* Specific for warning */
+.dashboard-card.notifikasi .card-icon-wrapper { background-color: var(--color-danger); }
 
 .dashboard-card .label-value-group {
     display: flex;
@@ -850,6 +1007,8 @@ body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
     color: var(--color-text-secondary);
     margin-bottom: var(--spacing-1);
     font-weight: var(--font-weight-medium);
+    text-transform: uppercase; /* Uppercase label */
+    letter-spacing: 0.03em;
 }
 .dashboard-card .value {
     font-size: var(--font-size-display);
@@ -858,32 +1017,38 @@ body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
     line-height: 1.1;
 }
 
-.chart-card .card-title {
+.chart-card { /* Assuming .chart-card is a .card */
+    /* Styles inherited from .card */
+}
+.chart-card .card-header .card-title { /* If title is in header */
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-1);
-    color: var(--color-text-primary); /* Tambahkan warna */
+    margin-bottom: 0; /* Remove bottom margin if in flex header */
+    color: var(--color-text-primary);
 }
-.chart-card .card-subtitle {
+.chart-card .card-header .card-subtitle {
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
     font-weight: var(--font-weight-normal);
+    margin-left: var(--spacing-2); /* Space from title if on same line */
 }
 .chart-container {
     position: relative;
-    height: 320px;
+    height: 350px; /* Increased height for charts */
     width: 100%;
-    margin-top: var(--spacing-5);
+    margin-top: var(--spacing-6); /* More space above chart */
 }
 
 
 /* Pagination */
 .pagination {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
     padding-left: 0;
     list-style: none;
     justify-content: center;
-    margin-top: var(--spacing-8);
+    margin-top: var(--spacing-10); /* More space above pagination */
+    gap: var(--spacing-1); /* Gap between page items */
 }
 .page-item .page-link {
     position: relative;
@@ -891,25 +1056,23 @@ body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
     align-items: center;
     justify-content: center;
     padding: var(--spacing-2) var(--spacing-3);
-    margin-left: var(--spacing-1);
-    line-height: 1.25;
+    /* margin-left removed, using gap on .pagination */
+    line-height: 1.35; /* Adjusted line height */
     color: var(--color-text-secondary);
     background-color: var(--color-bg-surface);
     border: 1px solid var(--color-border);
     text-decoration: none;
-    transition: var(--transition-base);
+    transition: var(--transition-fast);
     border-radius: var(--border-radius-md);
-    min-width: 36px;
-    min-height: 36px;
-}
-.page-item:first-child .page-link, .page-item:last-child .page-link {
-    margin-left: 0;
+    min-width: 40px; /* Slightly wider */
+    min-height: 40px; /* Slightly taller */
+    font-weight: var(--font-weight-medium);
 }
 .page-item .page-link:hover {
     z-index: 2;
     color: var(--color-accent);
     background-color: var(--color-bg-hover);
-    border-color: var(--color-border-light);
+    border-color: var(--color-border-light); /* Lighter border on hover */
 }
 .page-item.active .page-link {
     z-index: 3;
@@ -917,6 +1080,7 @@ body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
     background-color: var(--color-accent);
     border-color: var(--color-accent);
     font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-sm);
 }
 .page-item.disabled .page-link {
     color: var(--color-text-disabled);
@@ -925,154 +1089,270 @@ body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
     border-color: var(--color-border);
 }
 
-/* Styling untuk halaman Mahasiswa (jika menggunakan class kustom) */
-.table-mahasiswa { /* Jika Anda tetap menggunakan ini daripada .table */
-    width: 100%;
-    margin-bottom: var(--spacing-4);
-    color: var(--color-text-primary);
-    border-collapse: collapse;
-}
-.table-mahasiswa th, .table-mahasiswa td {
-    padding: var(--spacing-3) var(--spacing-4);
-    vertical-align: middle;
-    border-bottom: 1px solid var(--color-border-light);
-    text-align: left;
-}
-.table-mahasiswa thead th {
-    border-bottom-width: 2px;
-    border-bottom-color: var(--color-border);
-    font-weight: var(--font-weight-semibold);
-    background-color: transparent;
-    color: var(--color-text-secondary);
-    font-size: var(--font-size-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-.table-mahasiswa tbody tr:hover {
-    background-color: var(--color-bg-hover);
-}
+/* Specific Table for Mahasiswa (if needed, otherwise use generic .table) */
+/* .table-mahasiswa is mostly identical to .table, consider removing if not distinct */
+/* If keeping, ensure any differences are intentional */
+/* Example: */
+/* .table-mahasiswa td:nth-child(2) { font-weight: var(--font-weight-medium); } */
 
 
+/* Detail Page Styles */
 .detail-box {
     background-color: var(--color-bg-surface);
-    padding: var(--spacing-8);
+    padding: var(--spacing-8) var(--spacing-10); /* Generous padding */
     border-radius: var(--border-radius-xl);
     box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
 }
 .detail-title {
-    font-size: var(--font-size-h2);
+    font-size: var(--font-size-h3); /* Adjusted size */
     font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-6);
-    padding-bottom: var(--spacing-4);
-    border-bottom: 1px solid var(--color-border-light);
+    margin-bottom: var(--spacing-8); /* More space */
+    padding-bottom: var(--spacing-5); /* More padding */
+    border-bottom: 1px solid var(--color-border); /* Use main border */
 }
-.detail-table {
+.detail-table { /* For key-value pair display */
     width: 100%;
-    margin-bottom: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+    border-collapse: collapse; /* Ensure borders meet cleanly */
 }
-.detail-table td {
-    padding: var(--spacing-3) 0;
+.detail-table tr td { /* Apply to all td in this specific table */
+    padding: var(--spacing-4) 0; /* Vertical padding, no horizontal by default */
     border-bottom: 1px solid var(--color-border-light);
+    font-size: var(--font-size-base);
 }
-.detail-table td:first-child {
-    font-weight: var(--font-weight-medium);
+.detail-table td:first-child { /* Label cell */
+    font-weight: var(--font-weight-semibold); /* Bolder label */
     color: var(--color-text-secondary);
-    width: 25%;
-    padding-right: var(--spacing-4);
+    width: 30%; /* Adjust width as needed */
+    padding-right: var(--spacing-6); /* Space between label and value */
+}
+.detail-table td:last-child { /* Value cell */
+    color: var(--color-text-primary);
 }
 .detail-table tr:last-child td {
     border-bottom: none;
 }
-.btn-back {
+.btn-back { /* Re-style to match other buttons */
+    /* Use .btn and .btn-secondary or a custom class if needed */
+    /* Example: <a href="#" class="btn btn-secondary"> <i class="mdi mdi-arrow-left"></i> Back </a> */
+    /* This class is not strictly necessary if you use .btn .btn-secondary */
     display: inline-flex;
     align-items: center;
-    padding: var(--spacing-2) var(--spacing-4);
-    background-color: var(--color-bg-surface);
-    border: 1px solid var(--color-border);
-    color: var(--color-text-primary);
-    border-radius: var(--border-radius-md);
-    text-decoration: none;
-    transition: var(--transition-base);
-    font-weight: var(--font-weight-medium);
-    box-shadow: var(--shadow-xs);
-}
-.btn-back:hover {
-    background-color: var(--color-bg-hover);
-    border-color: var(--color-border-light);
-    box-shadow: var(--shadow-sm);
+    /* ... other styles if you want it to be different from .btn-secondary */
 }
 
-/* Utility classes (jika belum ada dari framework lain) */
+/* Utility Classes (ensure these don't conflict with a framework like Bootstrap if used) */
 .ms-auto { margin-left: auto !important; }
+.me-auto { margin-right: auto !important; } /* Added */
+.mx-auto { margin-left: auto !important; margin-right: auto !important; } /* Added */
+
+.me-1 { margin-right: var(--spacing-1) !important; }
 .me-2 { margin-right: var(--spacing-2) !important; }
+.me-3 { margin-right: var(--spacing-3) !important; }
+.ms-1 { margin-left: var(--spacing-1) !important; }
+.ms-2 { margin-left: var(--spacing-2) !important; }
+.ms-3 { margin-left: var(--spacing-3) !important; }
+
 .mb-0 { margin-bottom: 0 !important; }
 .mb-1 { margin-bottom: var(--spacing-1) !important; }
 .mb-2 { margin-bottom: var(--spacing-2) !important; }
 .mb-3 { margin-bottom: var(--spacing-3) !important; }
 .mb-4 { margin-bottom: var(--spacing-4) !important; }
+.mb-5 { margin-bottom: var(--spacing-5) !important; }
 .mb-6 { margin-bottom: var(--spacing-6) !important; }
+.mb-8 { margin-bottom: var(--spacing-8) !important; } /* Added */
+
+.mt-0 { margin-top: 0 !important; } /* Added */
+.mt-1 { margin-top: var(--spacing-1) !important; } /* Added */
+.mt-2 { margin-top: var(--spacing-2) !important; } /* Added */
 .mt-3 { margin-top: var(--spacing-3) !important; }
 .mt-4 { margin-top: var(--spacing-4) !important; }
+.mt-5 { margin-top: var(--spacing-5) !important; } /* Added */
 .mt-6 { margin-top: var(--spacing-6) !important; }
+.mt-8 { margin-top: var(--spacing-8) !important; } /* Added */
+
+.p-0 { padding: 0 !important; } /* Added */
+.p-1 { padding: var(--spacing-1) !important; } /* Added */
+.p-2 { padding: var(--spacing-2) !important; } /* Added */
+.p-3 { padding: var(--spacing-3) !important; } /* Added */
+.p-4 { padding: var(--spacing-4) !important; } /* Added */
+.p-5 { padding: var(--spacing-5) !important; } /* Added */
+.p-6 { padding: var(--spacing-6) !important; } /* Added */
+
+
+.d-none { display: none !important; } /* Added */
 .d-inline { display: inline !important; }
 .d-inline-block { display: inline-block !important; }
 .d-block { display: block !important; }
 .d-flex { display: flex !important; }
+.d-inline-flex { display: inline-flex !important; } /* Added */
+
+.justify-content-start { justify-content: flex-start !important; } /* Added */
 .justify-content-between { justify-content: space-between !important; }
 .justify-content-center { justify-content: center !important; }
 .justify-content-end { justify-content: flex-end !important; }
+.align-items-start { align-items: flex-start !important; } /* Added */
 .align-items-center { align-items: center !important; }
-.text-uppercase { text-transform: uppercase !important; }
-.fst-italic { font-style: italic !important; }
-.shadow-sm { box-shadow: var(--shadow-sm) !important; }
-.border-0 { border: 0 !important; }
+.align-items-end { align-items: flex-end !important; } /* Added */
+.align-items-stretch { align-items: stretch !important; } /* Added */
 
-/* Grid Sederhana (jika tidak menggunakan Bootstrap) */
+.flex-column { flex-direction: column !important; } /* Added */
+.flex-grow-1 { flex-grow: 1 !important; } /* Added */
+
+.text-uppercase { text-transform: uppercase !important; }
+.text-lowercase { text-transform: lowercase !important; } /* Added */
+.text-capitalize { text-transform: capitalize !important; } /* Added */
+.fw-bold { font-weight: var(--font-weight-bold) !important; } /* Added */
+.fw-semibold { font-weight: var(--font-weight-semibold) !important; } /* Added */
+.fw-medium { font-weight: var(--font-weight-medium) !important; } /* Added */
+.fw-normal { font-weight: var(--font-weight-normal) !important; } /* Added */
+.fst-italic { font-style: italic !important; }
+
+.shadow-none { box-shadow: none !important; } /* Added */
+.shadow-sm { box-shadow: var(--shadow-sm) !important; }
+.shadow { box-shadow: var(--shadow) !important; } /* Added */
+.shadow-lg { box-shadow: var(--shadow-lg) !important; } /* Added */
+
+.border-0 { border: 0 !important; }
+.rounded { border-radius: var(--border-radius) !important; } /* Added */
+.rounded-pill { border-radius: var(--border-radius-pill) !important; } /* Added */
+.rounded-circle { border-radius: var(--border-radius-full) !important; } /* Added */
+
+
+/* Simple Grid (if not using Bootstrap or similar) */
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-right: calc(-1 * var(--spacing-3));
-    margin-left: calc(-1 * var(--spacing-3));
+    margin-right: calc(-1 * var(--spacing-4)); /* Use consistent spacing variable */
+    margin-left: calc(-1 * var(--spacing-4));
 }
-.row > * {
+.row > * { /* Applies to all direct children of .row (cols) */
     box-sizing: border-box;
     flex-shrink: 0;
-    width: 100%;
+    width: 100%; /* Default to full width on smallest screens */
     max-width: 100%;
-    padding-right: var(--spacing-3);
-    padding-left: var(--spacing-3);
+    padding-right: var(--spacing-4); /* Gutter */
+    padding-left: var(--spacing-4); /* Gutter */
+    margin-top: 0; /* Reset potential browser default */
+    margin-bottom: var(--spacing-6); /* Default bottom margin for columns for vertical rhythm */
 }
-@media (min-width: 768px) {
-    .col-md-6 {
-        flex: 0 0 auto;
-        width: 50%;
-    }
+/* Example column classes - extend as needed */
+@media (min-width: 576px) { /* sm breakpoint */
+    .col-sm-6 { flex: 0 0 auto; width: 50%; }
+    .col-sm-12 { flex: 0 0 auto; width: 100%; }
 }
-@media (min-width: 992px) {
-    .col-lg-6 {
-        flex: 0 0 auto;
-        width: 50%;
-    }
+@media (min-width: 768px) { /* md breakpoint */
+    .col-md-3 { flex: 0 0 auto; width: 25%; }
+    .col-md-4 { flex: 0 0 auto; width: 33.333333%; }
+    .col-md-6 { flex: 0 0 auto; width: 50%; }
+    .col-md-8 { flex: 0 0 auto; width: 66.666667%; }
+    .col-md-9 { flex: 0 0 auto; width: 75%; }
+    .col-md-12 { flex: 0 0 auto; width: 100%; }
+}
+@media (min-width: 992px) { /* lg breakpoint */
+    .col-lg-3 { flex: 0 0 auto; width: 25%; }
+    .col-lg-4 { flex: 0 0 auto; width: 33.333333%; }
+    .col-lg-6 { flex: 0 0 auto; width: 50%; }
+    .col-lg-8 { flex: 0 0 auto; width: 66.666667%; }
+    .col-lg-9 { flex: 0 0 auto; width: 75%; }
+    .col-lg-12 { flex: 0 0 auto; width: 100%; }
+}
+@media (min-width: 1200px) { /* xl breakpoint */
+    .col-xl-3 { flex: 0 0 auto; width: 25%; }
+    .col-xl-4 { flex: 0 0 auto; width: 33.333333%; }
+    .col-xl-6 { flex: 0 0 auto; width: 50%; }
+    .col-xl-8 { flex: 0 0 auto; width: 66.666667%; }
+    .col-xl-12 { flex: 0 0 auto; width: 100%; }
 }
 
-/* Penyesuaian untuk search bar di akun_admin/index.blade.php */
-.search-bar { /* Tambahkan class ini pada div yang membungkus input dan tombol search */
+
+/* Search Bar */
+.search-bar {
     display: flex;
+    align-items: center; /* Vertically align input and button */
+    max-width: 400px; /* Optional: constrain width */
 }
 .search-bar .form-control {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    box-shadow: none; /* Hilangkan inner shadow jika terlalu ramai */
-    flex-grow: 1; /* Agar input mengisi ruang */
+    border-right: none; /* Remove right border to merge with button */
+    flex-grow: 1;
+    box-shadow: none; /* Remove inner shadow if it looks too busy */
+}
+.search-bar .form-control:focus {
+    z-index: 1; /* Ensure focus shadow is on top */
+    /* border-right: 1px solid var(--color-border-input-focus); */ /* Add back border on focus if needed, but might look better without if button has left border */
 }
 .search-bar .btn {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    border-left: none; /* Agar menyatu dengan input */
-    box-shadow: var(--shadow-xs);
+    box-shadow: var(--shadow-xs); /* Match button shadow */
+    /* border-left: none; /* This was in original, but might look better with a border, or handled by form-control:focus */
 }
 .search-bar .btn:hover {
-    /* Gaya hover khusus jika perlu */
+    z-index: 2; /* Ensure hover styles are on top */
 }
 
+/* Responsive Adjustments for Sidebar and Main Panel */
+@media (max-width: 991.98px) { /* lg breakpoint and below */
+    .sidebar {
+        transform: translateX(calc(-1 * var(--sidebar-width))); /* Hide sidebar off-screen */
+        /* Add a class like .sidebar.open to transform: translateX(0); */
+    }
+    .sidebar.open { /* Example class to show sidebar */
+        transform: translateX(0);
+        box-shadow: var(--shadow-xl); /* Add shadow when overlaying */
+    }
+    .main-panel {
+        margin-left: 0; /* Main panel takes full width */
+        width: 100%;
+    }
+    /* Optional: Add an overlay when sidebar is open on mobile */
+    /* .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1025; // Below sidebar but above main content
+        display: none; // Show with JS when sidebar is open
+    }
+    body.sidebar-open .sidebar-overlay { display: block; } // Assuming body gets a class too
+    */
+}
+
+/* Further refinements for very small screens */
+@media (max-width: 575.98px) {
+    .content-wrapper {
+        padding: var(--spacing-6); /* Reduce padding on small screens */
+    }
+    .page-header-container .page-title {
+        font-size: var(--font-size-h3); /* Smaller page title */
+    }
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Single column for dashboard cards */
+        gap: var(--spacing-6);
+    }
+    /* .modal-dialog { // If using Bootstrap modal structure
+        margin: var(--spacing-2);
+    } */
+    .modal-content { /* For custom modals or overriding Bootstrap */
+        max-height: 95vh;
+        margin: var(--spacing-2) auto; /* Centering and spacing for small screens */
+    }
+    .footer .container-fluid {
+        justify-content: center; /* Center footer content */
+        text-align: center;
+    }
+    .main-panel-topbar {
+        padding: 0 var(--spacing-4); /* Reduce topbar padding */
+    }
+    .theme-switcher-btn {
+        width: calc(1.5rem + 2 * var(--spacing-2));
+        height: calc(1.5rem + 2 * var(--spacing-2));
+    }
+    .theme-switcher-btn .mdi { font-size: 1.5rem; }
+}

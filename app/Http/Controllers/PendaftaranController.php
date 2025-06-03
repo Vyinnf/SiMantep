@@ -36,15 +36,11 @@ class PendaftaranController extends Controller
             'judul_pkl' => 'required|string|max:255',
         ]);
 
-        // dd($request->all());
-
-        // Update data Mahasiswa jika ada
         $mahasiswa = auth()->user()->mahasiswa;
         if (!$mahasiswa) {
             return redirect()->back()->with('error', 'Data mahasiswa tidak ditemukan. Harap lengkapi profil terlebih dahulu.');
         }
 
-        // Update data mahasiswa
         $mahasiswa->update([
             'nim' => $request->nim,
             'prodi' => $request->prodi,
@@ -65,16 +61,12 @@ class PendaftaranController extends Controller
 
             $instansiId = null;
             $alamatInstansi = $request->alamat_instansi_manual;
-
         } else {
             $instansi = Instansi::find($request->instansi_id);
             $instansiId = $instansi ? $instansi->id : null;
             $alamatInstansi = $instansi ? $instansi->alamat : null;
         }
 
-        // Buat data pendaftaran dan simpan ke variable $pendaftaran
-
-        // dd($alamatInstansi);
         PendaftaranPKL::create([
             'user_id' => auth()->id(),
             'instansi_id' => $instansiId,
@@ -87,18 +79,6 @@ class PendaftaranController extends Controller
             'judul_pkl' => $request->judul_pkl,
             'status' => 'pending',
         ]);
-
-        // Kirim notifikasi ke dosen dan admin
-        // $dosens = Dosen::all();
-        // $admins = Admin::all();
-
-        // \Log::info('Mengirim notifikasi', [
-        //     'mahasiswa_nama' => $pendaftaran->mahasiswa->nama ?? 'null',
-        //     'instansi_nama' => $pendaftaran->instansi->nama ?? ($pendaftaran->instansi_manual ?? 'null'),
-        // ]);
-
-        // Notification::send($dosens, new PendaftaranBaruNotification($pendaftaran));
-        // Notification::send($admins, new PendaftaranBaruNotification($pendaftaran));
 
         return redirect()->route('mahasiswa.dashboard')->with('success', 'Pendaftaran PKL berhasil dikirim.');
     }
@@ -117,7 +97,7 @@ class PendaftaranController extends Controller
     public function index()
     {
         $pendaftaran = PendaftaranPKL::with('mahasiswa')->latest()->get(); // Relasi mahasiswa wajib di-load
-
+        $dosens = Dosen::all(); // Ambil semua dosen untuk dropdown
         return view('admin.pendaftaran.index', compact('pendaftaran'));
     }
     public function verifikasi($id)
@@ -126,5 +106,17 @@ class PendaftaranController extends Controller
         $pendaftaran->update(['status' => 'diterima']); // pakai tanda kutip
 
         return redirect()->back()->with('success', 'Pendaftaran berhasil diverifikasi.');
+    }
+    public function assignDosen(Request $request, $id)
+    {
+        $request->validate([
+            'dosen_id' => 'required|exists:user,id',
+        ]);
+
+        $pendaftaran = Pendaftaran::findOrFail($id);
+        $pendaftaran->dosen_id = $request->dosen_id;
+        $pendaftaran->save();
+
+        return redirect()->back()->with('success', 'Dosen pembimbing berhasil ditugaskan.');
     }
 }

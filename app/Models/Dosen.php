@@ -22,4 +22,8 @@ class Dosen extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function pendaftarans()
+    {
+        return $this->hasMany(Pendaftaran::class, 'dosen_id');
+    }
 }

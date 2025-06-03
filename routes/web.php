@@ -208,6 +208,7 @@ Route::middleware('auth:admin')
         Route::get('/instansi/{id}/edit', [InstansiController::class, 'edit'])->name('admin.instansi.edit');
         Route::put('/instansi/{id}', [InstansiController::class, 'update'])->name('admin.instansi.update');
         Route::delete('/instansi/{id}', [InstansiController::class, 'destroy'])->name('admin.instansi.destroy');
+        Route::post('/admin/pendaftaran/{id}/assign-dosen', [PendaftaranController::class, 'assignDosen'])->name('admin.pendaftaran.assignDosen');
     });
 
 // Pengajuan Instansi

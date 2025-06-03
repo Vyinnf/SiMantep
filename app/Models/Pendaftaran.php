@@ -12,6 +12,7 @@ class Pendaftaran extends Model
     protected $fillable = [
         'user_id',
         'instansi_id',
+        'dosen_id',
         'nim',
         'prodi',
         'semester',
@@ -35,5 +36,10 @@ class Pendaftaran extends Model
     public function instansi()
     {
         return $this->belongsTo(Instansi::class, 'instansi_id');
+    }
+
+    public function dosen()
+    {
+        return $this->belongsTo(User::class, 'dosen_id');
     }
 }

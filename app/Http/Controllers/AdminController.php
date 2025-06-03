@@ -84,7 +84,8 @@ public function indexDosen()
 public function indexPendaftaran()
 {
     $pendaftaran = PendaftaranPKL::with('mahasiswa')->orderBy('created_at', 'desc')->get();
-    return view('admin.pendaftaran.index', compact('pendaftaran'));
+    $dosens = Dosen::all(); // Ambil semua dosen untuk dropdown
+    return view('admin.pendaftaran.index', compact('pendaftaran', 'dosens'));
 }
 
 public function verifikasiPendaftaran($id)
