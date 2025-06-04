@@ -98,7 +98,7 @@ class MahasiswaController extends Controller
     {
         $mahasiswa = auth()->user()->mahasiswa;
 
-        $pendaftaran = $mahasiswa ? $mahasiswa->pendaftaranPKL()->with('dosen')->latest()->first() : null;
+        $pendaftaran = $mahasiswa ? $mahasiswa->pendaftaran()->with('dosen')->latest()->first() : null;
 
         return view('mahasiswa.dashboard', compact('pendaftaran'));
     }

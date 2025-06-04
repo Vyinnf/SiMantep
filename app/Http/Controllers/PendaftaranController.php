@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PengajuanInstansi;
-use App\Models\PendaftaranPKL;
 use App\Models\Pendaftaran;
 use App\Models\Instansi;
 use App\Models\Dosen;
@@ -49,7 +48,6 @@ class PendaftaranController extends Controller
             'no_hp' => $request->no_hp,
         ]);
 
-        // Proses instansi
         if ($request->instansi_id === 'other') {
             $pengajuanInstansi = PengajuanInstansi::create([
                 'nama_instansi' => $request->nama_instansi_manual,
@@ -67,7 +65,7 @@ class PendaftaranController extends Controller
             $alamatInstansi = $instansi ? $instansi->alamat : null;
         }
 
-        PendaftaranPKL::create([
+        Pendaftaran::create([
             'user_id' => auth()->id(),
             'instansi_id' => $instansiId,
             'nim' => $request->nim,
@@ -80,33 +78,34 @@ class PendaftaranController extends Controller
             'status' => 'pending',
         ]);
 
+        $pendaftaran = Pendaftaran::where('user_id', auth()->id())->latest()->first();
+
         return redirect()->route('mahasiswa.dashboard')->with('success', 'Pendaftaran PKL berhasil dikirim.');
     }
+
     public function dashboard()
     {
-        // Ambil data mahasiswa yang login
+
         $mahasiswa = auth()->user()->mahasiswa;
-
-        // Ambil pendaftaran terbaru atau semua pendaftaran milik user
-        $pendaftaran = PendaftaranPKL::where('user_id', auth()->id())
-            ->latest()
-            ->first();
-
+        $pendaftaran = Pendaftaran::with('dosen')->where('user_id', auth()->id())->latest()->first();
         return view('mahasiswa.dashboard', compact('mahasiswa', 'pendaftaran'));
     }
+
     public function index()
     {
-        $pendaftaran = PendaftaranPKL::with('mahasiswa')->latest()->get(); // Relasi mahasiswa wajib di-load
-        $dosens = Dosen::all(); // Ambil semua dosen untuk dropdown
+        $pendaftaran = Pendaftaran::with('mahasiswa')->latest()->get();
+        $dosens = Dosen::all();
         return view('admin.pendaftaran.index', compact('pendaftaran'));
     }
+
     public function verifikasi($id)
     {
         $pendaftaran = Pendaftaran::findOrFail($id);
-        $pendaftaran->update(['status' => 'diterima']); // pakai tanda kutip
+        $pendaftaran->update(['status' => 'diterima']);
 
         return redirect()->back()->with('success', 'Pendaftaran berhasil diverifikasi.');
     }
+
     public function assignDosen(Request $request, $id)
     {
         $request->validate([

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mahasiswa;
-use App\Models\PendaftaranPKL;
 use App\Models\Laporan;
 use App\Models\Notifikasi;
 
@@ -17,7 +16,7 @@ class DosenDashboardController extends Controller
         $totalMahasiswa = Mahasiswa::where('status', 'magang')->count();
 
         // Total pendaftaran PKL yang perlu diverifikasi
-        $totalPendaftaran = PendaftaranPKL::where('status', 'menunggu')->count();
+        $totalPendaftaran = Pendaftaran::where('status', 'menunggu')->count();
 
         // Total laporan yang perlu dikoreksi
         $totalLaporan = Laporan::where('status', 'diajukan')->count();

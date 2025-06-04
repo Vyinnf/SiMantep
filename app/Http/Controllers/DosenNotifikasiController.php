@@ -14,12 +14,6 @@ class DosenNotifikasiController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        // Jika belum ada tabel notifikasi, bisa gunakan array dummy:
-        // $notifikasi = collect([
-        //     (object)['pesan' => 'Ada laporan baru dari mahasiswa.', 'created_at' => now()],
-        //     (object)['pesan' => 'Mahasiswa mengupload revisi laporan.', 'created_at' => now()->subDay()],
-        // ]);
-
         return view('dosen.notifikasi', compact('notifikasi'));
     }
 }

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
-use App\Models\PendaftaranPKL;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MahasiswaExport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Pendaftaran;
 
 
 class AdminController extends Controller
@@ -83,14 +83,14 @@ public function indexDosen()
 
 public function indexPendaftaran()
 {
-    $pendaftaran = PendaftaranPKL::with('mahasiswa')->orderBy('created_at', 'desc')->get();
+    $pendaftaran = Pendaftaran::with('mahasiswa')->orderBy('created_at', 'desc')->get();
     $dosens = Dosen::all(); // Ambil semua dosen untuk dropdown
     return view('admin.pendaftaran.index', compact('pendaftaran', 'dosens'));
 }
 
 public function verifikasiPendaftaran($id)
 {
-    $pendaftaran = PendaftaranPKL::findOrFail($id);
+    $pendaftaran = Pendaftaran::findOrFail($id);
     $pendaftaran->status = 'diterima';
     $pendaftaran->save();
     return redirect()->route('admin.pendaftaran.index')->with('success', 'Pendaftaran berhasil diverifikasi.');
@@ -98,7 +98,7 @@ public function verifikasiPendaftaran($id)
 
 public function tolakPendaftaran($id)
 {
-    $pendaftaran = PendaftaranPKL::findOrFail($id);
+    $pendaftaran = Pendaftaran::findOrFail($id);
     $pendaftaran->status = 'ditolak';
     $pendaftaran->save();
     return redirect()->route('admin.pendaftaran.index')->with('success', 'Pendaftaran berhasil ditolak.');
@@ -120,7 +120,7 @@ public function exportMahasiswa(Request $request)
 public function dashboardCustom() {
     $totalMahasiswa = \App\Models\Mahasiswa::count();
     $totalDosen = \App\Models\Dosen::count();
-    $totalPendaftaran = \App\Models\PendaftaranPKL::count();
+    $totalPendaftaran = \App\Models\Pendaftaran::count();
     $totalNotifikasi = 0; // Ganti sesuai kebutuhan
 
     return view('admin.dashboard-custom', compact(

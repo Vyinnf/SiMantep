@@ -70,10 +70,6 @@ Route::post('/forgot-password', function (Request $request) {
 // ============ ROUTE KHUSUS MAHASISWA ============
 
 Route::middleware(['auth'])->group(function () {
-    // Dashboard Mahasiswa
-    // Route::get('/mahasiswa/dashboard', function () {
-    //     return view('mahasiswa.dashboard');
-    // })->name('mahasiswa.dashboard');
 
     Route::get('/mahasiswa/dashboard', [PendaftaranController::class, 'dashboard'])->name('mahasiswa.dashboard');
 
@@ -193,7 +189,6 @@ Route::middleware('auth:admin')
         Route::post('/pendaftaran/{id}/verifikasi', [AdminController::class, 'verifikasiPendaftaran'])->name('admin.pendaftaran.verifikasi');
         Route::post('/pendaftaran/{id}/tolak', [AdminController::class, 'tolakPendaftaran'])->name('admin.pendaftaran.tolak');
 
-        // Route::get('/notifikasi', [\App\Http\Controllers\Admin\AdminNotifikasiController::class, 'index'])->name('admin.notifications.index');
         Route::get('/notifications', [AdminNotifikasiController::class, 'index'])->name('admin.notifications.index');
         Route::put('/notifications/{id}/read', [AdminNotifikasiController::class, 'markAsRead'])->name('admin.notifications.markAsRead');
         Route::delete('/notifications/{id}', [AdminNotifikasiController::class, 'destroy'])->name('admin.notifications.destroy');
