@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\PengajuanInstansi;
 use App\Models\Pendaftaran;
@@ -23,6 +23,13 @@ class PendaftaranController extends Controller
 
     public function store(Request $request)
     {
+
+        $mahasiswa = Auth::user()->id;
+        $excitingPendaftaran = Pendaftaran::where('user_id', $mahasiswa)->whereIn('status', ['pending', 'diterima'])->first();
+        if ($excitingPendaftaran) {
+            return redirect()->back()->with('error', 'Anda sudah memiliki pendaftaran PKL yang masih aktif.');
+        }
+
         $request->validate([
             'nim' => 'required|string|max:20',
             'prodi' => 'required|string|max:100',
@@ -109,7 +116,7 @@ class PendaftaranController extends Controller
     public function assignDosen(Request $request, $id)
     {
         $request->validate([
-            'dosen_id' => 'required|exists:user,id',
+            'dosen_id' => 'required|exists:dosens,id',
         ]);
 
         $pendaftaran = Pendaftaran::findOrFail($id);

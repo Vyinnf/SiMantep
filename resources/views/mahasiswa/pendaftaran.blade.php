@@ -4,6 +4,13 @@
 
 
 @section('content')
+
+@if(session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
+
     <div class="page-header">
         <h3 class="page-title">Formulir Pendaftaran PKL</h3>
         <nav aria-label="breadcrumb">
@@ -147,13 +154,13 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="surat_pengantar" class="form-label">Upload Surat Pengantar dari Kampus (PDF, Maks: 2MB) <span class="text-danger">*</span></label>
                             <input type="file" class="form-control @error('surat_pengantar') is-invalid @enderror" id="surat_pengantar" name="surat_pengantar" accept="application/pdf" required>
                             @error('surat_pengantar')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
 
                         <div class="d-grid gap-2 mt-4">
