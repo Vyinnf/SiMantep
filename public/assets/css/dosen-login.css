@@ -1,16 +1,137 @@
 body {
-    background: #f5f6fa;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font lebih modern */
+    /* Gradient background yang lebih menarik */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Alternatif gradient yang lebih soft:
+    background: linear-gradient(to bottom right, #e9ecef, #dee2e6); */
+    display: flex;
+    align-items: center; /* Memusatkan konten secara vertikal */
+    justify-content: center; /* Memusatkan konten secara horizontal */
+    min-height: 100vh; /* Tinggi minimal adalah tinggi viewport */
+    margin: 0;
+    padding: 15px; /* Padding untuk layar kecil agar box tidak menempel di tepi */
+    box-sizing: border-box;
 }
+
+.login-container {
+    width: 100%; /* Memastikan container mengambil lebar penuh untuk pemusatan */
+}
+
 .login-box {
-    margin: 60px auto;
-    max-width: 400px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-    padding: 32px 28px;
+    background: #ffffff;
+    border-radius: 15px; /* Radius sudut yang lebih besar/halus */
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.05); /* Shadow yang lebih modern */
+    padding: 35px 30px;
+    max-width: 430px; /* Sedikit lebih lebar */
+    width: 100%; /* Mengambil lebar tersedia hingga max-width */
+    margin: 20px auto; /* Auto margin untuk pemusatan horizontal */
+    animation: fadeInFromTop 0.6s ease-out forwards; /* Animasi muncul */
+    opacity: 0; /* Mulai transparan untuk animasi */
 }
+
+@keyframes fadeInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .login-title {
     font-weight: 700;
-    margin-bottom: 24px;
-    color: #2d3e50;
+    margin-bottom: 10px; /* Mengurangi margin jika ada subtitle */
+    color: #343a40; /* Warna standar Bootstrap untuk teks gelap */
+    font-size: 1.8rem; /* Sedikit lebih besar */
+}
+
+.login-subtitle {
+    font-size: 0.95rem;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057; /* Warna standar Bootstrap */
+    margin-bottom: 0.3rem; /* Sedikit mengurangi jarak ke input */
+}
+
+.input-group .form-control {
+    border-top-left-radius: 0; /* Menyesuaikan radius jika ada icon group */
+    border-bottom-left-radius: 0;
+}
+.input-group .form-control:focus { /* Menjaga focus style untuk input group */
+    z-index: 3; /* Agar shadow tidak tertutup oleh input-group-text */
+}
+
+.input-group-text {
+    background-color: #f8f9fa; /* Warna background icon group */
+    border: 1px solid #ced4da;
+    border-right: none; /* Agar menyatu dengan input */
+    border-radius: 8px 0 0 8px; /* Radius sisi kiri */
+    color: #6c757d;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control {
+    border-radius: 8px; /* Radius input yang seragam */
+    padding: 0.75rem 1rem; /* Padding yang lebih nyaman */
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #764ba2; /* Warna aksen dari gradient */
+    box-shadow: 0 0 0 0.25rem rgba(118, 75, 162, 0.25); /* Shadow focus dengan warna aksen */
+}
+
+.btn-login-custom {
+    /* background-color: #764ba2; */ /* Bisa warna solid */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Atau gradient yang sama */
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-login-custom:hover {
+    /* background-color: #5a398a; */
+    background: linear-gradient(135deg, #5a68d0 0%, #633c86 100%);
+    transform: translateY(-2px); /* Efek angkat sedikit saat hover */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-login-custom:active {
+    transform: translateY(0); /* Kembali ke posisi normal saat diklik */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-link {
+    color: #6c757d; /* Warna abu-abu standar */
+    font-weight: 500;
+}
+.btn-link:hover {
+    color: #764ba2; /* Warna aksen saat hover */
+}
+
+.text-danger.small {
+    font-size: 0.8em; /* Ukuran font error yang lebih kecil */
+}
+
+/* Penyesuaian untuk layar yang lebih kecil */
+@media (max-width: 576px) {
+    .login-box {
+        margin: 15px auto; /* Mengurangi margin atas/bawah */
+        padding: 25px 20px; /* Mengurangi padding */
+    }
+    .login-title {
+        font-size: 1.6rem;
+    }
+    .btn-login-custom, .form-control, .input-group-text {
+        font-size: 0.95rem; /* Sedikit mengecilkan font di elemen form */
+    }
 }
