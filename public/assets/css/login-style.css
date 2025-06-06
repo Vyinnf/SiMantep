@@ -1,366 +1,467 @@
 /* Basic Reset */
 * {
-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-background: #f6f5f7;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh;
-margin: 0;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
 }
 
 /* Container */
 .container {
-background: #fff;
-border-radius: 10px;
-box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-0 10px 10px rgba(0,0,0,0.22);
-position: relative;
-overflow: hidden;
-width: 768px;
-max-width: 100%;
-min-height: 480px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+                0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
 }
 
 /* Form Containers */
 .form-container {
-position: absolute;
-top: 0;
-height: 100%;
-transition: all 0.6s ease-in-out;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
 }
 
 .sign-in-container {
-left: 0;
-width: 50%;
-z-index: 2;
+    left: 0;
+    width: 50%;
+    z-index: 2;
 }
 
 .sign-up-container {
-left: 0;
-width: 50%;
-opacity: 0;
-z-index: 1;
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
 }
 
 .container.right-panel-active .sign-in-container {
-transform: translateX(100%);
+    transform: translateX(100%);
 }
 
 .container.right-panel-active .sign-up-container {
-transform: translateX(100%);
-opacity: 1;
-z-index: 5;
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
 }
 
 /* Forms */
 form {
-background: #ffffff;
-display: flex;
-flex-direction: column;
-padding: 0 50px;
-height: 100%;
-justify-content: center;
-align-items: center;
-text-align: center;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 input {
-background: #eee;
-border: none;
-padding: 12px 15px;
-margin: 8px 0;
-width: 100%;
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 5px; /* Added for better aesthetics */
 }
 
 button {
-border: none;
-padding: 12px 60px;
-background-color: #006A71;
-color: #fff;
-font-size: 12px;
-font-weight: bold;
-letter-spacing: 1px;
-text-transform: uppercase;
-transition: transform 80ms ease-in;
-cursor: pointer;
-border-radius: 15px;
+    border: none;
+    padding: 12px 60px;
+    background-color: #006A71;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    border-radius: 15px;
 }
 
 button:active {
-transform: scale(0.95);
+    transform: scale(0.95);
 }
 
 button:focus {
-outline: none;
+    outline: none;
 }
 
 button.ghost {
-background-color: transparent;
-border: 2px solid #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
 }
 
 .forgot-password-link {
-color: gray;
-font-size: 14px;
-margin-top: 8px;
-margin-bottom: 16px; 
-display: inline-block; 
-text-decoration: none;
+    color: gray;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    display: inline-block;
+    text-decoration: none;
 }
 
 .forgot-password-link:hover {
-text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* Overlay Container */
 .overlay-container {
-position: absolute;
-top: 0;
-left: 50%;
-width: 50%;
-height: 100%;
-overflow: hidden;
-transition: transform 0.6s ease-in-out;
-z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
 }
 
 .container.right-panel-active .overlay-container {
-transform: translateX(-100%);
+    transform: translateX(-100%);
 }
 
 .overlay {
-background: linear-gradient(to right, #48A6A7, #213448);
-color: #ffffff;
-position: relative;
-left: -100%;
-height: 100%;
-width: 200%;
-transform: translateX(0);
-transition: transform 0.6s ease-in-out;
+    background: linear-gradient(to right, #48A6A7, #213448);
+    color: #ffffff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
 }
 
 .container.right-panel-active .overlay {
-transform: translateX(50%);
+    transform: translateX(50%);
 }
 
 .overlay-panel {
-position: absolute;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 0 40px;
-text-align: center;
-top: 0;
-height: 100%;
-width: 50%;
-transform: translateX(0);
-transition: transform 0.6s ease-in-out;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
 }
 
 .overlay-left {
-transform: translateX(-20%);
+    transform: translateX(-20%);
 }
 
 .container.right-panel-active .overlay-left {
-transform: translateX(0);
+    transform: translateX(0);
 }
 
 .overlay-right {
-right: 0;
-transform: translateX(0);
+    right: 0;
+    transform: translateX(0);
 }
 
 .container.right-panel-active .overlay-right {
-transform: translateX(20%);
+    transform: translateX(20%);
 }
 
 /* From Uiverse.io by karthik092726122003 */
 .styled-wrapper .button {
-display: block;
-position: relative;
-width: 76px;
-height: 76px;
-margin: 0;
-overflow: hidden;
-outline: none;
-background-color: transparent;
-cursor: pointer;
-border: 0;
+    display: block;
+    position: relative;
+    width: 76px;
+    height: 76px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
 }
 
 .styled-wrapper .button:before {
-content: "";
-position: absolute;
-border-radius: 50%;
-inset: 7px;
-border: 3px solid black;
-transition:
-opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
-transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+    border: 3px solid black;
+    transition:
+        opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+        transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
 }
 
 .styled-wrapper .button:after {
-content: "";
-position: absolute;
-border-radius: 50%;
-inset: 7px;
-border: 4px solid #599a53;
-transform: scale(1.3);
-transition:
-opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-opacity: 0;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+    border: 4px solid #599a53;
+    transform: scale(1.3);
+    transition:
+        opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+        transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
 }
 
 .styled-wrapper .button:hover:before,
 .styled-wrapper .button:focus:before {
-opacity: 0;
-transform: scale(0.7);
-transition:
-opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    transform: scale(0.7);
+    transition:
+        opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+        transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .styled-wrapper .button:hover:after,
 .styled-wrapper .button:focus:after {
-opacity: 1;
-transform: scale(1);
-transition:
-opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
-transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+    opacity: 1;
+    transform: scale(1);
+    transition:
+        opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+        transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
 }
 
 .styled-wrapper .button-box {
-display: flex;
-position: absolute;
-top: 0;
-left: 0;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .styled-wrapper .button-elem {
-display: block;
-width: 30px;
-height: 30px;
-margin: 24px 18px 0 22px;
-transform: rotate(360deg);
-fill: #f0eeef;
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 24px 18px 0 22px;
+    transform: rotate(360deg);
+    fill: #f0eeef;
 }
 
 .styled-wrapper .button:hover .button-box,
 .styled-wrapper .button:focus .button-box {
-transition: 0.4s;
-transform: translateX(-69px);
+    transition: 0.4s;
+    transform: translateX(-69px);
 }
 
 .back-button {
-position: absolute;
-top: 20px;
-left: 20px;
-z-index: 100;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
 }
 
 .circle-wrapper {
-width: 48px;
-height: 48px;
-border-radius: 50%;
-border: 2px solid black;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-transition: background-color 0.3s ease;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .circle-wrapper:hover {
-background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 .circle-button {
-background: transparent;
-border: none;
-padding: 0;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon {
-display: flex;
-align-items: center;
-justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .custom-alert {
-            position: fixed;
-            top: 32px;
-            right: 32px;
-            min-width: 280px;
-            max-width: 350px;
-            z-index: 9999;
-            padding: 18px 48px 18px 22px;
-            border-radius: 10px;
-            font-size: 1.08rem;
-            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            animation: fadeInDown 0.5s;
-        }
-
-        .custom-alert.success {
-            background: linear-gradient(90deg, #e0ffe7 0%, #e9edfb 100%);
-            color: #2d7a46;
-        }
-
-        .custom-alert.error {
-            background: linear-gradient(90deg, #ffe0e0 0%, #e9edfb 100%);
-            color: #a94442;
-        }
-
-        .close-alert {
-            background: none;
-            border: none;
-            color: inherit;
-            font-size: 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 18px;
-            line-height: 1;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-
-        .close-alert:hover {
-            opacity: 1;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-/* responsif */
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    min-height: 100vh;
-    border-radius: 0;
-    box-shadow: none;
-  }
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    min-width: 280px;
+    max-width: 350px;
+    z-index: 9999;
+    padding: 18px 48px 18px 22px;
+    border-radius: 10px;
+    font-size: 1.08rem;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: fadeInDown 0.5s;
 }
-/* end responsif */
+
+.custom-alert.success {
+    background: linear-gradient(90deg, #e0ffe7 0%, #e9edfb 100%);
+    color: #2d7a46;
+}
+
+.custom-alert.error {
+    background: linear-gradient(90deg, #ffe0e0 0%, #e9edfb 100%);
+    color: #a94442;
+}
+
+.close-alert {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 18px;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.close-alert:hover {
+    opacity: 1;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design for smaller screens (max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        height: auto; /* Allow body height to adjust to content */
+        min-height: 100vh; /* Ensure it covers full viewport height */
+        align-items: flex-start; /* Align content to top for scrolling if needed */
+        padding: 20px 0; /* Add some vertical padding */
+    }
+
+    .container {
+        width: 100%;
+        max-width: 95%; /* Keep a small margin on very small screens */
+        min-height: 600px; /* Increase min-height for better mobile form fit */
+        border-radius: 0; /* No border-radius on mobile */
+        box-shadow: none; /* No shadow on mobile */
+        overflow: visible; /* Allow content to overflow for dynamic sizing */
+    }
+
+    /* Form Containers should take full width on small screens */
+    .form-container {
+        width: 100%; /* Occupy full width */
+        left: 0; /* Align to left */
+        height: 100%; /* Ensure full height within container */
+        position: relative; /* Change to relative to stack vertically, simplifies layout */
+        transition: opacity 0.6s ease-in-out, transform 0s; /* Only transition opacity */
+        padding: 20px 0; /* Add padding for readability */
+    }
+
+    .sign-in-container,
+    .sign-up-container {
+        width: 100%; /* Both take full width */
+        position: absolute; /* Keep absolute within form-container */
+        top: 0;
+        left: 0;
+        transform: translateX(0) !important; /* Override horizontal translation */
+    }
+
+    /* Mobile visibility logic for forms */
+    .sign-up-container {
+        opacity: 0; /* Hidden by default */
+        z-index: 1;
+        pointer-events: none; /* Prevent interaction when hidden */
+    }
+
+    .container.right-panel-active .sign-in-container {
+        opacity: 0; /* Hide sign-in when panel active */
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .container.right-panel-active .sign-up-container {
+        opacity: 1; /* Show sign-up when panel active */
+        z-index: 5;
+        pointer-events: auto; /* Allow interaction when visible */
+    }
+
+    /* Hide the overlay container completely on small screens */
+    .overlay-container {
+        display: none;
+    }
+
+    /* Adjust form padding for better mobile experience */
+    form {
+        padding: 0 20px; /* Reduce horizontal padding */
+        min-height: 500px; /* Ensure enough height for form content */
+        justify-content: center; /* Center content vertically */
+    }
+
+    /* Adjust button padding if too wide */
+    button {
+        padding: 12px 30px; /* Slightly smaller padding */
+        width: 100%; /* Make buttons full width */
+        margin-top: 15px; /* Add some top margin */
+    }
+
+    button.ghost {
+        margin-top: 20px; /* More space for the ghost button */
+    }
+
+    /* Adjust Uiverse.io button size for mobile */
+    .styled-wrapper .button {
+        width: 60px; /* Smaller button size */
+        height: 60px;
+        margin: 10px auto; /* Center buttons */
+    }
+    .styled-wrapper .button:before,
+    .styled-wrapper .button:after {
+        inset: 5px; /* Adjust inset for smaller button */
+    }
+    .styled-wrapper .button-elem {
+        width: 24px; /* Smaller icon */
+        height: 24px;
+        margin: 18px 12px 0 14px; /* Adjusted margin for centered icon */
+    }
+    /* Ensure the transform for the button-box still works */
+    .styled-wrapper .button:hover .button-box,
+    .styled-wrapper .button:focus .button-box {
+        transform: translateX(-48px); /* Adjusted based on new button-elem margin/width */
+    }
+
+    /* Adjust alert positioning for mobile */
+    .custom-alert {
+        top: 15px;
+        right: 15px;
+        left: 15px; /* Occupy full width with side margins */
+        max-width: calc(100% - 30px);
+        padding: 15px 40px 15px 18px; /* Adjusted padding */
+        font-size: 1rem;
+    }
+}

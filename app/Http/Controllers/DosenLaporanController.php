@@ -10,7 +10,7 @@ class DosenLaporanController extends Controller
     public function index()
     {
         // Ambil laporan yang perlu dikoreksi (misal status = 'diajukan')
-        $laporan = Laporan::where('status', 'diajukan')->with('mahasiswa.user')->get();
+        $laporan = Laporan::with('mahasiswa.user')->orderBy('updated_at', 'desc')->get();
         return view('dosen.laporan', compact('laporan'));
     }
 

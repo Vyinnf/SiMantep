@@ -18,6 +18,7 @@
                     <th>Judul Laporan</th>
                     <th>Status</th>
                     <th>Aksi</th>
+                    <th>Komentar</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,12 +28,9 @@
                     <td>{{ optional(optional($item->mahasiswa)->user)->name ?? '-' }}</td>
                     <td>{{ optional($item->mahasiswa)->nim ?? '-' }}</td>
                     <td>{{ $item->judul ?? '-' }}</td>
-                    <td>
-                        <span class="badge bg-warning text-dark">{{ ucfirst($item->status) }}</span>
-                    </td>
-                    <td>
-                        <a href="{{ route('dosen.laporan.show', $item->id) }}" class="btn btn-info btn-sm">Detail & Koreksi</a>
-                    </td>
+                    <td><span class="badge bg-warning text-dark">{{ ucfirst($item->status) }}</span></td>
+                    <td><a href="{{ route('dosen.laporan.show', $item->id) }}" class="btn btn-info btn-sm">Detail & Koreksi</a></td>
+                    <td>{{ $item->komentar ?? '-' }}</td>
                 </tr>
                 @endforeach
             </tbody>

@@ -47,7 +47,7 @@
                         <div class="alert alert-info">
                             <h5 class="alert-heading">Informasi Laporan Terunggah</h5>
                             <p>Anda telah mengunggah laporan pada: {{ \Carbon\Carbon::parse($laporanMagang->updated_at)->format('d M Y, H:i') }}</p>
-                            <p>Nama File: <a href="{{ $laporanMagang->file_url ?? asset('storage/laporan_magang/' . $laporanMagang->nama_file) }}" target="_blank">{{ $laporanMagang->nama_file_asli }}</a></p>
+                            <p>Nama File: <a href="{{ asset('storage/' . $laporanMagang->file) }}" target="_blank">{{ basename($laporanMagang->file) }}</a></p>
                             <hr>
                             <p class="mb-0">Jika Anda ingin mengganti laporan, silakan upload file baru di bawah ini. File lama akan tergantikan.</p>
                         </div>
@@ -62,7 +62,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="laporan" class="form-label">
-                                <i class="mdi mdi-file-pdf-box"></i> File Laporan (Format: PDF, Maks: 5MB)
+                                <i class="mdi mdi-file-pdf-box"></i> File Laporan (Format: PDF, Maks: 10MB)
                             </label>
                             <input type="file" class="form-control @error('laporan') is-invalid @enderror" id="laporan" name="laporan" accept="application/pdf" required>
                             @error('laporan')
@@ -81,7 +81,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mb-4">
+                        {{-- <div class="form-group mb-4">
                             <label for="deskripsi_laporan" class="form-label">
                                 <i class="mdi mdi-text-subject"></i> Deskripsi Singkat (Opsional)
                             </label>
@@ -89,7 +89,7 @@
                             @error('deskripsi_laporan')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <button type="submit" class="btn btn-primary w-100">
                             <i class="mdi mdi-upload"></i>

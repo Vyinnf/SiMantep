@@ -19,26 +19,18 @@ class User extends Authenticatable implements CanResetPasswordContract
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-
-    ];
+    protected $fillable = ['name', 'email', 'password', 'role'];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
-    public function scopeAdmins($query) // PENAMBAHAN SCOPE INI
+    public function scopeAdmins($query)
     {
+        // PENAMBAHAN SCOPE INI
         // Sesuaikan array peran ini jika nama peran di sistem Anda berbeda
         return $query->whereIn('role', ['admin', 'superadmin']);
     }
@@ -56,7 +48,20 @@ class User extends Authenticatable implements CanResetPasswordContract
         ];
     }
 
-    //App\Models\User.php
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'user_id');
+    }
+
+    public function dosen()
+    {
+        return $this->hasOne(Dosen::class);
+    }
 
     public function isSuperAdmin(): bool
     {
@@ -77,15 +82,4 @@ class User extends Authenticatable implements CanResetPasswordContract
     {
         return in_array($this->role, ['admin', 'superadmin']);
     }
-
-    public function dosen()
-    {
-        return $this->hasOne(Dosen::class);
-    }
-
-    public function mahasiswa()
-    {
-        return $this->hasOne(Mahasiswa::class, 'user_id');
-    }
 }
-

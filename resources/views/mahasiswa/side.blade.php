@@ -63,6 +63,12 @@
                         <span class="menu-title">Upload Laporan</span>
                     </a>
                 </li>
+                <li class="nav-item {{ Request::routeIs('mahasiswa.riwayat') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('mahasiswa.riwayat') }}">
+                        <i class="mdi mdi-upload-outline menu-icon"></i>
+                        <span class="menu-title">Lihat Laporan</span>
+                    </a>
+                </li>
 
                 <li class="nav-category">Akun Saya</li>
 

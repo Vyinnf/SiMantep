@@ -23,6 +23,7 @@ use App\Http\Controllers\DosenNotifikasiController;
 use App\Http\Controllers\DosenLoginController;
 
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MahasiswaLaporanController;
 use App\Http\Controllers\MahasiswaLoginController;
 use App\Http\Controllers\MahasiswaRegisterController;
 
@@ -74,7 +75,6 @@ Route::post('/forgot-password', function (Request $request) {
 // ============ ROUTE KHUSUS MAHASISWA ============
 
 Route::middleware(['auth'])->group(function () {
-
     Route::get('/mahasiswa/dashboard', [PendaftaranController::class, 'dashboard'])->name('mahasiswa.dashboard');
 
     // Profil Mahasiswa
@@ -93,6 +93,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mahasiswa/laporan', function () {
         return view('mahasiswa.laporan');
     })->name('mahasiswa.laporan');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mahasiswa/laporan', [MahasiswaLaporanController::class, 'create'])->name('mahasiswa.laporan');
+    Route::post('/mahasiswa/laporan', [MahasiswaLaporanController::class, 'store'])->name('mahasiswa.laporan.store');
+
+    Route::get('mahasiswa/riwayat',[MahasiswaLaporanController::class, 'riwayat'])->name('mahasiswa.riwayat');
 });
 
 // Redirect route
@@ -139,7 +146,6 @@ Route::middleware(['auth:dosen'])
     ->prefix('dosen')
     ->group(function () {
         Route::get('mahasiswa', [DosenMahasiswaController::class, 'index'])->name('dosen.mahasiswa');
-
     });
 
 Route::middleware(['auth:dosen'])

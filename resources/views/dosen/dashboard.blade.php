@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="welcome-section d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 p-4">
-    <h2 class="fw-bold mb-3 mb-md-0">Selamat datang, Anjing 👋</h2>
+    <h2 class="fw-bold mb-3 mb-md-0">Selamat datang, Rafi 👋</h2>
     <span class="text-muted">Hari ini: <span id="current-date"></span> | <span id="current-time"></span></span>
 </div>
 
