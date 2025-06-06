@@ -12,15 +12,6 @@
     <div class="col-md-6 col-lg-3">
         <div class="card shadow-sm border-0">
             <div class="card-body text-center">
-                <i class="bi bi-person-lines-fill fs-1 text-primary"></i>
-                <h5 class="card-title mt-3">Pendaftaran</h5>
-                <p class="card-text">Total: <strong>{{ $totalPendaftaran }}</strong></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card shadow-sm border-0">
-            <div class="card-body text-center">
                 <i class="bi bi-journal-check fs-1 text-success"></i>
                 <h5 class="card-title mt-3">Laporan Masuk</h5>
                 <p class="card-text">Perlu Dicek: <strong>{{ $totalLaporan }}</strong></p>
@@ -36,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    {{-- <div class="col-md-6 col-lg-3">
         <div class="card shadow-sm border-0">
             <div class="card-body text-center">
                 <i class="bi bi-bell fs-1 text-danger"></i>
@@ -44,7 +35,7 @@
                 <p class="card-text">Baru: <strong>{{ $totalNotifikasi }}</strong></p>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 <div class="row g-4">

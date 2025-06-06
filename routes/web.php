@@ -1,10 +1,18 @@
 <?php
 
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\Admin\AkunAdminController;
 use App\Http\Controllers\Admin\AdminNotifikasiController;
-use App\Http\Controllers\Notifications\PendaftaranBaruNotification;
-use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\Admin\InstansiController;
+use App\Http\Controllers\Admin\PengajuanInstansiController;
+use App\Http\Controllers\Admin\SuratPklController;
+
 use App\Http\Controllers\DosenDashboardController;
 use App\Http\Controllers\DosenVerifikasiController;
 use App\Http\Controllers\DosenProfileController;
@@ -13,18 +21,14 @@ use App\Http\Controllers\DosenLaporanController;
 use App\Http\Controllers\DosenNilaiController;
 use App\Http\Controllers\DosenNotifikasiController;
 use App\Http\Controllers\DosenLoginController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AdminLoginController;
+
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaLoginController;
 use App\Http\Controllers\MahasiswaRegisterController;
+
 use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\Admin\PengajuanInstansiController;
-use App\Http\Controllers\Admin\SuratPklController;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\Notifications\PendaftaranBaruNotification;
 
 // halaman home
 Route::get('/', function () {
@@ -83,6 +87,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mahasiswa/pendaftaran', [PendaftaranController::class, 'create'])->name('mahasiswa.pendaftaran');
     Route::post('/mahasiswa/pendaftaran', [PendaftaranController::class, 'store'])->name('mahasiswa.pendaftaran.store');
 
+    // Route::get('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'show'])->name('mahasiswa.pendaftaran');
+
     // Route upload laporan magang
     Route::get('/mahasiswa/laporan', function () {
         return view('mahasiswa.laporan');
@@ -133,6 +139,7 @@ Route::middleware(['auth:dosen'])
     ->prefix('dosen')
     ->group(function () {
         Route::get('mahasiswa', [DosenMahasiswaController::class, 'index'])->name('dosen.mahasiswa');
+
     });
 
 Route::middleware(['auth:dosen'])

@@ -23,9 +23,10 @@ class PendaftaranController extends Controller
 
     public function store(Request $request)
     {
-
         $mahasiswa = Auth::user()->id;
-        $excitingPendaftaran = Pendaftaran::where('user_id', $mahasiswa)->whereIn('status', ['pending', 'diterima'])->first();
+        $excitingPendaftaran = Pendaftaran::where('user_id', $mahasiswa)
+            ->whereIn('status', ['pending', 'diterima'])
+            ->first();
         if ($excitingPendaftaran) {
             return redirect()->back()->with('error', 'Anda sudah memiliki pendaftaran PKL yang masih aktif.');
         }
@@ -85,16 +86,20 @@ class PendaftaranController extends Controller
             'status' => 'pending',
         ]);
 
-        $pendaftaran = Pendaftaran::where('user_id', auth()->id())->latest()->first();
+        $pendaftaran = Pendaftaran::where('user_id', auth()->id())
+            ->latest()
+            ->first();
 
         return redirect()->route('mahasiswa.dashboard')->with('success', 'Pendaftaran PKL berhasil dikirim.');
     }
 
     public function dashboard()
     {
-
         $mahasiswa = auth()->user()->mahasiswa;
-        $pendaftaran = Pendaftaran::with('dosen')->where('user_id', auth()->id())->latest()->first();
+        $pendaftaran = Pendaftaran::with('dosen')
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->first();
         return view('mahasiswa.dashboard', compact('mahasiswa', 'pendaftaran'));
     }
 
@@ -124,5 +129,11 @@ class PendaftaranController extends Controller
         $pendaftaran->save();
 
         return redirect()->back()->with('success', 'Dosen pembimbing berhasil ditugaskan.');
+    }
+
+    public function show($id)
+    {
+        $pendaftaran = Pendaftaran::findOrFail($id);
+        return view('mahasiswa.pendaftaran', compact('pendaftaran'));
     }
 }

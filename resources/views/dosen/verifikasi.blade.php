@@ -25,8 +25,9 @@
                 @foreach($pendaftaran as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ optional(optional($item->mahasiswa)->user)->name ?? '-' }}</td>
-                    <td>{{ optional($item->mahasiswa)->nim ?? '-' }}</td>
+                    <td>{{ $item->mahasiswa->name ?? '-' }}</td>
+                    <td>{{ $item->nim ?? '-' }}</td>
+                    <td>{{ $item->prodi ?? '-' }}</td>
                     <td>{{ $item->judul_pkl ?? '-' }}</td>
                     <td>{{ $item->created_at->format('d-m-Y') }}</td>
                     <td>

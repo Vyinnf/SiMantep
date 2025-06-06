@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pendaftaran; // Pastikan model ini sesuai dengan tabel pendaftaran PKL
+use App\Models\Pendaftaran;
 
 class DosenVerifikasiController extends Controller
 {
@@ -21,6 +21,15 @@ class DosenVerifikasiController extends Controller
 
         // Validasi status
         $request->validate([
+            'nim' => 'required|string|max:20',
+            'prodi' => 'required|string|max:100',
+            'semester' => 'required|integer|min:1|max:14',
+            'alamat_mahasiswa' => 'required|string',
+            'no_hp' => 'required|string|max:15',
+            'instansi_id' => 'required',
+            'nama_instansi_manual' => 'nullable|required_if:instansi_id,other|string|max:255',
+            'alamat_instansi_manual' => 'nullable|required_if:instansi_id,other|string',
+            'judul_pkl' => 'required|string|max:255',
             'status' => 'required|in:,pending,diterima,ditolak',
         ]);
 

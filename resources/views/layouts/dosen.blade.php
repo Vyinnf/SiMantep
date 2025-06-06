@@ -39,12 +39,12 @@
                             <i class="bi bi-house-door"></i> Dashboard
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('dosen.verifikasi') ? 'active' : '' }}"
                             href="{{ route('dosen.verifikasi') }}">
                             <i class="bi bi-person-check"></i> Verifikasi Pendaftaran PKL
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('dosen.mahasiswa') ? 'active' : '' }}"
                             href="{{ route('dosen.mahasiswa') }}">

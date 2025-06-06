@@ -12,8 +12,6 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements CanResetPasswordContract
 {
     use CanResetPassword;
-
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
@@ -59,10 +57,6 @@ class User extends Authenticatable implements CanResetPasswordContract
     }
 
     //App\Models\User.php
-    public function mahasiswa()
-    {
-        return $this->hasOne(Mahasiswa::class);
-    }
 
     public function isSuperAdmin(): bool
     {
@@ -78,8 +72,20 @@ class User extends Authenticatable implements CanResetPasswordContract
     {
         return $this->role === 'dosen';
     }
+
     public function isAdmin(): bool
     {
         return in_array($this->role, ['admin', 'superadmin']);
     }
+
+    public function dosen()
+    {
+        return $this->hasOne(Dosen::class);
+    }
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'user_id');
+    }
 }
+

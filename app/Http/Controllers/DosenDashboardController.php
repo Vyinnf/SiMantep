@@ -3,33 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Mahasiswa;
 use App\Models\Laporan;
 use App\Models\Notifikasi;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DosenDashboardController extends Controller
 {
     public function index()
     {
-        // Total mahasiswa bimbingan (contoh: mahasiswa yang statusnya magang)
-        $totalMahasiswa = Mahasiswa::where('status', 'magang')->count();
+        $dosenId = Auth::id();
 
-        // Total pendaftaran PKL yang perlu diverifikasi
-        $totalPendaftaran = Pendaftaran::where('status', 'menunggu')->count();
+        $totalMahasiswa = Pendaftaran::where('dosen_id', $dosenId)
+            ->where('status', 'diterima')
+            ->count();
 
-        // Total laporan yang perlu dikoreksi
-        $totalLaporan = Laporan::where('status', 'diajukan')->count();
+        $totalPendaftaran = 0;
 
-        // Total notifikasi untuk dosen login
-        $totalNotifikasi = Notifikasi::where('user_id', Auth::id())->count();
+        $mahasiswaIds = Pendaftaran::where('dosen_id', $dosenId)
+            ->where('status', 'diterima')
+            ->pluck('user_id');
+
+        $totalLaporan = Laporan::whereIn('mahasiswa_id', $mahasiswaIds)
+            ->where('status', 'diajukan')
+            ->count();
 
         return view('dosen.dashboard', compact(
             'totalMahasiswa',
             'totalPendaftaran',
-            'totalLaporan',
-            'totalNotifikasi'
+            'totalLaporan'
         ));
+    }
+
+    public function mahasiswa()
+    {
+        $dosenId = Auth::id();
+
+        $pendaftaran = Pendaftaran::with(['user.mahasiswa'])
+            ->where('dosen_id', $dosenId)
+            ->where('status', 'diterima')
+            ->get();
+
+        return view('dosen.mahasiswa', compact('pendaftaran'));
     }
 }
