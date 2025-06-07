@@ -31,7 +31,7 @@
             </a>
 
             {{-- Tampilkan form hanya jika status masih diajukan --}}
-            @if ($laporan->status === 'diajukan')
+            @if ($laporan->status === 'menunggu koreksi')
                 <form method="POST" action="{{ route('dosen.laporan.revisi', $laporan->id) }}" class="mb-2">
                     @csrf
                     <div class="mb-2">

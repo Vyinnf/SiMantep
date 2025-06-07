@@ -27,9 +27,9 @@
                 @foreach($mahasiswa as $mhs)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $mhs->user->name ?? '-' }}</td>
-                    <td>{{ $mhs->nim }}</td>
-                    <td>{{ $mhs->judul_pkl ?? '-' }}</td>
+                    <td>{{ $mhs->mahasiswa->nama ?? '-' }}</td>
+                    <td>{{ $mhs->mahasiswa->nim }}</td>
+                    <td>{{ $mhs->judul ?? '-' }}</td>
                     <td>
                         @if($mhs->nilai !== null)
                             <span class="badge bg-success">{{ $mhs->nilai }}</span>

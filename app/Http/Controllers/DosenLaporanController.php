@@ -17,6 +17,9 @@ class DosenLaporanController extends Controller
     public function show($id)
     {
         $laporan = Laporan::with('mahasiswa.user')->findOrFail($id);
+        if(in_array($laporan->status, ['diajukan', 'menunggu', 'revisi'])) {
+            abort(403, 'Laporan ini tidak dapat dikoresi');
+        }
         return view('dosen.laporan-detail', compact('laporan'));
     }
 

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa; // Pastikan model ini sesuai
+use App\Models\Laporan; // Pastikan model ini sesuai
 
 class DosenNilaiController extends Controller
 {
     public function index()
     {
         // Ambil mahasiswa yang sudah selesai magang dan siap dinilai
-        $mahasiswa = Mahasiswa::where('status', 'selesai')->with('user')->get();
+        $mahasiswa = Laporan::where('status', 'diterima')->with('mahasiswa')->get();
         return view('dosen.nilai', compact('mahasiswa'));
     }
 
@@ -19,8 +20,9 @@ class DosenNilaiController extends Controller
         $request->validate([
             'nilai' => 'required|numeric|min:0|max:100',
         ]);
+        // dd($id);
 
-        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa = Laporan::findOrFail($id);
         $mahasiswa->nilai = $request->nilai;
         $mahasiswa->save();
 

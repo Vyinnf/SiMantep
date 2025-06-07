@@ -121,55 +121,23 @@ Route::post('/logout/dosen', [DosenLoginController::class, 'logout'])->name('dos
 
 // Fitur-fitur khusus dosen
 Route::get('dashboard', [DosenDashboardController::class, 'index'])->name('dosen.dashboard');
+
 Route::middleware(['auth:dosen'])
     ->prefix('dosen')
     ->group(function () {
         Route::get('profile', [DosenProfileController::class, 'show'])->name('dosen.profile');
         Route::get('profile/edit', [DosenProfileController::class, 'edit'])->name('dosen.profile.edit');
         Route::put('profile', [DosenProfileController::class, 'update'])->name('dosen.profile.update');
-    });
-
-Route::middleware(['auth:dosen'])
-    ->prefix('dosen')
-    ->group(function () {
         Route::get('dashboard', [DosenDashboardController::class, 'index'])->name('dosen.dashboard');
         Route::get('verifikasi', [DosenVerifikasiController::class, 'index'])->name('dosen.verifikasi');
-    });
-
-Route::middleware(['auth:dosen'])
-    ->prefix('dosen')
-    ->group(function () {
         Route::put('verifikasi/{id}', [DosenVerifikasiController::class, 'update'])->name('dosen.verifikasi.update');
-    });
-
-Route::middleware(['auth:dosen'])
-    ->prefix('dosen')
-    ->group(function () {
         Route::get('mahasiswa', [DosenMahasiswaController::class, 'index'])->name('dosen.mahasiswa');
-    });
-
-Route::middleware(['auth:dosen'])
-    ->prefix('dosen')
-    ->group(function () {
-        // ...
         Route::get('laporan', [DosenLaporanController::class, 'index'])->name('dosen.laporan');
         Route::get('laporan/{id}', [DosenLaporanController::class, 'show'])->name('dosen.laporan.show');
         Route::post('laporan/{id}/revisi', [DosenLaporanController::class, 'revisi'])->name('dosen.laporan.revisi');
         Route::post('laporan/{id}/terima', [DosenLaporanController::class, 'terima'])->name('dosen.laporan.terima');
-    });
-
-Route::middleware(['auth:dosen'])
-    ->prefix('dosen')
-    ->group(function () {
-        // ...
         Route::get('nilai', [DosenNilaiController::class, 'index'])->name('dosen.nilai');
         Route::post('nilai/{id}', [DosenNilaiController::class, 'store'])->name('dosen.nilai.store');
-    });
-
-Route::middleware(['auth:dosen'])
-    ->prefix('dosen')
-    ->group(function () {
-        // ...
         Route::get('notifikasi', [DosenNotifikasiController::class, 'index'])->name('dosen.notifikasi');
     });
 

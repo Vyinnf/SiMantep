@@ -16,6 +16,7 @@
                     <th>Status</th>
                     <th>Komentar</th>
                     <th>Diunggah</th>
+                    <th>Nilai</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +40,7 @@
                     </td>
                     <td>{{ $item->komentar ?? '-' }}</td>
                     <td>{{ $item->updated_at->format('d M Y H:i') }}</td>
+                    <td>{{ $item->nilai ?? '-' }}</td>
                 </tr>
                 @endforeach
             </tbody>
